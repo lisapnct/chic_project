@@ -1,9 +1,10 @@
 import React from "react";
-import ProfileContainer from "../components/Profile/ProfileContainer";
 import Searchbar from "../components/Searchbar";
 import ProjectCard from "../components/Project/ProjectCard";
+import ProjectContainer from "../components/Project/ProjectContainer";
 
-const Profile = (props) => {
+
+const Project = () => {
   return (
     <div className="dashboard-container">
       <div className="left-block">
@@ -20,10 +21,10 @@ const Profile = (props) => {
       </div>
 
       <div className="right-block">
-        <ProfileContainer />
+        <ProjectContainer />
       </div>
     </div>
   );
 };
 
-export default Profile;
+export default Project;

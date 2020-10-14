@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/Dashboard.css";
-
+import { Switch, Route } from "react-router-dom";
 import Searchbar from "../components/Searchbar";
 import Map from "../components/Map";
 import ProjectContainer from "../components/Project/ProjectContainer";
@@ -23,12 +23,13 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div class="right-block">
-        {/* <Map /> */}
+      <div className="right-block">
+  
+        <Map />
         {/* OR */}
         {/* <ProjectContainer /> */}
         {/* OR */}
-        <ProfileContainer />
+        {/* <ProfileContainer /> */}
       </div>
     </div>
   );

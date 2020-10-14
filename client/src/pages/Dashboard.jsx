@@ -1,14 +1,34 @@
 import React from "react";
 import "../styles/Dashboard.css";
 
+import Searchbar from "../components/Searchbar";
+import Map from "../components/Map";
+import ProjectContainer from "../components/Project/ProjectContainer";
+import ProfileContainer from "../components/Profile/ProfileContainer";
+import ProjectCard from "../components/Project/ProjectCard";
+
 const Dashboard = () => {
   return (
     <div className="dashboard-container">
       <div className="left-block">
-        <h1>card container</h1>
+        <div className="left-grid-container">
+          <div className="searchbar">
+            <Searchbar />
+          </div>
+          <div className="card-list">
+            <div className="card">
+              <ProjectCard />
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="right-block">
-        <h1>map container</h1>
+
+      <div class="right-block">
+        {/* <Map /> */}
+        {/* OR */}
+        {/* <ProjectContainer /> */}
+        {/* OR */}
+        <ProfileContainer />
       </div>
     </div>
   );

@@ -1,0 +1,17 @@
+.profile-grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-row-gap: 10px;
+  height: 100%;
+}
+
+.top-block {
+  grid-area: 1 / 1 / 3 / 4;
+  background-color: lightskyblue;
+}
+.bottom-block {
+  grid-area: 3 / 1 / 6 / 4;
+  background-color: lightskyblue;
+
+}

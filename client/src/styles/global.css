@@ -18,3 +18,13 @@ a {
 ul {
   list-style-type: none;
 }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  font-size: 10px;
+  padding: 5px;
+  /* padding-top: 10px; */
+  /* height: 50px; */
+}

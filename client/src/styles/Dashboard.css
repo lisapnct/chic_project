@@ -1,0 +1,17 @@
+.dashboard-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 0px;
+  height: 88vh;
+}
+
+.left-block {
+  grid-area: 1 / 1 / 6 / 3;
+  background-color: lightgray;
+}
+.right-block {
+  grid-area: 1 / 3 / 6 / 6;
+  background-color: lightcoral;
+}

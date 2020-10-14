@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/ProjectContainer.css";
+import "../../styles/ProjectContainer.scss";
 
 import Progress from "./Progress";
 import Contributors from "./Contributors";
@@ -7,8 +7,8 @@ import Contributors from "./Contributors";
 const ProjectContainer = () => {
   return (
     <div className="project-grid-container">
-      <div class="project-info">
-        <h1>Project Name</h1>
+      <div className="project-info">
+        <h1>name</h1>
         <h3>Description</h3>
         <p>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta ipsum,
@@ -18,10 +18,10 @@ const ProjectContainer = () => {
         </p>
         <h4>Needed materials</h4>
       </div>
-      <div class="progress-gauge">
+      <div className="progress-gauge">
         <Progress />
       </div>
-      <div class="contributors">
+      <div className="contributors">
         <Contributors />
       </div>
     </div>

@@ -3,23 +3,19 @@ import Searchbar from "../components/Searchbar";
 import ProjectCard from "../components/Project/ProjectCard";
 import ProjectContainer from "../components/Project/ProjectContainer";
 
-
 const Project = () => {
   return (
     <div className="dashboard-container">
       <div className="left-block">
         <div className="left-grid-container">
-          <div className="searchbar">
-            <Searchbar />
-          </div>
+          <Searchbar />
           <div className="card-list">
-            <div className="card">
-              <ProjectCard />
-            </div>
+            <ProjectCard />
+            <ProjectCard />
+            <ProjectCard />
           </div>
         </div>
       </div>
-
       <div className="right-block">
         <ProjectContainer />
       </div>

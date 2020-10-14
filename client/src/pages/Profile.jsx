@@ -1,6 +1,5 @@
 import React from "react";
 import ProfileContainer from "../components/Profile/ProfileContainer";
-import Searchbar from "../components/Searchbar";
 import ProjectCard from "../components/Project/ProjectCard";
 
 const Profile = (props) => {
@@ -8,17 +7,16 @@ const Profile = (props) => {
     <div className="dashboard-container">
       <div className="left-block">
         <div className="left-grid-container">
-          <div className="searchbar">
-            <Searchbar />
+          <div className="left-block-top">
+            <h2>projects you supported</h2>
           </div>
           <div className="card-list">
-            <div className="card">
-              <ProjectCard />
-            </div>
+            <ProjectCard />
+            <ProjectCard />
+            <ProjectCard />
           </div>
         </div>
       </div>
-
       <div className="right-block">
         <ProfileContainer />
       </div>

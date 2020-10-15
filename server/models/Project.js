@@ -10,7 +10,7 @@ const projectSchema = new Schema({
   },
   materials: [
     {
-      type: {
+      fabric_type: {
         type: String,
         enum: ['lin', 'coton', 'laine', 'polyester'],
       },
@@ -38,7 +38,7 @@ const projectSchema = new Schema({
       },
       contributed_materials: [
         {
-          type: String,
+          fabric_type: String,
           quantity: Number,
         },
       ],

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import apiHandler from "../api/apiHandler";
-import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
+import ReactMapboxGl from "react-mapbox-gl";
 import { Marker } from "react-mapbox-gl";
 
 const Map = ReactMapboxGl({
@@ -32,17 +32,21 @@ class HomeMap extends Component {
             width: "100vw",
           }}
           >
-          {/* <Marker
-                  //   key={elm._id}
-                  //   coordinates={elm.location.coordinates}
-                  //   anchor="bottom"
-                  // >
-                  //   <img
-                  //     alt={elm.name}
-                  //     style={{ width: 2 + "vw" }}
-                  //     src={elm.image}
-                  //   />
-          // </Marker> */}
+        { stores 
+          ? stores.map(elm => 
+            <Marker
+                    key={elm._id}
+                    coordinates={elm.location.coordinates}
+                    anchor="bottom"
+                  >
+                    <img
+                      alt={elm.name}
+                      style={{ width: 4 + "vw", borderRadius: "50%", borderColor: "inherit" }}
+                      src={elm.image}
+                    />
+          </Marker> ) 
+          : null 
+        }
         </Map>
     </div>;
   }

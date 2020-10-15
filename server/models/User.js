@@ -10,7 +10,7 @@ const userSchema = new Schema({
   profilePicture: {
     type: String,
     default:
-      'https://projetchic.s3.eu-west-3.amazonaws.com/PROFIL.jpg',
+      'https://projetchic.s3.eu-west-3.amazonaws.com/undraw_social_girl_562b.png',
   },
   role: {
     type: String, 

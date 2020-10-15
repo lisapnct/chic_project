@@ -5,12 +5,11 @@ const upload = require('../config/aws');
 
 
 // C
-router.post("/", upload.single('image'), async (req, res, next) => {
+router.post("/", upload.single('images'), async (req, res, next) => {
   try {
     const newProject = req.body;
-    console.log(newProject);
     if (req.file) {
-      newProject.image = req.file.location;
+      newProject.images = req.file.location;
     }
     const apiRes = await Project.create(newProject);
     res.status(201).json(apiRes);
@@ -39,7 +38,7 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // U
-router.patch("/:id", upload.single('image'), async (req, res, next) => {
+router.patch("/:id", upload.single('images'), async (req, res, next) => {
   try {
     const updatedProject = req.body;
     if (req.file) {

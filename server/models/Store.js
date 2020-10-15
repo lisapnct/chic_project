@@ -17,6 +17,10 @@ const storeSchema = new Schema({
     },
     formattedAddress: String,
   },
+  image: {
+      type: String,
+      default: 'https://projetchic.s3.eu-west-3.amazonaws.com/undraw_Appreciation_sjc1.png',
+  },
 });
 
 const Store = mongoose.model("Store", storeSchema);

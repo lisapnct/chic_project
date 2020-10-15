@@ -8,7 +8,7 @@ router.post("/", upload.single('image'), async (req, res, next) => {
   try {
     const newStore = req.body;
     if (req.file) {
-      newStore.image = req.file.path;
+      newStore.image = req.file.location;
     }
     const apiRes = await Store.create(newStore);
     res.status(201).json(apiRes);
@@ -40,8 +40,9 @@ router.get("/:id", async (req, res, next) => {
 router.patch("/:id", upload.single('image'), async (req, res, next) => {
   try {
     const updatedStore = req.body;
-    // console.log(req.body);
-    // console.log(updatedItem);
+    if (req.file) {
+      newStore.image = req.file.location;
+    }
     const apiRes = await Store.findByIdAndUpdate(req.params.id, updatedStore, {
       new: true,
     });

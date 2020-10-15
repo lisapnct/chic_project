@@ -9,7 +9,7 @@ import ProfileContainer from "../components/Profile/ProfileContainer";
 class Dashboard extends React.Component {
   state = {
     projects: [],
-    clickedProject: [],
+    selectedProject: [],
   };
 
   componentDidMount() {
@@ -28,7 +28,7 @@ class Dashboard extends React.Component {
       .getOne("/api/projects/", projectId)
       .then((apiRes) => {
         this.setState({
-          clickedProject: apiRes.data,
+          selectedProject: apiRes.data,
         });
       })
       .catch((err) => console.log(err));
@@ -53,9 +53,10 @@ class Dashboard extends React.Component {
     if (location === "/") {
       return <HomeMap handleMarkClic={this.handleMarkerClick} />;
     } else if (location.startsWith("/project")) {
-      return  <ProjectContainer project={this.state.clickedProject} />;
+      // console.log(this.state.selectedProject)
+      return <ProjectContainer project={this.state.selectedProject} />;
     } else if (location.startsWith("/profile")) {
-      return <ProfileContainer />
+      return <ProfileContainer />;
     }
   };
 
@@ -71,9 +72,7 @@ class Dashboard extends React.Component {
             />
           </div>
         </div>
-        <div className="right-block">
-          {this.displayRightBlock()}
-        </div>
+        <div className="right-block">{this.displayRightBlock()}</div>
       </div>
     );
   }

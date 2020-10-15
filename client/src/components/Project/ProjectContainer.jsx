@@ -1,14 +1,15 @@
 import React from "react";
 import "../../styles/ProjectContainer.scss";
+import apiHandler from "../../api/apiHandler";
 
 import Progress from "./Progress";
 import Contributors from "./Contributors";
 
-const ProjectContainer = () => {
+const ProjectContainer = (props) => {
   return (
     <div className="project-grid-container">
       <div className="project-info">
-        <h1>name</h1>
+        <h1>{props.project.name}</h1>
         <h3>Description</h3>
         <p>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta ipsum,

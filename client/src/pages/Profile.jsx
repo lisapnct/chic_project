@@ -1,6 +1,6 @@
 import React from "react";
 import ProfileContainer from "../components/Profile/ProfileContainer";
-import ProjectCard from "../components/Project/ProjectCard";
+import ProjectList from "../components/Project/ProjectList";
 
 const Profile = (props) => {
   return (
@@ -8,13 +8,9 @@ const Profile = (props) => {
       <div className="left-block">
         <div className="left-grid-container">
           <div className="left-block-top">
-            <h2>projects you supported</h2>
+            <h2 className="title is-4">projects you supported</h2>
           </div>
-          <div className="card-list">
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-          </div>
+          <ProjectList />
         </div>
       </div>
       <div className="right-block">

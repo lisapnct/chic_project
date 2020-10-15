@@ -22,12 +22,16 @@ const NavMain = (props) => {
       <div className="navbar-brand">
         <div className="navbar-item">
           <NavLink to="/">
+<<<<<<< HEAD
             <h1 className="title is-4 has-text-weight-bold">
               <span role="img" aria-label="pelote">
                 🧶
               </span>{" "}
               chic
             </h1>
+=======
+            <h1 className="title is-3 has-text-weight-bold">🧶 chic</h1>
+>>>>>>> 62b91966308ae6bf235cd86b265b5aa76a8abda5
           </NavLink>
           <a
             role="button"

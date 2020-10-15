@@ -21,7 +21,7 @@ class Dashboard extends React.Component {
         });
       })
       .catch((err) => console.log(err));
-  }
+  };
 
   clickedProject = (projectId) => {
     apiHandler
@@ -34,12 +34,24 @@ class Dashboard extends React.Component {
       .catch((err) => console.log(err));
   };
 
+  handleMarkerClick = (storeId) => {
+    apiHandler
+      .getAllProjectsInStore("/api/stores/projects/", storeId)
+      .then((apiRes) => {
+        console.log(apiRes);
+        this.setState({
+          projects: apiRes.data,
+        });
+      })
+      .catch((err) => console.log(err));
+  };
+
   displayRightBlock = () => {
     // conditional logic for rendering right block
     const location = window.location.pathname.toString();
 
     if (location === "/") {
-      return <HomeMap />;
+      return <HomeMap handleMarkClic={this.handleMarkerClick} />;
     } else if (location.startsWith("/project")) {
       return  <ProjectContainer project={this.state.clickedProject} />;
     } else if (location.startsWith("/profile")) {

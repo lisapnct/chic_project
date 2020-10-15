@@ -21,34 +21,39 @@ class HomeMap extends Component {
 
   render() {
     const stores = this.state.stores;
-    console.log(this.state.stores);
-    return <div>
+    const mapElmStyle = {
+      width: 4 + "vw",
+      borderRadius: "50%",
+      borderColor: "inherit",
+      cursor: "pointer",
+    };
+    const mapstyle = { style: "mapbox://styles/mapbox/light-v10" }
+    return (
+      <div>
         <Map
-          style="mapbox://styles/mapbox/light-v10"
+          style={mapstyle.style}
           center={[2.3837684, 48.8593118]}
           zoom={[12]}
           containerStyle={{
             height: "100vh",
             width: "100vw",
           }}
-          >
-        { stores 
-          ? stores.map(elm => 
-            <Marker
-                    key={elm._id}
-                    coordinates={elm.location.coordinates}
-                    anchor="bottom"
-                  >
-                    <img
-                      alt={elm.name}
-                      style={{ width: 4 + "vw", borderRadius: "50%", borderColor: "inherit" }}
-                      src={elm.image}
-                    />
-          </Marker> ) 
-          : null 
-        }
+        >
+          {stores
+            ? stores.map((elm) => (
+                <Marker
+                  key={elm._id}
+                  coordinates={elm.location.coordinates}
+                  anchor="bottom"
+                  onClick={() => this.props.handleMarkClic(elm._id)}
+                >
+                  <img alt={elm.name} style={mapElmStyle} src={elm.image} />
+                </Marker>
+              ))
+            : null}
         </Map>
-    </div>;
+      </div>
+    );
   }
 }
 

@@ -44,7 +44,6 @@ router.patch("/:id", upload.single('images'), async (req, res, next) => {
     if (req.file) {
       updatedProject.image = req.file.location;
     }
-    console.log(updatedItem);
     const apiRes = await Project.findByIdAndUpdate(req.params.id, updatedProject, {
       new: true,
     });
@@ -63,5 +62,6 @@ router.delete("/:id", async (req, res, next) => {
     res.status(500).json(err);
   }
 });
+
 
 module.exports = router;

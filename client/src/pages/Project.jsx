@@ -1,9 +1,9 @@
 import React from "react";
 import Searchbar from "../components/Searchbar";
-import Map from "../components/Map";
 import ProjectCard from "../components/Project/ProjectCard";
+import ProjectContainer from "../components/Project/ProjectContainer";
 
-const Dashboard = () => {
+const Project = () => {
   return (
     <div className="dashboard-container">
       <div className="left-block">
@@ -17,10 +17,10 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="right-block">
-        <Map />
+        <ProjectContainer />
       </div>
     </div>
   );
 };
 
-export default Dashboard;
+export default Project;

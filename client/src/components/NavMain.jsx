@@ -3,8 +3,6 @@ import { NavLink } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler";
 
-import "../styles/NavMain.css";
-
 const NavMain = (props) => {
   const { context } = props;
 
@@ -20,34 +18,58 @@ const NavMain = (props) => {
   }
 
   return (
-    <nav className="NavMain">
-      <NavLink exact to="/">
-        <h3 className="logo">🧶 chic</h3>
-      </NavLink>
-      <ul className="nav-list">
-        {context.isLoggedIn && (
-          <React.Fragment>
-            <li>
-              <NavLink to="/profile">
-                {context.user && context.user.email}
-              </NavLink>
-            </li>
-            <li>
-              <p onClick={handleLogout}>Logout</p>
-            </li>
-          </React.Fragment>
-        )}
-        {!context.isLoggedIn && (
-          <React.Fragment>
-            <li>
-              <NavLink to="/signin">Log in</NavLink>
-            </li>
-            <li>
-              <NavLink to="/signup">Create account</NavLink>
-            </li>
-          </React.Fragment>
-        )}
-      </ul>
+    <nav className="navbar">
+      <div className="navbar-brand">
+        <div className="navbar-item">
+          <NavLink to="/">
+            <h1 className="title is-4 has-text-weight-bold">🧶 chic</h1>
+          </NavLink>
+          <a
+            role="button"
+            className="navbar-burger"
+            aria-label="menu"
+            aria-expanded="false"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+      </div>
+      <div className="navbar-menu">
+        <div className="navbar-start"></div>
+        <div className="navbar-end">
+          <div className="navbar-item">
+            <div className="buttons">
+              {context.isLoggedIn && (
+                <React.Fragment>
+                  <div className="button is-white">
+                    <NavLink to="/profile">
+                      {context.user && context.user.email}
+                    </NavLink>
+                  </div>
+                  <a
+                    className="button is-danger is-light"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </a>
+                </React.Fragment>
+              )}
+              {!context.isLoggedIn && (
+                <React.Fragment>
+                  <div className="button is-primary is-outlined">
+                    <NavLink to="/signin">Log in</NavLink>
+                  </div>
+                  <div className="button is-primary">
+                    <NavLink to="/signup">Create account</NavLink>
+                  </div>
+                </React.Fragment>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
     </nav>
   );
 };

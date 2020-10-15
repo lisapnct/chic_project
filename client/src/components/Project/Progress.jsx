@@ -3,7 +3,7 @@ import React from 'react'
 const Progress = () => {
     return (
         <div>
-            <h1>project gauge</h1>
+            <h1>progress</h1>
         </div>
     )
 }

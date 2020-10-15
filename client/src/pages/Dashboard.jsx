@@ -41,7 +41,7 @@ class Dashboard extends React.Component {
     if (location === "/") {
       return <HomeMap />;
     } else if (location.startsWith("/project")) {
-      console.log(this.state.selectedProject)
+      // console.log(this.state.selectedProject)
       return <ProjectContainer project={this.state.selectedProject} />;
     } else if (location.startsWith("/profile")) {
       return <ProfileContainer />;

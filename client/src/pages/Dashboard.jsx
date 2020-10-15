@@ -1,6 +1,6 @@
 import React from "react";
 import Searchbar from "../components/Searchbar";
-import Map from "../components/Map";
+import HomeMap from "../components/HomeMap";
 import ProjectCard from "../components/Project/ProjectCard";
 
 const Dashboard = () => {
@@ -17,7 +17,7 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="right-block">
-        <Map />
+        <HomeMap />
       </div>
     </div>
   );

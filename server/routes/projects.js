@@ -3,7 +3,6 @@ var router = express.Router();
 const Project = require("../models/Project");
 const upload = require('../config/aws');
 
-const singleUpload = upload.single('image');
 
 // C
 router.post("/", upload.single('image'), async (req, res, next) => {
@@ -44,10 +43,9 @@ router.patch("/:id", upload.single('image'), async (req, res, next) => {
   try {
     const updatedProject = req.body;
     if (req.file) {
-      newProject.image = req.file.path;
+      updatedProject.image = req.file.location;
     }
-    // console.log(req.body);
-    // console.log(updatedItem);
+    console.log(updatedItem);
     const apiRes = await Project.findByIdAndUpdate(req.params.id, updatedProject, {
       new: true,
     });

@@ -1,6 +1,5 @@
 import React from "react";
 import "../../styles/ProjectContainer.scss";
-import apiHandler from "../../api/apiHandler";
 
 import Progress from "./Progress";
 import Contributors from "./Contributors";
@@ -10,14 +9,8 @@ const ProjectContainer = (props) => {
     <div className="project-grid-container">
       <div className="project-info">
         <h1>{props.project.name}</h1>
-        <h3>Description</h3>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta ipsum,
-          a in quia error quam tempore deleniti iusto nostrum rerum magnam atque
-          laboriosam neque expedita exercitationem eligendi, omnis tempora
-          quaerat.
-        </p>
-        <h4>Needed materials</h4>
+        <h3>{props.project.description}</h3>
+        <h4>Needed materials:</h4>
       </div>
       <div className="progress-gauge">
         <Progress />

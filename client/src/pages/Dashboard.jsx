@@ -3,11 +3,13 @@ import Searchbar from "../components/Searchbar";
 import ProjectList from "../components/Project/ProjectList";
 import apiHandler from "../api/apiHandler";
 import HomeMap from "../components/HomeMap";
+import ProjectContainer from "../components/Project/ProjectContainer";
+import ProfileContainer from "../components/Profile/ProfileContainer";
 
 class Dashboard extends React.Component {
   state = {
     projects: [],
-    clickedProject: null,
+    clickedProject: [],
   };
 
   componentDidMount() {
@@ -21,17 +23,28 @@ class Dashboard extends React.Component {
       .catch((err) => console.log(err));
   }
 
-  getClickedProject = (projectId) => {
-    console.log(projectId);
+  clickedProject = (projectId) => {
     apiHandler
       .getOne("/api/projects/", projectId)
       .then((apiRes) => {
-        console.log("project clicked: ", apiRes);
         this.setState({
           clickedProject: apiRes.data,
         });
       })
       .catch((err) => console.log(err));
+  };
+
+  displayRightBlock = () => {
+    // conditional logic for rendering right block
+    const location = window.location.pathname.toString();
+
+    if (location === "/") {
+      return <HomeMap />;
+    } else if (location.startsWith("/project")) {
+      return  <ProjectContainer project={this.state.clickedProject} />;
+    } else if (location.startsWith("/profile")) {
+      return <ProfileContainer />
+    }
   };
 
   render() {
@@ -40,16 +53,18 @@ class Dashboard extends React.Component {
         <div className="left-block">
           <div className="left-grid-container">
             <Searchbar />
-            <ProjectList projects={this.state.projects} oneProject={this.getClickedProject} />
+            <ProjectList
+              projects={this.state.projects}
+              currentProject={this.clickedProject}
+            />
           </div>
         </div>
         <div className="right-block">
-        <HomeMap />
+          {this.displayRightBlock()}
         </div>
       </div>
     );
   }
 }
-
 
 export default Dashboard;

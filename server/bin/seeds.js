@@ -55,7 +55,7 @@ const projects = [
         ],
       },
     ],
-    images: "",
+    image: "",
   },
 ];
 

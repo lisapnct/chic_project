@@ -45,7 +45,7 @@ const projectSchema = new Schema({
     },
   ],
   images: {
-    type: [String],
+    type: String,
     default: '',
   },
 });

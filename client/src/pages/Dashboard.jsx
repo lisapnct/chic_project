@@ -1,8 +1,8 @@
 import React from "react";
 import Searchbar from "../components/Searchbar";
-import Map from "../components/Map";
 import ProjectList from "../components/Project/ProjectList";
 import apiHandler from "../api/apiHandler";
+import HomeMap from "../components/HomeMap";
 
 class Dashboard extends React.Component {
   state = {
@@ -44,11 +44,12 @@ class Dashboard extends React.Component {
           </div>
         </div>
         <div className="right-block">
-          <Map />
+        <HomeMap />
         </div>
       </div>
     );
   }
 }
+
 
 export default Dashboard;

@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const storeSchema = new Schema({
   name: String,
   id_projects: {
-        type: Schema.Types.ObjectId,
+        type: [Schema.Types.ObjectId],
         ref: 'Project',
   }, 
   location: {

@@ -4,12 +4,12 @@ const mongoose = require("mongoose");
 
 const projects = [
   {
-    name: "Fun Project",
+    name: "Proxy Project",
     description: "This is a fun project",
-    creator: "5f87f74a1a940fe86c5601ca",
+    creator: "5f870bea07ddf3351be419a5",
     materials: [
       {
-        type: "lin",
+        fabric_type: "lin",
         required_quantity: 10,
         collected_quantity: 1,
         color: "blue",
@@ -19,21 +19,20 @@ const projects = [
     isSuccess: false,
     contributors: [
       {
-        id_users: "5f87f72e1a940fe86c5601c9",
+        id_users: "5f882bfd9975630d2267ece5",
         contributed_materials: [
           {
-            type: "lin",
+            fabric_type: "lin",
             quantity: 1,
           },
         ],
       },
     ],
-    images: "",
   },
   {
-    name: "Cool Project",
+    name: "Another Project",
     description: "This is a cool project",
-    creator: "5f87f72e1a940fe86c5601c9",
+    creator: "5f882bfd9975630d2267ece5",
     materials: [
       {
         fabric_type: "coton",
@@ -46,7 +45,7 @@ const projects = [
     isSuccess: false,
     contributors: [
       {
-        id_users: "5f87f74a1a940fe86c5601ca",
+        id_users: "5f870bea07ddf3351be419a5",
         contributed_materials: [
           {
             fabric_type: "coton",
@@ -55,7 +54,6 @@ const projects = [
         ],
       },
     ],
-    image: "",
   },
 ];
 

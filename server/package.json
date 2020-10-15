@@ -6,7 +6,7 @@
     "dev": "nodemon ./bin/www",
     "start": "node ./bin/www",
     "seed": "node ./bin/seeds.js",
-    "seed-stores": "node ./bin/seed-stores.js"
+    "seed-store": "node ./bin/seed-stores.js"
   },
   "dependencies": {
     "aws-sdk": "^2.771.0",

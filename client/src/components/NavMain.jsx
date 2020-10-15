@@ -22,7 +22,12 @@ const NavMain = (props) => {
       <div className="navbar-brand">
         <div className="navbar-item">
           <NavLink to="/">
-            <h1 className="title is-3 has-text-weight-bold">🧶 chic</h1>
+            <h1 className="title is-4 has-text-weight-bold">
+              <span role="img" aria-label="pelote">
+                🧶
+              </span>{" "}
+              chic
+            </h1>
           </NavLink>
           <a
             role="button"
@@ -48,12 +53,13 @@ const NavMain = (props) => {
                       {context.user && context.user.email}
                     </NavLink>
                   </div>
-                  <a
+                  <NavLink
+                    to="/signin"
                     className="button is-danger is-light"
                     onClick={handleLogout}
                   >
                     Logout
-                  </a>
+                  </NavLink>
                 </React.Fragment>
               )}
               {!context.isLoggedIn && (

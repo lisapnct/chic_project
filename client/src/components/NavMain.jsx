@@ -25,7 +25,7 @@ const NavMain = (props) => {
             <h1 className="title is-4 has-text-weight-bold">
               <span role="img" aria-label="pelote">
                 🧶
-              </span>{" "}
+              </span>
               chic
             </h1>
           </NavLink>

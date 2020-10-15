@@ -29,7 +29,7 @@ router.patch("/:id", upload.single('profilePicture'), async (req, res, next) => 
     if (req.file) {
       updatedItem.profilePicture = req.file.location;
     }
-    console.log(updatedItem);
+    // console.log(updatedItem);
     const apiRes = await User.findByIdAndUpdate(
       req.params.id,
       updatedItem,

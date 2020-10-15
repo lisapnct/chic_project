@@ -25,7 +25,7 @@ class HomeMap extends Component {
     return <div>
         <Map
           style="mapbox://styles/mapbox/light-v10"
-          center={[2.350149, 48.852872]}
+          center={[2.3837684, 48.8593118]}
           zoom={[12]}
           containerStyle={{
             height: "100vh",

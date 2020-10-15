@@ -29,7 +29,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then((self) => {
-    Store.create(projects)
+    Store.create(stores)
       .then((dbResult) => {
         console.log(dbResult);
       })

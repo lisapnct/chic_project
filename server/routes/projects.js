@@ -3,12 +3,15 @@ var router = express.Router();
 const Project = require("../models/Project");
 const upload = require('../config/aws');
 
+const singleUpload = upload.single('image');
+
 // C
-router.post("/", /*upload.single('image'), */ async (req, res, next) => {
+router.post("/", upload.single('image'), async (req, res, next) => {
   try {
     const newProject = req.body;
+    console.log(newProject);
     if (req.file) {
-      newProject.image = req.file.path;
+      newProject.image = req.file.location;
     }
     const apiRes = await Project.create(newProject);
     res.status(201).json(apiRes);
@@ -40,6 +43,9 @@ router.get("/:id", async (req, res, next) => {
 router.patch("/:id", upload.single('image'), async (req, res, next) => {
   try {
     const updatedProject = req.body;
+    if (req.file) {
+      newProject.image = req.file.path;
+    }
     // console.log(req.body);
     // console.log(updatedItem);
     const apiRes = await Project.findByIdAndUpdate(req.params.id, updatedProject, {

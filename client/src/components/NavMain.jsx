@@ -29,7 +29,7 @@ const NavMain = (props) => {
               chic
             </h1>
           </NavLink>
-          <a
+          <NavLink to="/"
             role="button"
             className="navbar-burger"
             aria-label="menu"
@@ -38,7 +38,7 @@ const NavMain = (props) => {
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
-          </a>
+          </NavLink>
         </div>
       </div>
       <div className="navbar-menu">

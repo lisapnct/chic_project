@@ -44,23 +44,32 @@ export default {
       .catch(errorHandler);
   },
 
+  // C
+  createOne(endPoint, data) {
+    return service.post(endPoint, data);
+  },
+
+  // R
   getAll(endPoint) {
     return service.get(endPoint);
   },
-  
+
   getOne(endPoint, id) {
     return service.get(endPoint + id);
   },
 
-  createOne(endPoint, data) {
-    return service.post(endPoint, data);
-  },
- 
+  // U
   updateOne(endPoint, data) {
     return service.patch(endPoint, data);
   },
 
+  // D
   deleteOne(endPoint, id) {
     return service.delete(endPoint + id);
   },
+
+  // Special requests : 
+  getAllProjectsInStore(endPoint, storeId) {
+    return service.get(endPoint + storeId);
+  }
 };

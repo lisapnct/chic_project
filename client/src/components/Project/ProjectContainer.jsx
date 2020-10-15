@@ -11,6 +11,10 @@ const ProjectContainer = (props) => {
         <h1>{props.project.name}</h1>
         <h3>{props.project.description}</h3>
         <h4>Needed materials:</h4>
+        {/* {props.project.materials.map((material) => (
+          console.log(material)
+
+        ))} */}
       </div>
       <div className="progress-gauge">
         <Progress />

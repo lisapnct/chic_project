@@ -30,7 +30,9 @@ router.get("/", async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
   try {
-    const apiRes = await Project.findById(req.params.id);
+    const apiRes = await Project.findById(req.params.id).populate('creator','profilePicture userName').populate('contributors.id_users', 'profilePicture userName')
+    const contributor = apiRes.contributors
+    console.log(apiRes);
     res.status(200).json(apiRes);
   } catch (err) {
     res.status(500).json(err);
@@ -65,3 +67,5 @@ router.delete("/:id", async (req, res, next) => {
 
 
 module.exports = router;
+
+//  .populate({ path:'id_users', populate: { path:'id_users'} });

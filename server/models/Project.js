@@ -32,10 +32,10 @@ const projectSchema = new Schema({
   },
   contributors: [
     {
-      id_users: {
-        type: [Schema.Types.ObjectId],
+      id_users: [{
+        type: Schema.Types.ObjectId,
         ref: 'User',
-      },
+      }],
       contributed_materials: [
         {
           fabric_type: String,

@@ -13,6 +13,10 @@ class Dashboard extends React.Component {
   };
 
   componentDidMount() {
+    this.resetState()
+  };
+
+  resetState = () => {
     apiHandler
       .getAll("/api/projects")
       .then((apiRes) => {
@@ -27,6 +31,7 @@ class Dashboard extends React.Component {
     apiHandler
       .getOne("/api/projects/", projectId)
       .then((apiRes) => {
+        console.log(apiRes);
         this.setState({
           selectedProject: apiRes.data,
         });
@@ -67,6 +72,7 @@ class Dashboard extends React.Component {
           <div className="left-grid-container">
             <Searchbar />
             <ProjectList
+              handleResetClick={this.resetState}
               projects={this.state.projects}
               currentProject={this.clickedProject}
             />

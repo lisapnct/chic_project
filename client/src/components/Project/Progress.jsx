@@ -1,20 +1,33 @@
 import React from "react";
 
-const Progress = (props) => {
-  return (
-    <div>
-      <h1>progress</h1>
-      {props.isSuccess && <p>yay!!!</p>}
-      {props.materials &&
-        props.materials.map((material) => (
-          <p key={material._id}>
-            still needs
-            {material.required_quantity - material.collected_quantity} piece(s)
-            of {material.fabric_type}
-          </p>
-        ))}
-    </div>
-  );
-};
+class Progress extends React.Component {
+  getValue = () => {
+    let max = 0;
+    let qt = 0;
+    this.props.materials.map((material) => {
+      max += material.required_quantity;
+      qt += material.collected_quantity;
+    });
+    let value = (qt / max) * 100;
+    return value.toFixed();
+  };
+
+  render() {
+    return (
+      <div>
+        {this.props.materials && (
+          <React.Fragment>
+            <h1>This project is {this.getValue()}% completed</h1>
+            <progress
+              className="progress is-primary is-medium"
+              value={this.getValue()}
+              max="100"
+            ></progress>
+          </React.Fragment>
+        )}
+      </div>
+    );
+  }
+}
 
 export default Progress;

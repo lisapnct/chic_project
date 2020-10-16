@@ -68,8 +68,8 @@ export default {
     return service.delete(endPoint + id);
   },
 
-  // Special requests : 
-  getAllProjectsInStore(endPoint, storeId) {
-    return service.get(endPoint + storeId);
-  }
+  // Special requests :
+  getAllProjects(endPoint, id) {
+    return service.get(endPoint + id);
+  },
 };

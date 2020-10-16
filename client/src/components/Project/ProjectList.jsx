@@ -20,9 +20,9 @@ const ProjectList = (props) => {
 
   return (
     <div className="card-list">
-      <div>
+      {props.isStoreSelected && (
         <button onClick={props.handleResetClick}>Display all</button>
-      </div>
+      )}
       {props.projects.map((project) => (
         <ProjectCard
           key={project._id}

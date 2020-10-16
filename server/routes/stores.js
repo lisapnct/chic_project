@@ -4,6 +4,8 @@ const Store = require("../models/store");
 const upload = require('../config/aws');
 
 // Special requests : 
+
+// get all projects related to a store
 router.get("/projects/:id", async (req, res, next) => {
   try {
     const apiRes = await Store.findById(req.params.id).populate({ path:'id_projects', populate: { path:'id_projects'} });

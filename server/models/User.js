@@ -16,6 +16,7 @@ const userSchema = new Schema({
     type: String, 
     enum: ['user', 'designer', 'admin'],
   },
+  // created projects (for designers only)
   id_projects: {
     type: [Schema.Types.ObjectId],
     ref: "Project",

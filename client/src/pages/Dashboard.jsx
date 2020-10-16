@@ -3,18 +3,34 @@ import Searchbar from "../components/Searchbar";
 import ProjectList from "../components/Project/ProjectList";
 import apiHandler from "../api/apiHandler";
 import HomeMap from "../components/HomeMap";
+import ListTitle from "../components/Profile/ListTitle";
 import ProjectContainer from "../components/Project/ProjectContainer";
 import ProfileContainer from "../components/Profile/ProfileContainer";
+import { Switch, Route } from "react-router-dom";
+import { withUser } from "../components/Auth/withUser";
 
 class Dashboard extends React.Component {
   state = {
     projects: [],
     selectedProject: [],
+    userContributions: [],
+    store_selected: false,
   };
 
   componentDidMount() {
-    this.resetState()
-  };
+    this.resetState();
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log("component update", this.props, "---------", prevProps);
+    if (
+      this.props.location !== prevProps.location &&
+      this.props.location.pathname.startsWith("/profile")
+    ) {
+      console.log("going to profile!");
+      this.getUsersContributions();
+    }
+  }
 
   resetState = () => {
     apiHandler
@@ -22,12 +38,13 @@ class Dashboard extends React.Component {
       .then((apiRes) => {
         this.setState({
           projects: apiRes.data,
+          store_selected: false,
         });
       })
       .catch((err) => console.log(err));
   };
 
-  clickedProject = (projectId) => {
+  getSelectedProject = (projectId) => {
     apiHandler
       .getOne("/api/projects/", projectId)
       .then((apiRes) => {
@@ -38,29 +55,46 @@ class Dashboard extends React.Component {
       .catch((err) => console.log(err));
   };
 
-  handleMarkerClick = (storeId) => {
+  getUsersContributions = () => {
     apiHandler
-      .getAllProjectsInStore("/api/stores/projects/", storeId)
+      .getAllProjects("/api/projects/user/", this.props.context.user._id)
       .then((apiRes) => {
         this.setState({
-          projects: apiRes.data,
+          userContributions: apiRes.data,
         });
       })
       .catch((err) => console.log(err));
   };
 
-  displayRightBlock = () => {
-    // conditional logic for rendering right block
-    const location = window.location.pathname.toString();
+  handleMarkerClick = (storeId) => {
+    apiHandler
+      .getAllProjects("/api/stores/projects/", storeId)
+      .then((apiRes) => {
+        this.setState({
+          projects: apiRes.data,
+          store_selected: true,
+        });
+      })
+      .catch((err) => console.log(err));
+  };
 
-    if (location === "/") {
-      return <HomeMap handleMarkClic={this.handleMarkerClick} />;
-    } else if (location.startsWith("/project")) {
-      // console.log(this.state.selectedProject)
-      return <ProjectContainer project={this.state.selectedProject} />;
-    } else if (location.startsWith("/profile")) {
-      return <ProfileContainer />;
-    }
+  displayProjectList = () => {
+    // conditional logic for rendering project list
+    const location = this.props.history.location.pathname.toString();
+    return location.startsWith("/profile") ? (
+      <ProjectList
+        projects={this.state.userContributions}
+        handleResetClick={this.resetState}
+        currentProject={this.getSelectedProject}
+      />
+    ) : (
+      <ProjectList
+        handleResetClick={this.resetState}
+        projects={this.state.projects}
+        currentProject={this.getSelectedProject}
+        isStoreSelected={this.state.store_selected}
+      />
+    );
   };
 
   render() {
@@ -68,18 +102,40 @@ class Dashboard extends React.Component {
       <div className="dashboard-container">
         <div className="left-block">
           <div className="left-grid-container">
-            <Searchbar />
-            <ProjectList
-              handleResetClick={this.resetState}
-              projects={this.state.projects}
-              currentProject={this.clickedProject}
-            />
+            <Switch>
+              <Route exact path="/" component={Searchbar} />
+              <Route path="/project/:id" component={Searchbar} />
+              <Route path="/profile" component={ListTitle} />
+            </Switch>
+
+            {this.displayProjectList()}
           </div>
         </div>
-        <div className="right-block">{this.displayRightBlock()}</div>
+
+        <div className="right-block">
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={(props) => (
+                <HomeMap {...props} handleMarkClic={this.handleMarkerClick} />
+              )}
+            />
+            <Route
+              path="/project/:id"
+              render={(props) => (
+                <ProjectContainer
+                  {...props}
+                  project={this.state.selectedProject}
+                />
+              )}
+            />
+            <Route path="/profile" component={ProfileContainer} />
+          </Switch>
+        </div>
       </div>
     );
   }
 }
 
-export default Dashboard;
+export default withUser(Dashboard);

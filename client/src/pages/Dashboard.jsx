@@ -13,6 +13,7 @@ class Dashboard extends React.Component {
     projects: [],
     selectedProject: [],
     userContributions: [],
+    store_selected: false,
   };
 
   componentDidMount() {
@@ -20,12 +21,7 @@ class Dashboard extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(
-      "component update",
-      this.props,
-      "---",
-      prevProps
-    );
+    console.log("component update", this.props, "---------", prevProps);
     if (
       this.props.location !== prevProps.location &&
       this.props.location.pathname.startsWith("/profile")
@@ -41,6 +37,7 @@ class Dashboard extends React.Component {
       .then((apiRes) => {
         this.setState({
           projects: apiRes.data,
+          store_selected: false,
         });
       })
       .catch((err) => console.log(err));
@@ -75,6 +72,7 @@ class Dashboard extends React.Component {
       .then((apiRes) => {
         this.setState({
           projects: apiRes.data,
+          store_selected: true,
         });
       })
       .catch((err) => console.log(err));
@@ -94,6 +92,7 @@ class Dashboard extends React.Component {
         handleResetClick={this.resetState}
         projects={this.state.projects}
         currentProject={this.getSelectedProject}
+        isStoreSelected={this.state.store_selected}
       />
     );
   };

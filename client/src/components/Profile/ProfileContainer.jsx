@@ -78,7 +78,7 @@ class ProfileContainer extends React.Component {
             <img
               className="is-rounded"
               src={this.state.profilePicture}
-              alt="profile-picture"
+              alt={`${this.state.userName}-profile-pic`}
             />
           </figure>
           <h1>{this.state.userName}</h1>

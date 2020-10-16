@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { withUser } from "../Auth/withUser";
-import apiHandler from "../../api/apiHandler";
 
 class FormUser extends Component {
   state = {
@@ -9,7 +8,6 @@ class FormUser extends Component {
     address: this.props.address,
     profilePicture: this.props.profilePicture,
   };
-
 
   handleChange = (event) => {
     const value =

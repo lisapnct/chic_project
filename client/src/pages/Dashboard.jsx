@@ -3,6 +3,7 @@ import Searchbar from "../components/Searchbar";
 import ProjectList from "../components/Project/ProjectList";
 import apiHandler from "../api/apiHandler";
 import HomeMap from "../components/HomeMap";
+import ListTitle from "../components/Profile/ListTitle";
 import ProjectContainer from "../components/Project/ProjectContainer";
 import ProfileContainer from "../components/Profile/ProfileContainer";
 import { Switch, Route } from "react-router-dom";
@@ -102,7 +103,12 @@ class Dashboard extends React.Component {
       <div className="dashboard-container">
         <div className="left-block">
           <div className="left-grid-container">
-            <Searchbar />
+            <Switch>
+              <Route exact path="/" component={Searchbar} />
+              <Route path="/project/:id" component={Searchbar} />
+              <Route path="/profile" component={ListTitle} />
+            </Switch>
+
             {this.displayProjectList()}
           </div>
         </div>

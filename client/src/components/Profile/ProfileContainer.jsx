@@ -4,6 +4,7 @@ import FormUser from "../Forms/FormUser";
 import PointsCounter from "./PointsCounter";
 import { withUser } from "../Auth/withUser";
 import apiHandler from "../../api/apiHandler";
+import { Link } from "react-router-dom";
 
 class ProfileContainer extends React.Component {
   state = {
@@ -50,6 +51,14 @@ class ProfileContainer extends React.Component {
     return (
       <div className="profile-grid-container">
         <div className="top-block">
+          <Link to="/">
+            <button className="button is-danger is-outlined is-small">
+              <span>close</span>
+              <span className="icon is-small">
+                <i className="fas fa-times"></i>
+              </span>
+            </button>
+          </Link>
           <figure className="image is-96x96">
             <img
               className="is-rounded"

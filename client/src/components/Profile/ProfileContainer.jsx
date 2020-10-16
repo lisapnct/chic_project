@@ -47,7 +47,6 @@ class ProfileContainer extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <div className="profile-grid-container">
         <div className="top-block">

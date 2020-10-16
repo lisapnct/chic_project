@@ -19,6 +19,22 @@ class Dashboard extends React.Component {
     this.resetState();
   }
 
+  componentDidUpdate(prevProps) {
+    console.log(
+      "component update",
+      this.props,
+      "---",
+      prevProps
+    );
+    if (
+      this.props.location !== prevProps.location &&
+      this.props.location.pathname.startsWith("/profile")
+    ) {
+      console.log("going to profile!");
+      this.getUsersContributions();
+    }
+  }
+
   resetState = () => {
     apiHandler
       .getAll("/api/projects")
@@ -44,11 +60,12 @@ class Dashboard extends React.Component {
   getUsersContributions = () => {
     apiHandler
       .getAllProjects("/api/projects/user/", this.props.context.user._id)
-      .then((apiRes) =>
+      .then((apiRes) => {
+        console.log(apiRes);
         this.setState({
           userContributions: apiRes.data,
-        })
-      )
+        });
+      })
       .catch((err) => console.log(err));
   };
 
@@ -65,7 +82,7 @@ class Dashboard extends React.Component {
 
   displayProjectList = () => {
     // conditional logic for rendering project list
-    const location = window.location.pathname.toString();
+    const location = this.props.history.location.pathname.toString();
     return location.startsWith("/profile") ? (
       <ProjectList
         projects={this.state.userContributions}
@@ -81,22 +98,7 @@ class Dashboard extends React.Component {
     );
   };
 
-  displayRightBlock = () => {
-    // conditional logic for rendering right block
-    const location = window.location.pathname.toString();
-    if (location === "/") {
-      return <HomeMap handleMarkClic={this.handleMarkerClick} />;
-    } else if (location.startsWith("/project")) {
-      return <ProjectContainer project={this.state.selectedProject} />;
-    } else if (location.startsWith("/profile")) {
-      // this.getUsersContributions();
-      return <ProfileContainer />;
-    }
-  };
-
   render() {
-    console.log("render");
-    console.log(this.props);
     return (
       <div className="dashboard-container">
         <div className="left-block">
@@ -108,8 +110,22 @@ class Dashboard extends React.Component {
 
         <div className="right-block">
           <Switch>
-            <Route exact path="/" component={HomeMap} />
-            <Route path="/project/:id" render={props => <ProjectContainer  {...props} project={this.state.selectedProject} />} />
+            <Route
+              exact
+              path="/"
+              render={(props) => (
+                <HomeMap {...props} handleMarkClic={this.handleMarkerClick} />
+              )}
+            />
+            <Route
+              path="/project/:id"
+              render={(props) => (
+                <ProjectContainer
+                  {...props}
+                  project={this.state.selectedProject}
+                />
+              )}
+            />
             <Route path="/profile" component={ProfileContainer} />
           </Switch>
         </div>

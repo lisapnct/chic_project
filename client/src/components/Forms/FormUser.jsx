@@ -6,7 +6,6 @@ class FormUser extends Component {
     userName: this.props.userName,
     email: this.props.email,
     address: this.props.address,
-    profilePicture: this.props.profilePicture,
   };
 
   handleChange = (event) => {

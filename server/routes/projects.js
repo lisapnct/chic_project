@@ -1,11 +1,10 @@
 var express = require("express");
 var router = express.Router();
 const Project = require("../models/Project");
-const upload = require('../config/aws');
-
+const upload = require("../config/aws");
 
 // C
-router.post("/", upload.single('images'), async (req, res, next) => {
+router.post("/", upload.single("images"), async (req, res, next) => {
   try {
     const newProject = req.body;
     if (req.file) {
@@ -30,8 +29,10 @@ router.get("/", async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
   try {
-    const apiRes = await Project.findById(req.params.id).populate('creator','profilePicture userName').populate('contributors.id_users', 'profilePicture userName')
-    const contributor = apiRes.contributors
+    const apiRes = await Project.findById(req.params.id)
+      .populate("creator", "profilePicture userName")
+      .populate("contributors.id_users", "profilePicture userName");
+    const contributor = apiRes.contributors;
     console.log(apiRes);
     res.status(200).json(apiRes);
   } catch (err) {
@@ -39,16 +40,34 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+//get all users contributions (all projects with given user id in contributors)
+router.get("/user/:id", async (req, res, next) => {
+  try {
+    // console.log(req.params.id)
+    const apiRes = await Project.find({
+      "contributors.id_users": req.params.id,
+    });
+    console.log("all user's contributions", apiRes);
+    res.status(200).json(apiRes);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // U
-router.patch("/:id", upload.single('images'), async (req, res, next) => {
+router.patch("/:id", upload.single("images"), async (req, res, next) => {
   try {
     const updatedProject = req.body;
     if (req.file) {
       updatedProject.image = req.file.location;
     }
-    const apiRes = await Project.findByIdAndUpdate(req.params.id, updatedProject, {
-      new: true,
-    });
+    const apiRes = await Project.findByIdAndUpdate(
+      req.params.id,
+      updatedProject,
+      {
+        new: true,
+      }
+    );
     res.status(200).json(apiRes);
   } catch (err) {
     res.status(500).json(err);
@@ -64,7 +83,6 @@ router.delete("/:id", async (req, res, next) => {
     res.status(500).json(err);
   }
 });
-
 
 module.exports = router;
 

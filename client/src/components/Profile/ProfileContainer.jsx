@@ -8,26 +8,7 @@ import apiHandler from "../../api/apiHandler";
 class ProfileContainer extends React.Component {
   state = {
     edit_profile: false,
-    userName: "",
-    email: "",
-    address: "",
-    profilePicture: "",
   };
-
-  componentDidMount() {
-    apiHandler
-      .getOne(`/api/users/`, this.props.context.user._id)
-      .then((apiRes) => {
-        const user = apiRes.data;
-        this.setState({
-          userName: user.userName,
-          email: user.email,
-          address: user.address,
-          profilePicture: user.profilePicture,
-        });
-      })
-      .catch((err) => console.log(err));
-  }
 
   updateUserProfile = (data) => {
     // console.log(data);
@@ -38,12 +19,7 @@ class ProfileContainer extends React.Component {
     apiHandler
       .updateOne(`/api/users/${this.props.context.user._id}`, fd)
       .then((apiRes) => {
-        this.setState({
-          userName: data.userName,
-          email: data.email,
-          address: data.address,
-          profilePicture: data.profilePicture,
-        });
+        this.props.context.setUser(apiRes.data);
         this.toggleEditState();
       })
       .catch((err) => console.log(err));
@@ -59,10 +35,10 @@ class ProfileContainer extends React.Component {
   renderBottomComponent = () => {
     return this.state.edit_profile ? (
       <FormUser
-        userName={this.state.userName}
-        email={this.state.email}
-        address={this.state.address}
-        profilePicture={this.state.profilePicture}
+        userName={this.props.context.user.userName}
+        email={this.props.context.user.email}
+        address={this.props.context.user.address}
+        profilePicture={this.props.context.user.profilePicture}
         updateProfile={this.updateUserProfile}
       />
     ) : (
@@ -71,19 +47,20 @@ class ProfileContainer extends React.Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <div className="profile-grid-container">
         <div className="top-block">
           <figure className="image is-96x96">
             <img
               className="is-rounded"
-              src={this.state.profilePicture}
-              alt={`${this.state.userName}-profile-pic`}
+              src={this.props.context.user.profilePicture}
+              alt={`${this.props.context.user.userName}-profile-pic`}
             />
           </figure>
-          <h1>{this.state.userName}</h1>
-          <h1>{this.state.email}</h1>
-          <h1>{this.state.address}</h1>
+          <h1>{this.props.context.user.userName}</h1>
+          <h1>{this.props.context.user.email}</h1>
+          <h1>{this.props.context.user.address}</h1>
           {!this.state.edit_profile && (
             <button onClick={this.toggleEditState} className="button">
               edit profile

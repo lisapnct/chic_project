@@ -2,22 +2,12 @@ import React from "react";
 import ProjectCard from "./ProjectCard";
 
 
-const ProjectList = (props) => {
 
-  const fabric_types = [
-  'cotton',
-   'linen',
-   'silk',
-   'wool',
-   'artificial fibers (polyester, nylon, elastane)'
-  ];
 
-  // createCheckboxes = () => (
-  //   fabric_types.map(type => console.log(type))
-  // )
+class ProjectList extends React.Component {
 
-  
-
+  render() {  
+    const props = this.props
   return (
     <div className="card-list">
       {props.isStoreSelected && (
@@ -36,6 +26,9 @@ const ProjectList = (props) => {
       ))}
     </div>
   );
+  
+  }
 };
+
 
 export default ProjectList;

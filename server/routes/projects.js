@@ -20,7 +20,7 @@ router.post("/", upload.single("images"), async (req, res, next) => {
 // R
 router.get("/", async (req, res, next) => {
   try {
-    const apiRes = await Project.find();
+    const apiRes = await Project.find().populate('creator', 'userName');
     res.status(200).json(apiRes);
   } catch (err) {
     res.status(500).json(err);

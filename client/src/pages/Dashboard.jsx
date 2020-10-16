@@ -15,6 +15,7 @@ class Dashboard extends React.Component {
     selectedProject: [],
     userContributions: [],
     store_selected: false,
+    selectedStoreId: null,
   };
 
   componentDidMount() {
@@ -78,6 +79,18 @@ class Dashboard extends React.Component {
       .catch((err) => console.log(err));
   };
 
+  handleCheckBoxesClick = (fabricList) => {
+    apiHandler
+      .filterProjectsByFabric("/api/projects/", fabricList)
+      .then((apiRes) => {
+        this.setState({
+          projects: apiRes.data,
+          store_selected: true,
+        });
+      })
+      .catch((err) => console.log(err));
+  };
+
   displayProjectList = () => {
     // conditional logic for rendering project list
     const location = this.props.history.location.pathname.toString();
@@ -103,7 +116,10 @@ class Dashboard extends React.Component {
         <div className="left-block">
           <div className="left-grid-container">
             <Switch>
-              <Route exact path="/" component={Searchbar} />
+              <Route exact path="/" render={(props) => (
+                <Searchbar {...props} handleCheckBoxesClick={this.handleCheckBoxesClick}  displayAllProjects={this.resetState}/>
+              )}
+                     />
               <Route path="/project/:id" component={Searchbar} />
               <Route path="/profile" component={ListTitle} />
             </Switch>

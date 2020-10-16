@@ -6,7 +6,7 @@ const ProjectCard = (props) => {
     <div className="item-card" onClick={() => props.displayProject(props.id)}>
       <Link to={`/project/${props.id}`}>
         <h1>
-          {props.name} by {props.creator}
+          {props.name} by {props.creator.userName}
         </h1>
         <p>{props.description}</p>
         <h3>Materials:</h3>

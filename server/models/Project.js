@@ -12,7 +12,11 @@ const projectSchema = new Schema({
     {
       fabric_type: {
         type: String,
-        enum: ['lin', 'coton', 'laine', 'polyester'],
+        enum: ['cotton',
+        'linen',
+        'silk',
+        'wool',
+        'artificial fibers (polyester, nylon, elastane)'],
       },
       required_quantity: Number,
       collected_quantity: {

@@ -1,10 +1,28 @@
 import React from "react";
 import ProjectCard from "./ProjectCard";
 
+
 const ProjectList = (props) => {
+
+  const fabric_types = [
+  'cotton',
+   'linen',
+   'silk',
+   'wool',
+   'artificial fibers (polyester, nylon, elastane)'
+  ];
+
+  // createCheckboxes = () => (
+  //   fabric_types.map(type => console.log(type))
+  // )
+
+  
+
   return (
     <div className="card-list">
-    <button onClick={props.handleResetClick}>Display all</button>
+      <div>
+        <button onClick={props.handleResetClick}>Display all</button>
+      </div>
       {props.projects.map((project) => (
         <ProjectCard
           key={project._id}

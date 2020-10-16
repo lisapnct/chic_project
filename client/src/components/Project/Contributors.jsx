@@ -1,7 +1,6 @@
 import React from "react";
 
 const Contributors = (props) => {
-  console.log(props.contributors);
   return (
     <div>
       <h1>contributors</h1>
@@ -13,7 +12,7 @@ const Contributors = (props) => {
             <p>
               contributed with:
               {contributor.contributed_materials.map((material) => (
-                <span>
+                <span key={material.fabric_type}>
                   {material.quantity} piece(s) of {material.fabric_type}
                 </span>
               ))}

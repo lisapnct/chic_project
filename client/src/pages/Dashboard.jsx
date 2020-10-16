@@ -31,7 +31,6 @@ class Dashboard extends React.Component {
     apiHandler
       .getOne("/api/projects/", projectId)
       .then((apiRes) => {
-        console.log(apiRes);
         this.setState({
           selectedProject: apiRes.data,
         });
@@ -43,7 +42,6 @@ class Dashboard extends React.Component {
     apiHandler
       .getAllProjectsInStore("/api/stores/projects/", storeId)
       .then((apiRes) => {
-        console.log(apiRes);
         this.setState({
           projects: apiRes.data,
         });

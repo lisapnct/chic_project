@@ -17,6 +17,7 @@ const ProjectCard = (props) => {
             <li>collected: {material.collected_quantity}</li>
           </ul>
         ))}
+        {/* <button className="button is-primary">contribute</button> */}
       </Link>
     </div>
   );

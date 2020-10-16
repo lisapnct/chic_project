@@ -11,25 +11,22 @@ const fabric_types = [
 
  class Searchbar extends Component {
   state = {
-    fabric_types: [
-      'cotton',
-      'linen',
-      'silk',
-      'wool',
-      'artificial fibers (polyester, nylon, elastane)'
-    ],
+    fabric_types: [],
   }
   
-  handleCheck = () => {
+
+  filterByFabric = () => {
     if(this.state.fabric_types.length === 0) {
       this.props.displayAllProjects();
     } else {
-      this.props.handleCheckBoxesClick(this.state.fabric_types);
+      this.props.displayByCheckBoxes(this.state.fabric_types);
     }
   }
-  
-  
 
+  handleCheckChanges = (label) => {
+    console.log(label);
+  }
+  
   render() {
   return (
     <div className="left-block-top">
@@ -43,8 +40,8 @@ const fabric_types = [
           </div>
         </div>
       </div>
-      <div onChange={this.handleCheck} className="check-boxe-fabric">
-      {fabric_types.map(elm => <Checkbox label={elm} toggleState={this.toggleState} />)}
+      <div  className="check-boxe-fabric">
+      {fabric_types.map(elm => <Checkbox label={elm} value={elm}  onChange={this.handleCheckChanges} />)}
       </div>
     </div>
   );

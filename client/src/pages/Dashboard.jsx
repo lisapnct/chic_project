@@ -20,10 +20,11 @@ class Dashboard extends React.Component {
 
   componentDidMount() {
     this.resetState();
+    this.getUsersContributions()
   }
 
   componentDidUpdate(prevProps) {
-    console.log("component update", this.props, "---------", prevProps);
+    
     if (
       this.props.location !== prevProps.location &&
       this.props.location.pathname.startsWith("/profile")
@@ -79,7 +80,7 @@ class Dashboard extends React.Component {
       .catch((err) => console.log(err));
   };
 
-  handleCheckBoxesClick = (fabricList) => {
+  displayByCheckBoxes = (fabricList) => {
     apiHandler
       .filterProjectsByFabric("/api/projects/", fabricList)
       .then((apiRes) => {
@@ -117,7 +118,7 @@ class Dashboard extends React.Component {
           <div className="left-grid-container">
             <Switch>
               <Route exact path="/" render={(props) => (
-                <Searchbar {...props} handleCheckBoxesClick={this.handleCheckBoxesClick}  displayAllProjects={this.resetState}/>
+                <Searchbar {...props} displayByCheckBoxes={this.displayByCheckBoxes}  displayAllProjects={this.resetState}/>
               )}
                      />
               <Route path="/project/:id" component={Searchbar} />

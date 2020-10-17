@@ -15,7 +15,7 @@ class Dashboard extends React.Component {
     selectedProject: [],
     userContributions: [],
     store_selected: false,
-    selectedStoreId: null,
+    previousStoredProjects: [],
   };
 
   componentDidMount() {
@@ -30,6 +30,7 @@ class Dashboard extends React.Component {
         this.setState({
           projects: apiRes.data,
           store_selected: false,
+          previousStoredProjects: [],
         });
       })
       .catch((err) => console.log(err));
@@ -64,6 +65,7 @@ class Dashboard extends React.Component {
         this.setState({
           projects: apiRes.data,
           store_selected: true,
+          previousStoredProjects : apiRes.data,
         });
       })
       .catch((err) => console.log(err));
@@ -71,23 +73,27 @@ class Dashboard extends React.Component {
 
   filterByFabricTypes = (fabricList) => {
     let filteredProjects = [];
-    if(this.state.store_selected)
-    // RELOAD ALL THE ELEMENTS IN THE STORE BEFORE APLYING THIS LOGIC 
-    fabricList.forEach(fabricType => {
-      this.state.projects.map(project => project.materials.map(material => material.fabric_type === fabricType ? filteredProjects.push(project) : null))
-    })
-    else {
-      // GO TO BACKEND AND MAKE THIS ROUTE WORK
-      apiHandler
-        .filterProjectsByFabric("/api/projects/", fabricList)
-        .then((apiRes) => {
-          this.setState({
-            projects: apiRes.data,
-            store_selected: true,
-          });
-        })
-        .catch((err) => console.log(err));
+    console.log(this.state.previousStoredProjects);
+    if(this.state.store_selected) {
+      fabricList.forEach(fabricType => {
+        this.state.projects.map(project => project.materials.map(material => material.fabric_type === fabricType ? filteredProjects.push(project) : null));
+      })
+
     }
+    if(filteredProjects.length === 0 && this.state.store_selected) this.setState({projects: this.state.previousStoredProjects});
+
+    // else {
+    //   // GO TO BACKEND AND MAKE THIS ROUTE WORK
+    //   apiHandler
+    //     .filterProjectsByFabric("/api/projects/", fabricList)
+    //     .then((apiRes) => {
+    //       this.setState({
+    //         projects: apiRes.data,
+    //         store_selected: true,
+    //       });
+    //     })
+    //     .catch((err) => console.log(err));
+    // }
     this.setState({ projects: filteredProjects});
   };
 

@@ -23,18 +23,6 @@ class Dashboard extends React.Component {
     if(this.props.context.user) this.getUsersContributions()
   }
 
-  // THE LINES BELOW ARE NOT USEFULL WAITING FOR OK FROM LISA TO DELETE
-  // componentDidUpdate(prevProps) {
-    
-  //   if (
-  //     this.props.location !== prevProps.location &&
-  //     this.props.location.pathname.startsWith("/profile")
-  //   ) {
-  //     console.log("going to profile!");
-  //     this.getUsersContributions();
-  //   }
-  // }
-
   resetState = () => {
     apiHandler
       .getAll("/api/projects")
@@ -42,6 +30,7 @@ class Dashboard extends React.Component {
         this.setState({
           projects: apiRes.data,
           store_selected: false,
+          currentStoreId: null,
         });
       })
       .catch((err) => console.log(err));
@@ -76,21 +65,26 @@ class Dashboard extends React.Component {
         this.setState({
           projects: apiRes.data,
           store_selected: true,
+          currentStoreId: storeId,
         });
       })
       .catch((err) => console.log(err));
   };
 
-  displayByCheckBoxes = (fabricList) => {
-    apiHandler
-      .filterProjectsByFabric("/api/projects/", fabricList)
-      .then((apiRes) => {
-        this.setState({
-          projects: apiRes.data,
-          store_selected: true,
-        });
-      })
-      .catch((err) => console.log(err));
+  filterByFabricTypes = (fabricList) => {
+    if(this.state.store_selected) {
+
+    } else {
+      apiHandler
+        .filterProjectsByFabric("/api/projects/", fabricList)
+        .then((apiRes) => {
+          this.setState({
+            projects: apiRes.data,
+            store_selected: true,
+          });
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   displayProjectList = () => {
@@ -119,10 +113,13 @@ class Dashboard extends React.Component {
           <div className="left-grid-container">
             <Switch>
               <Route exact path="/" render={(props) => (
-                <Searchbar {...props} displayByCheckBoxes={this.displayByCheckBoxes}  displayAllProjects={this.resetState}/>
+                <Searchbar {...props} filterByFabricType={this.filterByFabricTypes}  displayAllProjects={this.resetState}/>
               )}
-                     />
-              <Route path="/project/:id" component={Searchbar} />
+              />
+              <Route path="/project/:id" render={(props) => (
+                <Searchbar {...props} filterByFabricType={this.filterByFabricTypes}  displayAllProjects={this.resetState}/>
+              )}  
+              />
               <Route path="/profile" component={ListTitle} />
             </Switch>
 

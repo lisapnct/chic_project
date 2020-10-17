@@ -13,24 +13,32 @@ const fabric_types = [
   state = {
     fabric_types: [],
   }
-  
+
+  componentDidUpdate = (prevProps, prevState) => {
+    if(prevState !== this.state) {
+      this.filterByFabric();
+    }
+  } 
 
   filterByFabric = () => {
     if(this.state.fabric_types.length === 0) {
-      // this.props.displayAllProjects();
-      console.log('no checkbox is filled');
+      this.props.displayAllProjects();
     } else {
-      // this.props.displayByCheckBoxes(this.state.fabric_types);
-      console.log('no checkbox is filled');
+      this.props.filterByFabricType(this.state.fabric_types);
+      console.log(this.state.fabric_types);
     }
   }
 
   handleCheckChanges = (label) => {
-    // const fabricArr = this.state.fabric_types;
-    // for(let i = 0; i < fabricArr.length; i++) {
-    //   if(fabricArr[i] === label) this.setState({ fabric_types: fabricArr.slice(i, 1) });
-    //   else this.setState({ fabric_types: fabricArr.push(label) });
-    //   console.log(fabricArr);
+    const labelStr = String(label);
+    const fabricArr = this.state.fabric_types;
+    if(fabricArr.length === 0 || !fabricArr.includes(labelStr)) fabricArr.push(labelStr);
+    else {
+      for(let i = 0; i < fabricArr.length; i++) {
+          if(fabricArr[i] === labelStr) fabricArr.splice(i, 1);
+      }
+    }
+    this.setState({ fabric_types: fabricArr });
   }
   
   render() {
@@ -47,7 +55,7 @@ const fabric_types = [
         </div>
       </div>
       <div  className="check-boxe-fabric">
-      {fabric_types.map(elm => <Checkbox label={elm} value={elm}  onChange={this.handleCheckChanges} />)}
+      {fabric_types.map(elm => <Checkbox key={elm} label={elm} value={elm}  onChange={this.handleCheckChanges} />)}
       </div>
     </div>
   )}

@@ -15,12 +15,17 @@ class Dashboard extends React.Component {
     selectedProject: [],
     userContributions: [],
     store_selected: false,
+<<<<<<< HEAD
     previousStoredProjects: [],
+=======
+    selectedStoreId: null,
+    inputCoordinates: [2.35183, 48.85658], // default Paris coordinates
+>>>>>>> 5263b8f8e82feb270385c282ec625a795a625ced
   };
 
   componentDidMount() {
     this.resetState();
-    if(this.props.context.user) this.getUsersContributions()
+    if (this.props.context.user) this.getUsersContributions();
   }
 
   resetState = () => {
@@ -116,19 +121,50 @@ class Dashboard extends React.Component {
     );
   };
 
+  getInputCoordinates = (coordinates) => {
+    console.log(coordinates);
+    this.setState({
+      inputCoordinates: coordinates,
+    });
+  };
+
   render() {
+    const boxShadow = {
+      boxShadow: `25px 47px 100px -49px rgba(0, 0, 0, 0.69)`,
+    };
     return (
       <div className="dashboard-container">
         <div className="left-block">
-          <div className="left-grid-container">
+          <div
+            className="left-grid-container"
+            style={
+              this.props.history.location.pathname === "/" ? boxShadow : null
+            }
+          >
             <Switch>
-              <Route exact path="/" render={(props) => (
-                <Searchbar {...props} filterByFabricType={this.filterByFabricTypes}  displayAllProjects={this.resetState} isStoreSelected={this.state.store_selected}/>
-              )}
+              <Route
+                exact
+                path="/"
+                render={(props) => (
+                  <Searchbar
+                    {...props}
+                    filterByFabricType={this.filterByFabricTypes}
+                    displayAllProjects={this.resetState}
+                    isStoreSelected={this.state.store_selected}
+                    sendCoordinates={this.getInputCoordinates}
+                  />
+                )}
               />
-              <Route path="/project/:id" render={(props) => (
-                <Searchbar {...props} filterByFabricType={this.filterByFabricTypes}  displayAllProjects={this.resetState} isStoreSelected={this.state.store_selected}/>
-              )}  
+              <Route
+                path="/project/:id"
+                render={(props) => (
+                  <Searchbar
+                    {...props}
+                    filterByFabricType={this.filterByFabricTypes}
+                    displayAllProjects={this.resetState}
+                    isStoreSelected={this.state.store_selected}
+                  />
+                )}
               />
               <Route path="/profile" component={ListTitle} />
             </Switch>
@@ -143,7 +179,11 @@ class Dashboard extends React.Component {
               exact
               path="/"
               render={(props) => (
-                <HomeMap {...props} handleMarkClic={this.handleMarkerClick} />
+                <HomeMap
+                  {...props}
+                  handleMarkClic={this.handleMarkerClick}
+                  searchInput={this.state.inputCoordinates}
+                />
               )}
             />
             <Route

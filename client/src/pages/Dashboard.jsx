@@ -114,7 +114,7 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <div className="dashboard-container">
+      <div style={{}} className="dashboard-container">
         <div className="left-block">
           <div className="left-grid-container">
             <Switch>

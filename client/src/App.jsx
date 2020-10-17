@@ -21,7 +21,7 @@ function App() {
         <Route exact path="/project/:id" component={Dashboard} /> 
         <ProtectedRoute exact path="/profile" component={Dashboard} />
       </Switch>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

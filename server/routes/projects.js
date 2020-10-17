@@ -27,6 +27,20 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+//get all users contributions (all projects with given user id in contributors)
+router.get("/user/:id", async (req, res, next) => {
+  try {
+    const apiRes = await Project.find({
+      "contributors.id_users": req.params.id,
+    })
+    .populate("creator", "profilePicture userName")
+    .populate("contributors.id_users", "profilePicture userName");
+    res.status(200).json(apiRes);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.get("/:id", async (req, res, next) => {
   try {
     const apiRes = await Project.findById(req.params.id)
@@ -34,20 +48,6 @@ router.get("/:id", async (req, res, next) => {
       .populate("contributors.id_users", "profilePicture userName");
     const contributor = apiRes.contributors;
     console.log(apiRes);
-    res.status(200).json(apiRes);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-//get all users contributions (all projects with given user id in contributors)
-router.get("/user/:id", async (req, res, next) => {
-  try {
-    // console.log(req.params.id)
-    const apiRes = await Project.find({
-      "contributors.id_users": req.params.id,
-    });
-    console.log("all user's contributions", apiRes);
     res.status(200).json(apiRes);
   } catch (err) {
     res.status(500).json(err);

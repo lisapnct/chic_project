@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const stores = [
   {
     name: "PlopBar",
-    id_projects: ["5f883116e5f83c0ebe2ac141", "5f883116e5f83c0ebe2ac145"],
+    id_projects: ["5f89afae638cdf622889e58e", "5f89b1271963fb6c2c904785"],
     location: {
       type: "Point",
       coordinates: [2.3870754, 48.8406713],
@@ -14,7 +14,7 @@ const stores = [
   },
   {
     name: "HermesT",
-    id_projects: ["5f883116e5f83c0ebe2ac141"],
+    id_projects: ["5f89afae638cdf622889e58e"],
     location: {
       type: "Point",
       coordinates: [2.3194649, 48.868937],

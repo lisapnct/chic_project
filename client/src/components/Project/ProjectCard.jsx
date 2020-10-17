@@ -2,22 +2,38 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ProjectCard = (props) => {
+  console.log(props);
   return (
     <div className="item-card" onClick={() => props.displayProject(props.id)}>
       <Link to={`/project/${props.id}`}>
-        <h1>
-          {props.name} by {props.creator.userName}
-        </h1>
-        <p>{props.description}</p>
-        <h3>Materials:</h3>
-        {props.materials.map((material) => (
-          <ul key={material._id}>
-            <li>type: {material.fabric_type}</li>
-            <li>required quantity: {material.required_quantity}</li>
-            <li>collected: {material.collected_quantity}</li>
-          </ul>
-        ))}
-        {/* <button className="button is-primary">contribute</button> */}
+        <div className="card-content-container">
+          <div className="left-container">
+            <div className="card-img">
+              <i className="fas fa-user-circle has-text-light fas fa-6x"></i>
+            </div>
+            <div className="card-infos">
+              <p className="has-text-grey">{props.creator.userName}</p>
+              <h3 className="has-text-grey-dark bold">{props.name}</h3>
+              <div className="has-text-grey">
+                <p>
+                  <i class="fas fa-map-marker-alt "></i> <b></b> Paris, France
+                </p>
+              </div>
+              <div className="card-tags">
+                {props.materials.map((material) => (
+                  <div className="a-tag tag is-info is-light">
+                    {material.fabric_type}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="card-state">
+            <div className="tag is-warning is-light">9/12 items collected</div> 
+            <span className="has-text-grey">18 Apr. 2020</span>  {/* creation date */}
+            
+          </div>
+        </div>
       </Link>
     </div>
   );

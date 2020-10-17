@@ -5,8 +5,8 @@ class FormContribution extends React.Component {
     console.log(this.props);
     return (
       <React.Fragment>
-        <span onClick={() => this.props.goBack()} className="icon is-medium">
-          <i className="fas fa-lg fa-times-circle"></i>
+        <span onClick={() => this.props.goBack()}>
+          <a class="delete is-large"></a>
         </span>
         <h1>What do you want to give?</h1>
         <form className="field has-addons">

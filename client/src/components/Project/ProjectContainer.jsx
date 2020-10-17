@@ -21,9 +21,7 @@ class ProjectContainer extends React.Component {
       <div className="project-grid-container">
         <div className="project-info">
           <Link to="/">
-            <span className="icon is-medium">
-              <i className="fas fa-lg fa-times-circle"></i>
-            </span>
+            <a class="delete is-large"></a>
           </Link>
           <h1>{this.props.project.name}</h1>
           <h3>{this.props.project.description}</h3>
@@ -46,7 +44,10 @@ class ProjectContainer extends React.Component {
         </div>
         <div className="contributors">
           {this.state.isContributing ? (
-            <FormContribution project={this.props.project} goBack={this.displayContributionForm} />
+            <FormContribution
+              project={this.props.project}
+              goBack={this.displayContributionForm}
+            />
           ) : (
             <React.Fragment>
               <Contributors contributors={this.props.project.contributors} />

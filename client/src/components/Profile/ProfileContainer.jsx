@@ -52,12 +52,7 @@ class ProfileContainer extends React.Component {
       <div className="profile-grid-container">
         <div className="top-block">
           <Link to="/">
-            <button className="button is-danger is-outlined is-small">
-              <span>close</span>
-              <span className="icon is-small">
-                <i className="fas fa-times"></i>
-              </span>
-            </button>
+            <a class="delete is-large"></a>
           </Link>
           <figure className="image is-96x96">
             <img

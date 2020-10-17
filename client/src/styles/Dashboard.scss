@@ -3,19 +3,17 @@
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
   grid-row-gap: 10px;
-  height: 94.5vh;
+  height: 94vh;
 }
 
 .left-block {
   grid-area: 1 / 1 / 6 / 3;
   background-color: white;
   z-index: 500;
-  // box-shadow: 25px 47px 100px -49px rgba(0, 0, 0, 0.69);
 }
 
 .right-block {
   grid-area: 1 / 3 / 6 / 6;
-  // background-color: lightgray;
 }
 
 .left-grid-container {
@@ -32,8 +30,8 @@
 .card-list {
   grid-area: 2 / 1 / 8 / 3;
   display: grid;
-  grid-gap: 10px;
-  grid-template-rows: 300px;
+  grid-gap: 15px;
+  grid-template-rows: 150px;
   overflow: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -41,9 +39,4 @@
 
 .card-list::-webkit-scrollbar {
   display: none;
-}
-
-.item-card {
-  background-color: lightgray;
-  height: 300px;
 }

@@ -43,7 +43,7 @@ class Searchbar extends Component {
   };
 
   handlePlace = (place) => {
-    this.props.sendCoordinates(place.geometry.coordinates);
+    this.props.sendCoordinates(place.geometry.coordinates)
   };
 
   render() {

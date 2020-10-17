@@ -33,28 +33,30 @@ class HomeMap extends Component {
     return (
       <div>
         {this.props.searchInput && (
-          <Map
-            style={mapstyle.style}
-            center={this.props.searchInput}
-            zoom={[14]}
-            containerStyle={{
-              height: "94.8vh",
-              width: "100vw",
-            }}
-          >
-            {stores
-              ? stores.map((elm) => (
-                  <Marker
-                    key={elm._id}
-                    coordinates={elm.location.coordinates}
-                    anchor="bottom"
-                    onClick={() => this.props.handleMarkClic(elm._id)}
-                  >
-                    <img alt={elm.name} style={mapElmStyle} src={elm.image} />
-                  </Marker>
-                ))
-              : null}
-          </Map>
+          <React.Fragment>
+            <Map
+              style={mapstyle.style}
+              center={this.props.searchInput}
+              zoom={[14]}
+              containerStyle={{
+                height: "96vh",
+                width: "100vw",
+              }}
+            >
+              {stores
+                ? stores.map((elm) => (
+                    <Marker
+                      key={elm._id}
+                      coordinates={elm.location.coordinates}
+                      anchor="bottom"
+                      onClick={() => this.props.handleMarkClic(elm._id)}
+                    >
+                      <img alt={elm.name} style={mapElmStyle} src={elm.image} />
+                    </Marker>
+                  ))
+                : null}
+            </Map>
+          </React.Fragment>
         )}
       </div>
     );

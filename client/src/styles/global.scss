@@ -2,6 +2,7 @@
 @import "bulma/bulma.sass";
 
 @import "../styles/ProjectCard.scss";
+@import "../styles/Searchbar.scss";
 
 * {
   margin: 0;
@@ -53,4 +54,8 @@ p {
 
 .bold {
   font-weight: 600;
+}
+
+.navbar {
+  z-index: 700;
 }

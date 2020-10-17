@@ -16,7 +16,7 @@ const ProjectCard = (props) => {
               <h3 className="has-text-grey-dark bold">{props.name}</h3>
               <div className="has-text-grey">
                 <p>
-                  <i class="fas fa-map-marker-alt "></i> <b></b> Paris, France
+                  <i className="fas fa-map-marker-alt "></i> <b></b> Paris, France
                 </p>
               </div>
               <div className="card-tags">

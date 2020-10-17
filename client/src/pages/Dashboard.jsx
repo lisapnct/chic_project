@@ -20,19 +20,20 @@ class Dashboard extends React.Component {
 
   componentDidMount() {
     this.resetState();
-    this.getUsersContributions()
+    if(this.props.context.user) this.getUsersContributions()
   }
 
-  componentDidUpdate(prevProps) {
+  // THE LINES BELOW ARE NOT USEFULL WAITING FOR OK FROM LISA TO DELETE
+  // componentDidUpdate(prevProps) {
     
-    if (
-      this.props.location !== prevProps.location &&
-      this.props.location.pathname.startsWith("/profile")
-    ) {
-      console.log("going to profile!");
-      this.getUsersContributions();
-    }
-  }
+  //   if (
+  //     this.props.location !== prevProps.location &&
+  //     this.props.location.pathname.startsWith("/profile")
+  //   ) {
+  //     console.log("going to profile!");
+  //     this.getUsersContributions();
+  //   }
+  // }
 
   resetState = () => {
     apiHandler

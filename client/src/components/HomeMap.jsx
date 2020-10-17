@@ -20,15 +20,7 @@ class HomeMap extends Component {
       .catch((apiErr) => console.log(apiErr));
   };
 
-  // componentDidUpdate() {
-  //   console.log(this.props.searchInput)
-  //   this.setState({
-  //     location: this.props.searchInput,
-  //   });
-  // }
-
   render() {
-    console.log(this.props)
     const stores = this.state.stores;
     const mapElmStyle = {
       width: 4 + "vw",

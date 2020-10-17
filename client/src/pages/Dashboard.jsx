@@ -16,7 +16,7 @@ class Dashboard extends React.Component {
     userContributions: [],
     store_selected: false,
     selectedStoreId: null,
-    inputCoordinates: [2.35183, 48.85658],
+    inputCoordinates: [2.35183, 48.85658], // default Paris coordinates
   };
 
   componentDidMount() {

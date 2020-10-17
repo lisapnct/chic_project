@@ -33,7 +33,7 @@
   grid-area: 2 / 1 / 8 / 3;
   display: grid;
   grid-gap: 10px;
-  grid-template-rows: repeat(auto, minmax(75px, auto));
+  grid-template-rows: 300px;
   overflow: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */

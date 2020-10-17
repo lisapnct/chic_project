@@ -20,7 +20,7 @@ class Dashboard extends React.Component {
 
   componentDidMount() {
     this.resetState();
-    if(this.props.context.user) this.getUsersContributions()
+    if (this.props.context.user) this.getUsersContributions();
   }
 
   resetState = () => {
@@ -72,8 +72,7 @@ class Dashboard extends React.Component {
   };
 
   filterByFabricTypes = (fabricList) => {
-    if(this.state.store_selected) {
-
+    if (this.state.store_selected) {
     } else {
       apiHandler
         .filterProjectsByFabric("/api/projects/", fabricList)
@@ -107,18 +106,39 @@ class Dashboard extends React.Component {
   };
 
   render() {
+    const boxShadow = {
+      boxShadow: `25px 47px 100px -49px rgba(0, 0, 0, 0.69)`,
+    };
     return (
-      <div style={{}} className="dashboard-container">
+      <div className="dashboard-container">
         <div className="left-block">
-          <div className="left-grid-container">
+          <div
+            className="left-grid-container"
+            style={
+              this.props.history.location.pathname === "/" ? boxShadow : null
+            }
+          >
             <Switch>
-              <Route exact path="/" render={(props) => (
-                <Searchbar {...props} filterByFabricType={this.filterByFabricTypes}  displayAllProjects={this.resetState}/>
-              )}
+              <Route
+                exact
+                path="/"
+                render={(props) => (
+                  <Searchbar
+                    {...props}
+                    filterByFabricType={this.filterByFabricTypes}
+                    displayAllProjects={this.resetState}
+                  />
+                )}
               />
-              <Route path="/project/:id" render={(props) => (
-                <Searchbar {...props} filterByFabricType={this.filterByFabricTypes}  displayAllProjects={this.resetState}/>
-              )}  
+              <Route
+                path="/project/:id"
+                render={(props) => (
+                  <Searchbar
+                    {...props}
+                    filterByFabricType={this.filterByFabricTypes}
+                    displayAllProjects={this.resetState}
+                  />
+                )}
               />
               <Route path="/profile" component={ListTitle} />
             </Switch>

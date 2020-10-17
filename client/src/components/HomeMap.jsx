@@ -35,7 +35,7 @@ class HomeMap extends Component {
           center={[2.3837684, 48.8593118]}
           zoom={[12]}
           containerStyle={{
-            height: "94.5vh",
+            height: "94.8vh",
             width: "100vw",
           }}
         >

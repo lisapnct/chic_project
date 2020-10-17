@@ -10,6 +10,7 @@ const Map = ReactMapboxGl({
 class HomeMap extends Component {
   state = {
     stores: null,
+    location: [2.35183, 48.85658],
   };
 
   componentDidMount = () => {
@@ -19,39 +20,50 @@ class HomeMap extends Component {
       .catch((apiErr) => console.log(apiErr));
   };
 
+  // componentDidUpdate() {
+  //   console.log(this.props.searchInput)
+  //   this.setState({
+  //     location: this.props.searchInput,
+  //   });
+  // }
+
   render() {
+    console.log(this.props)
     const stores = this.state.stores;
     const mapElmStyle = {
       width: 4 + "vw",
       borderRadius: "50%",
-      borderColor: "inherit",
+      borderColor: "white",
       cursor: "pointer",
     };
-    const mapstyle = { style: "mapbox://styles/mapbox/light-v10" }
+    const mapstyle = { style: "mapbox://styles/mapbox/light-v10" };
+
     return (
       <div>
-        <Map
-          style={mapstyle.style}
-          center={[2.3837684, 48.8593118]}
-          zoom={[12]}
-          containerStyle={{
-            height: "94.8vh",
-            width: "100vw",
-          }}
-        >
-          {stores
-            ? stores.map((elm) => (
-                <Marker
-                  key={elm._id}
-                  coordinates={elm.location.coordinates}
-                  anchor="bottom"
-                  onClick={() => this.props.handleMarkClic(elm._id)}
-                >
-                  <img alt={elm.name} style={mapElmStyle} src={elm.image} />
-                </Marker>
-              ))
-            : null}
-        </Map>
+        {this.props.searchInput && (
+          <Map
+            style={mapstyle.style}
+            center={this.props.searchInput}
+            zoom={[14]}
+            containerStyle={{
+              height: "94.8vh",
+              width: "100vw",
+            }}
+          >
+            {stores
+              ? stores.map((elm) => (
+                  <Marker
+                    key={elm._id}
+                    coordinates={elm.location.coordinates}
+                    anchor="bottom"
+                    onClick={() => this.props.handleMarkClic(elm._id)}
+                  >
+                    <img alt={elm.name} style={mapElmStyle} src={elm.image} />
+                  </Marker>
+                ))
+              : null}
+          </Map>
+        )}
       </div>
     );
   }

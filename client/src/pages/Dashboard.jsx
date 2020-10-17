@@ -16,6 +16,7 @@ class Dashboard extends React.Component {
     userContributions: [],
     store_selected: false,
     selectedStoreId: null,
+    inputCoordinates: [2.35183, 48.85658],
   };
 
   componentDidMount() {
@@ -116,6 +117,13 @@ class Dashboard extends React.Component {
     );
   };
 
+  getInputCoordinates = (coordinates) => {
+    console.log(coordinates);
+    this.setState({
+      inputCoordinates: coordinates,
+    });
+  };
+
   render() {
     const boxShadow = {
       boxShadow: `25px 47px 100px -49px rgba(0, 0, 0, 0.69)`,
@@ -139,6 +147,7 @@ class Dashboard extends React.Component {
                     filterByFabricType={this.filterByFabricTypes}
                     displayAllProjects={this.resetState}
                     isStoreSelected={this.state.store_selected}
+                    sendCoordinates={this.getInputCoordinates}
                   />
                 )}
               />
@@ -166,7 +175,11 @@ class Dashboard extends React.Component {
               exact
               path="/"
               render={(props) => (
-                <HomeMap {...props} handleMarkClic={this.handleMarkerClick} />
+                <HomeMap
+                  {...props}
+                  handleMarkClic={this.handleMarkerClick}
+                  searchInput={this.state.inputCoordinates}
+                />
               )}
             />
             <Route

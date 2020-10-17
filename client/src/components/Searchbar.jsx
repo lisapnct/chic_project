@@ -21,11 +21,11 @@ const fabric_types = [
   } 
 
   filterByFabric = () => {
-    if(this.state.fabric_types.length === 0) {
+    if(this.state.fabric_types.length === 0 && !this.props.isStoreSelected) {
       this.props.displayAllProjects();
-    } else {
+    }
+    else {
       this.props.filterByFabricType(this.state.fabric_types);
-      console.log(this.state.fabric_types);
     }
   }
 

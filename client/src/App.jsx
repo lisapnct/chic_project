@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import NavMain from "./components/NavMain";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Signin from "./pages/Signin";

@@ -20,24 +20,6 @@ class ProjectList extends React.Component {
               materials={project.materials}
               displayProject={props.currentProject}
             />
-            <ProjectCard
-              key={project._id}
-              id={project._id}
-              name={project.name}
-              description={project.description}
-              creator={project.creator}
-              materials={project.materials}
-              displayProject={props.currentProject}
-            />
-            <ProjectCard
-              key={project._id}
-              id={project._id}
-              name={project.name}
-              description={project.description}
-              creator={project.creator}
-              materials={project.materials}
-              displayProject={props.currentProject}
-            />
           </React.Fragment>
         ))}
       </div>

@@ -30,7 +30,6 @@ class Dashboard extends React.Component {
         this.setState({
           projects: apiRes.data,
           store_selected: false,
-          currentStoreId: null,
         });
       })
       .catch((err) => console.log(err));
@@ -65,15 +64,26 @@ class Dashboard extends React.Component {
         this.setState({
           projects: apiRes.data,
           store_selected: true,
-          currentStoreId: storeId,
         });
       })
       .catch((err) => console.log(err));
   };
 
   filterByFabricTypes = (fabricList) => {
-    if (this.state.store_selected) {
-    } else {
+    let filteredProjects = [];
+    if (this.state.store_selected)
+      // RELOAD ALL THE ELEMENTS IN THE STORE BEFORE APLYING THIS LOGIC
+      fabricList.forEach((fabricType) => {
+        this.state.projects.map((project) =>
+          project.materials.map((material) =>
+            material.fabric_type === fabricType
+              ? filteredProjects.push(project)
+              : null
+          )
+        );
+      });
+    else {
+      // GO TO BACKEND AND MAKE THIS ROUTE WORK
       apiHandler
         .filterProjectsByFabric("/api/projects/", fabricList)
         .then((apiRes) => {
@@ -84,6 +94,7 @@ class Dashboard extends React.Component {
         })
         .catch((err) => console.log(err));
     }
+    this.setState({ projects: filteredProjects });
   };
 
   displayProjectList = () => {
@@ -127,6 +138,7 @@ class Dashboard extends React.Component {
                     {...props}
                     filterByFabricType={this.filterByFabricTypes}
                     displayAllProjects={this.resetState}
+                    isStoreSelected={this.state.store_selected}
                   />
                 )}
               />
@@ -137,6 +149,7 @@ class Dashboard extends React.Component {
                     {...props}
                     filterByFabricType={this.filterByFabricTypes}
                     displayAllProjects={this.resetState}
+                    isStoreSelected={this.state.store_selected}
                   />
                 )}
               />

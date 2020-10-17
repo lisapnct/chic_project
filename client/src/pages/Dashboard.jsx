@@ -12,15 +12,14 @@ import { withUser } from "../components/Auth/withUser";
 class Dashboard extends React.Component {
   state = {
     projects: [],
+    allProjects: [],
     selectedProject: [],
     userContributions: [],
     store_selected: false,
-<<<<<<< HEAD
-    previousStoredProjects: [],
-=======
+    currentStoreId: null,
     selectedStoreId: null,
     inputCoordinates: [2.35183, 48.85658], // default Paris coordinates
->>>>>>> 5263b8f8e82feb270385c282ec625a795a625ced
+    fabricFilters: [],
   };
 
   componentDidMount() {
@@ -34,9 +33,11 @@ class Dashboard extends React.Component {
       .then((apiRes) => {
         this.setState({
           projects: apiRes.data,
+          allProjects: apiRes.data,
           store_selected: false,
-          previousStoredProjects: [],
+          currentStoreId: null,
         });
+        if(this.state.fabricFilters.length > 0) this.filterByFabricTypes(this.state.fabricFilters);
       })
       .catch((err) => console.log(err));
   };
@@ -70,36 +71,28 @@ class Dashboard extends React.Component {
         this.setState({
           projects: apiRes.data,
           store_selected: true,
-          previousStoredProjects : apiRes.data,
+          currentStoreId : storeId,
         });
+        if(this.state.fabricFilters.length > 0) this.filterByFabricTypes(this.state.fabricFilters);
       })
       .catch((err) => console.log(err));
   };
 
   filterByFabricTypes = (fabricList) => {
+    let projectsArr = [];
+    if(!this.state.store_selected) projectsArr = this.state.allProjects;
+    else projectsArr = this.state.projects;
     let filteredProjects = [];
-    console.log(this.state.previousStoredProjects);
-    if(this.state.store_selected) {
+    this.setState({fabricFilters: fabricList});
       fabricList.forEach(fabricType => {
-        this.state.projects.map(project => project.materials.map(material => material.fabric_type === fabricType ? filteredProjects.push(project) : null));
+        projectsArr.map(project => project.materials.map(material => material.fabric_type === fabricType ? filteredProjects.push(project) : null));
       })
+      this.setState({ projects: filteredProjects});
+  };
 
-    }
-    if(filteredProjects.length === 0 && this.state.store_selected) this.setState({projects: this.state.previousStoredProjects});
-
-    // else {
-    //   // GO TO BACKEND AND MAKE THIS ROUTE WORK
-    //   apiHandler
-    //     .filterProjectsByFabric("/api/projects/", fabricList)
-    //     .then((apiRes) => {
-    //       this.setState({
-    //         projects: apiRes.data,
-    //         store_selected: true,
-    //       });
-    //     })
-    //     .catch((err) => console.log(err));
-    // }
-    this.setState({ projects: filteredProjects});
+  filterByFabricTypesWhenMarkerClicked = (fabricList) => {
+    this.filterByFabricTypes(fabricList);
+    if(this.state.projects.length <= 1 && this.state.store_selected) this.handleMarkerClick(this.state.currentStoreId);
   };
 
   displayProjectList = () => {
@@ -129,6 +122,7 @@ class Dashboard extends React.Component {
   };
 
   render() {
+    console.log(this.state.fabricFilters);
     const boxShadow = {
       boxShadow: `25px 47px 100px -49px rgba(0, 0, 0, 0.69)`,
     };
@@ -148,7 +142,7 @@ class Dashboard extends React.Component {
                 render={(props) => (
                   <Searchbar
                     {...props}
-                    filterByFabricType={this.filterByFabricTypes}
+                    filterByFabricType={this.filterByFabricTypesWhenMarkerClicked}
                     displayAllProjects={this.resetState}
                     isStoreSelected={this.state.store_selected}
                     sendCoordinates={this.getInputCoordinates}
@@ -160,7 +154,7 @@ class Dashboard extends React.Component {
                 render={(props) => (
                   <Searchbar
                     {...props}
-                    filterByFabricType={this.filterByFabricTypes}
+                    filterByFabricType={this.filterByFabricTypesWhenMarkerClicked}
                     displayAllProjects={this.resetState}
                     isStoreSelected={this.state.store_selected}
                   />

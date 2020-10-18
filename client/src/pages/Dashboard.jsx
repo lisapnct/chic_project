@@ -115,26 +115,23 @@ class Dashboard extends React.Component {
   };
 
   getInputCoordinates = (coordinates) => {
-    console.log(coordinates);
+    // console.log(coordinates);
     this.setState({
       inputCoordinates: coordinates,
     });
   };
 
   render() {
-    console.log(this.state.fabricFilters);
+    // console.log(this.state.fabricFilters);
     const boxShadow = {
       boxShadow: `25px 47px 100px -49px rgba(0, 0, 0, 0.69)`,
     };
     return (
       <div className="dashboard-container">
-        <div className="left-block">
-          <div
-            className="left-grid-container"
-            style={
+        <div className="left-block" style={
               this.props.history.location.pathname === "/" ? boxShadow : null
-            }
-          >
+            }>
+          
             <Switch>
               <Route
                 exact
@@ -164,7 +161,7 @@ class Dashboard extends React.Component {
             </Switch>
 
             {this.displayProjectList()}
-          </div>
+          
         </div>
 
         <div className="right-block">

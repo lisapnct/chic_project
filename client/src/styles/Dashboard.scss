@@ -10,31 +10,22 @@
   grid-area: 1 / 1 / 6 / 3;
   background-color: white;
   z-index: 500;
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-between;
 }
 
 .right-block {
   grid-area: 1 / 3 / 6 / 6;
 }
 
-.left-grid-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(7, 1fr);
-  height: 100%;
-}
-
-.left-block-top {
-  grid-area: 1 / 1 / 2 / 3;
-}
-
 .card-list {
-  grid-area: 2 / 1 / 8 / 3;
-  display: grid;
-  grid-gap: 15px;
-  grid-template-rows: 150px;
+  padding-top: 10px;
   overflow: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  height: 100%;
+
 }
 
 .card-list::-webkit-scrollbar {

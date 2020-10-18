@@ -65,7 +65,7 @@ class ProjectCard extends React.Component {
             <div className="left-container">
               <div className="card-img image is-96x96">
                 <img
-                  class="is-rounded"
+                  className="is-rounded"
                   src={this.state.creator_pic}
                   alt="creator-pic"
                 />
@@ -75,7 +75,7 @@ class ProjectCard extends React.Component {
                 <h3 className="has-text-grey-dark bold">{this.props.name}</h3>
                 <div className="location-container has-text-grey">
                   <span>
-                    <i class="fas fa-store-alt has-text-grey"></i>{" "}
+                    <i className="fas fa-store-alt has-text-grey"></i>{" "}
                     {this.state.store_name}
                   </span>
                   <span>

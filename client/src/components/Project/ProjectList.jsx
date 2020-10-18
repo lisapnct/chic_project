@@ -18,6 +18,8 @@ class ProjectList extends React.Component {
               description={project.description}
               creator={project.creator}
               materials={project.materials}
+              deadline={project.deadline}
+              city={project.city}
               displayProject={props.currentProject}
             />
           </React.Fragment>

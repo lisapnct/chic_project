@@ -7,7 +7,7 @@ const fabric_types = [
   "linen",
   "silk",
   "wool",
-  "artificial fibers (polyester, nylon, elastane)",
+  "artificial fibers",
 ];
 
 class Searchbar extends Component {

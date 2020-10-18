@@ -48,9 +48,11 @@ class ProjectContainer extends React.Component {
               )}
             </div>
             <div className="tag is-warning is-light">
-              <DayJS format="MMMM D, YYYY">{this.props.project.deadline}</DayJS>
+              <DayJS format="MMMM D, YYYY">
+                {this.props.project.deadline}
+              </DayJS>
             </div>
-            <hr/>
+            <hr />
             {/* <h4>Needed materials:</h4>
             {this.props.project.materials &&
               this.props.project.materials.map((material) => (

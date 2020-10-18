@@ -1,23 +1,21 @@
 .item-card {
   box-shadow: 0px 0px 18px -3px rgba(0, 0, 0, 0.08);
   border-radius: 15px;
-  margin: 10px;
+  margin: 15px 20px 10px 20px;
   min-height: 150px;
   cursor: pointer;
   transition: all 0.15s ease-in-out;
 }
 
 .item-card:hover {
-  transform: scale(0.98);
+  transform: scale(1.02);
 }
 
 .card-content-container {
   display: flex;
-  flex-wrap: wrap;
   height: 100%;
   align-content: center;
-  justify-content: space-between;
-  padding: 22px;
+  padding: 20px;
 }
 
 .left-container {
@@ -26,13 +24,14 @@
 }
 
 .card-img {
-  margin-right: 5px;
+  margin-right: 8px;
 }
 
 .card-infos {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .card-infos > h3 {

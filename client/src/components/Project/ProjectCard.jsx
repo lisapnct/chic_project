@@ -21,7 +21,10 @@ const ProjectCard = (props) => {
               </div>
               <div className="card-tags">
                 {props.materials.map((material) => (
-                  <div className="a-tag tag is-info is-light">
+                  <div
+                    key={material.fabric_type}
+                    className="a-tag tag is-info is-light"
+                  >
                     {material.fabric_type}
                   </div>
                 ))}

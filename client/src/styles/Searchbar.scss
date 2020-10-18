@@ -25,3 +25,22 @@
 .checkbox-container > span {
   margin-right: 5px;
 }
+
+.location-autocomplete-results {
+  border-radius: 20px;
+  margin-top: 5px;
+}
+
+.location-autocomplete-items {
+  margin-left: 35px;
+  padding: 8px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.location-autocomplete-items:hover {
+  background-color:hsl(206, 70%, 96%);
+  color: hsl(204, 86%, 53%) !important;
+  transition: all 0.15s ease-in-out;
+}

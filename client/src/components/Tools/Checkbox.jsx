@@ -12,13 +12,18 @@ class Checkbox extends Component {
     this.props.onChange(this.props.label);
   };
 
+  toggleColor = (event) => {
+    event.target.parentNode.classList.toggle("is-info");
+  };
+
   render() {
     return (
-      <label className="checkbox">
+      <label className="checkbox tag">
         <input
           type="checkbox"
           checked={this.state.isChecked}
           onChange={this.toggleChange}
+          onClick={this.toggleColor}
         />
         {this.props.label}
       </label>

@@ -159,6 +159,7 @@ class Dashboard extends React.Component {
                   displayAllProjects={this.resetState}
                   isStoreSelected={this.state.store_selected}
                   sendCoordinates={this.getInputCoordinates}
+                  projectsNumber={this.state.projects.length}
                 />
               )}
             />
@@ -170,6 +171,7 @@ class Dashboard extends React.Component {
                   filterByFabricType={this.filterByFabricTypesWhenMarkerClicked}
                   displayAllProjects={this.resetState}
                   isStoreSelected={this.state.store_selected}
+                  projectsNumber={this.state.projects.length}
                 />
               )}
             />

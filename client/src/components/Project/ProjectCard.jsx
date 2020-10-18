@@ -30,7 +30,6 @@ class ProjectCard extends React.Component {
     apiHandler
       .getOne("/api/stores/", this.props.store_id)
       .then((apiRes) => {
-        console.log(apiRes);
         this.setState({
           store_address: apiRes.data.location.formattedAddress,
           store_name: apiRes.data.name,
@@ -56,7 +55,6 @@ class ProjectCard extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <div
         className="item-card"

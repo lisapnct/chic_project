@@ -79,7 +79,7 @@ class LocationAutoComplete extends Component {
           </div>
         </div>
 
-        <ul className="location-autocomplete-results is-rounded">
+        <ul className="location-autocomplete-results">
           {this.state.results.map((place) => (
             <li
               key={place.id}

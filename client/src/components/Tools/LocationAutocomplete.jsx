@@ -74,23 +74,25 @@ class LocationAutoComplete extends Component {
             onChange={this.handleSearchChange}
             placeholder="Enter an address to find a store"
           />
-          <span className="icon is-small is-left">
+          <div className="icon is-small is-left">
             <i className="fas fa-search"></i>
-          </span>
+          </div>
         </div>
 
-        <ul className="LocationAutoComplete-results">
+        <ul className="location-autocomplete-results">
           {this.state.results.map((place) => (
             <li
               key={place.id}
-              className="LocationAutoComplete-items"
+              className="location-autocomplete-items has-text-grey"
               onClick={() => this.handleItemClicked(place)}
             >
               <p>{place.place_name}</p>
             </li>
           ))}
           {this.state.isLoading && (
-            <li className="LocationAutoComplete-items">Loading...</li>
+            <li className="location-autocomplete-items has-text-grey">
+              Loading...
+            </li>
           )}
         </ul>
       </div>

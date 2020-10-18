@@ -2,13 +2,7 @@ import React, { Component } from "react";
 import Checkbox from "./Tools/Checkbox";
 import LocationAutoComplete from "./Tools/LocationAutocomplete";
 
-const fabric_types = [
-  "cotton",
-  "linen",
-  "silk",
-  "wool",
-  "artificial fibers (polyester, nylon, elastane)",
-];
+const fabric_types = ["cotton", "linen", "silk", "wool", "artificial fibers"];
 
 class Searchbar extends Component {
   state = {
@@ -43,14 +37,15 @@ class Searchbar extends Component {
   };
 
   handlePlace = (place) => {
-    this.props.sendCoordinates(place.geometry.coordinates)
+    this.props.sendCoordinates(place.geometry.coordinates);
   };
 
   render() {
     return (
       <div className="left-block-top">
         <LocationAutoComplete onSelect={this.handlePlace} />
-        <div className="check-boxe-fabric">
+        <div className="checkbox-container">
+          <span>Filter by materials:</span>
           {fabric_types.map((elm) => (
             <Checkbox
               key={elm}
@@ -60,6 +55,9 @@ class Searchbar extends Component {
             />
           ))}
         </div>
+        <h3 className="bold has-text-grey">
+          {this.props.projectsNumber} project(s) found:
+        </h3>
       </div>
     );
   }

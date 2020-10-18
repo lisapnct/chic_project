@@ -37,7 +37,8 @@ class Dashboard extends React.Component {
           store_selected: false,
           currentStoreId: null,
         });
-        if(this.state.fabricFilters.length > 0) this.filterByFabricTypes(this.state.fabricFilters);
+        if (this.state.fabricFilters.length > 0)
+          this.filterByFabricTypes(this.state.fabricFilters);
       })
       .catch((err) => console.log(err));
   };
@@ -71,28 +72,36 @@ class Dashboard extends React.Component {
         this.setState({
           projects: apiRes.data,
           store_selected: true,
-          currentStoreId : storeId,
+          currentStoreId: storeId,
         });
-        if(this.state.fabricFilters.length > 0) this.filterByFabricTypes(this.state.fabricFilters);
+        if (this.state.fabricFilters.length > 0)
+          this.filterByFabricTypes(this.state.fabricFilters);
       })
       .catch((err) => console.log(err));
   };
 
   filterByFabricTypes = (fabricList) => {
     let projectsArr = [];
-    if(!this.state.store_selected) projectsArr = this.state.allProjects;
+    if (!this.state.store_selected) projectsArr = this.state.allProjects;
     else projectsArr = this.state.projects;
     let filteredProjects = [];
-    this.setState({fabricFilters: fabricList});
-      fabricList.forEach(fabricType => {
-        projectsArr.map(project => project.materials.map(material => material.fabric_type === fabricType ? filteredProjects.push(project) : null));
-      })
-      this.setState({ projects: filteredProjects});
+    this.setState({ fabricFilters: fabricList });
+    fabricList.forEach((fabricType) => {
+      projectsArr.map((project) =>
+        project.materials.map((material) =>
+          material.fabric_type === fabricType
+            ? filteredProjects.push(project)
+            : null
+        )
+      );
+    });
+    this.setState({ projects: filteredProjects });
   };
 
   filterByFabricTypesWhenMarkerClicked = (fabricList) => {
     this.filterByFabricTypes(fabricList);
-    if(this.state.projects.length <= 1 && this.state.store_selected) this.handleMarkerClick(this.state.currentStoreId);
+    if (this.state.projects.length <= 1 && this.state.store_selected)
+      this.handleMarkerClick(this.state.currentStoreId);
   };
 
   displayProjectList = () => {
@@ -115,6 +124,7 @@ class Dashboard extends React.Component {
   };
 
   getInputCoordinates = (coordinates) => {
+    console.log(coordinates);
     this.setState({
       inputCoordinates: coordinates,
     });
@@ -153,40 +163,43 @@ class Dashboard extends React.Component {
     };
     return (
       <div className="dashboard-container">
-        <div className="left-block" style={
-              this.props.history.location.pathname === "/" ? boxShadow : null
-            }>
-          
-            <Switch>
-              <Route
-                exact
-                path="/"
-                render={(props) => (
-                  <Searchbar
-                    {...props}
-                    filterByFabricType={this.filterByFabricTypesWhenMarkerClicked}
-                    displayAllProjects={this.resetState}
-                    isStoreSelected={this.state.store_selected}
-                    sendCoordinates={this.getInputCoordinates}
-                  />
-                )}
-              />
-              <Route
-                path="/project/:id"
-                render={(props) => (
-                  <Searchbar
-                    {...props}
-                    filterByFabricType={this.filterByFabricTypesWhenMarkerClicked}
-                    displayAllProjects={this.resetState}
-                    isStoreSelected={this.state.store_selected}
-                  />
-                )}
-              />
-              <Route path="/profile" component={ListTitle} />
-            </Switch>
+        <div
+          className="left-block"
+          style={
+            this.props.history.location.pathname === "/" ? boxShadow : null
+          }
+        >
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={(props) => (
+                <Searchbar
+                  {...props}
+                  filterByFabricType={this.filterByFabricTypesWhenMarkerClicked}
+                  displayAllProjects={this.resetState}
+                  isStoreSelected={this.state.store_selected}
+                  sendCoordinates={this.getInputCoordinates}
+                  projectsNumber={this.state.projects.length}
+                />
+              )}
+            />
+            <Route
+              path="/project/:id"
+              render={(props) => (
+                <Searchbar
+                  {...props}
+                  filterByFabricType={this.filterByFabricTypesWhenMarkerClicked}
+                  displayAllProjects={this.resetState}
+                  isStoreSelected={this.state.store_selected}
+                  projectsNumber={this.state.projects.length}
+                />
+              )}
+            />
+            <Route path="/profile" component={ListTitle} />
+          </Switch>
 
-            {this.displayProjectList()}
-          
+          {this.displayProjectList()}
         </div>
 
         <div className="right-block">

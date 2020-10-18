@@ -5,9 +5,11 @@
   "dependencies": {
     "axios": "^0.19.2",
     "bulma": "^0.9.1",
+    "dayjs": "^1.9.3",
     "mapbox-gl": "^1.12.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
+    "react-dayjs": "^0.1.6",
     "react-dom": "^16.13.1",
     "react-mapbox-gl": "^4.8.6",
     "react-router-dom": "^5.1.2",

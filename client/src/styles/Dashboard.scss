@@ -14,12 +14,16 @@
   flex-direction: column;
 }
 
+.left-block-top {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
 .right-block {
   grid-area: 1 / 3 / 6 / 6;
 }
 
 .card-list {
-  padding-top: 10px;
   overflow: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */

@@ -47,6 +47,7 @@ class ProjectContainer extends React.Component {
             <FormContribution
               project={this.props.project}
               goBack={this.displayContributionForm}
+              handleContributionForm={this.props.handleContributionFormSubmit}
             />
           ) : (
             <React.Fragment>

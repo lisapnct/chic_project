@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import DayJS from "react-dayjs";
-import apiHandler from "../../api/apiHandler";
+// import apiHandler from "../../api/apiHandler";
 
 class ProjectCard extends React.Component {
   state = {

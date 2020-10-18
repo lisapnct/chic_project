@@ -130,6 +130,11 @@ class Dashboard extends React.Component {
     });
   };
 
+  // project contribution form handler 
+  handleContributionSubmit = (data) => {
+    console.log('form submitted', data);
+  }
+
   render() {
     // console.log(this.state.fabricFilters);
     const boxShadow = {
@@ -193,6 +198,7 @@ class Dashboard extends React.Component {
                 <ProjectContainer
                   {...props}
                   project={this.state.selectedProject}
+                  handleContributionFormSubmit={this.handleContributionSubmit}
                 />
               )}
             />

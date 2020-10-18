@@ -9,7 +9,7 @@ class FormContribution extends React.Component {
           <div className="delete is-large"></div>
         </span>
         <h1>What do you want to give?</h1>
-        <form className="field has-addons">
+        <form className="field has-addons" onSubmit={() => this.props.handleContributionForm('this.state')}>
           <p className="control">
             <span className="select">
               <select>

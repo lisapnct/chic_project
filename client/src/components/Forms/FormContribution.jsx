@@ -8,7 +8,8 @@ class FormContribution extends React.Component {
 
   handleSubmit = (evt) => {
     evt.preventDefault();
-    this.props.handleContributionForm(this.state)
+    this.props.handleContributionForm(this.state);
+    this.props.goBack();
   }
 
   handleChange = (evt) => {

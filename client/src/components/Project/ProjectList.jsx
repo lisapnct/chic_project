@@ -10,7 +10,7 @@ class ProjectList extends React.Component {
           <button onClick={props.handleResetClick}>Display all</button>
         )}
         {props.projects.map((project) => (
-          <React.Fragment>
+          <React.Fragment key={project._id}>
             <ProjectCard
               key={project._id}
               id={project._id}

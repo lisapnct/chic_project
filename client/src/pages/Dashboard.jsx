@@ -124,7 +124,7 @@ class Dashboard extends React.Component {
   };
 
   getInputCoordinates = (coordinates) => {
-    // console.log(coordinates);
+    console.log(coordinates);
     this.setState({
       inputCoordinates: coordinates,
     });

@@ -36,12 +36,11 @@ const projectSchema = new Schema({
   ],
   contributors: [
     {
-      id_users: [
+      id_user: 
         {
           type: Schema.Types.ObjectId,
           ref: "User",
         },
-      ],
       contributed_materials: [
         {
           fabric_type: String,

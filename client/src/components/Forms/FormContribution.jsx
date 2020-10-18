@@ -35,7 +35,7 @@ class FormContribution extends React.Component {
             </span>
           </p>
           <p className="control">
-            <input className="input" name="quantity" type="text" placeholder="Amount" onChange={this.handleChange}/>
+            <input className="input" name="quantity" type="number" placeholder="Amount" onChange={this.handleChange}/>
           </p>
           <p className="control">
             <button className="button is-primary">submit</button>

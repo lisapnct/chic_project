@@ -160,7 +160,7 @@ class Dashboard extends React.Component {
       updatedproject.isSuccess = true;
     // check if user is already contributor and update data
     updatedproject.contributors.map((contributor) => {
-      contributor.id_users === currentUserId
+      contributor.id_user === currentUserId
         ? contributor.contributed_materials.push({
             fabric_type: data.fabric_type,
             quantity: data.quantity,
@@ -172,6 +172,14 @@ class Dashboard extends React.Component {
             ],
           });
     });
+    if(updatedproject.contributors.length === 0) {
+      updatedproject.contributors.push({
+        id_user: currentUserId,
+        contributed_materials: [
+          { fabric_type: data.fabric_type, quantity: data.quantity },
+        ],
+      })
+    };
     apiHandler
       .updateOne(
         "/api/projects/" + this.state.selectedProject._id,
@@ -182,6 +190,8 @@ class Dashboard extends React.Component {
       })
       .catch((err) => console.log());
     console.log("form submitted", data);
+
+    // CALL API USER FIDELITY POINTS UPDATE AND CALL SET USER 
   };
 
   render() {

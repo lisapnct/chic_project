@@ -12,7 +12,7 @@ class Contributors extends React.Component {
     } else {
       return this.props.contributors.map((contributor) => (
         <div key={contributor._id}>
-          <h2>Name: {contributor.id_users[0].userName}</h2>
+          <h2>Name: {contributor.id_user.userName}</h2>
           <p>
             contributed with:
             {contributor.contributed_materials.map((material) => (
@@ -27,6 +27,7 @@ class Contributors extends React.Component {
   };
 
   render() {
+    console.log(this.props.contributors);
     return (
       <div>
         <h1>contributors</h1>

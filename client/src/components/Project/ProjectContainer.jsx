@@ -21,7 +21,7 @@ class ProjectContainer extends React.Component {
       <div className="project-grid-container">
         <div className="project-info">
           <Link to="/">
-            <a className="delete is-large"></a>
+            <div className="delete is-large"></div>
           </Link>
           <h1>{this.props.project.name}</h1>
           <h3>{this.props.project.description}</h3>

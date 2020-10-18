@@ -22,14 +22,12 @@ const NavMain = (props) => {
       <div className="navbar-brand">
         <div className="navbar-item">
           <NavLink to="/">
-            <h1 className="title is-4 has-text-weight-bold">
-              <span role="img" aria-label="pelote">
-                🧶
-              </span>
-              chic
+            <h1 className="title is-3 has-text-dark-grey has-text-weight-bold">
+             ch<i className="fas fa-socks has-text-info"></i>c
             </h1>
           </NavLink>
-          <NavLink to="/"
+          <NavLink
+            to="/"
             role="button"
             className="navbar-burger"
             aria-label="menu"

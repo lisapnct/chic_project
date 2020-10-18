@@ -6,7 +6,7 @@ class FormContribution extends React.Component {
     return (
       <React.Fragment>
         <span onClick={() => this.props.goBack()}>
-          <a className="delete is-large"></a>
+          <div className="delete is-large"></div>
         </span>
         <h1>What do you want to give?</h1>
         <form className="field has-addons" onSubmit={() => this.props.handleContributionForm('this.state')}>
@@ -24,7 +24,7 @@ class FormContribution extends React.Component {
             <input className="input" type="text" placeholder="Amount" />
           </p>
           <p className="control">
-            <a className="button is-primary">submit</a>
+            <button className="button is-primary">submit</button>
           </p>
         </form>
       </React.Fragment>

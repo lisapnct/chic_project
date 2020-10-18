@@ -66,13 +66,19 @@ class LocationAutoComplete extends Component {
   render() {
     return (
       <div className="LocationAutoComplete">
-        <input
-          className="input"
-          type="text"
-          value={this.state.search}
-          onChange={this.handleSearchChange}
-          placeholder="Enter an address to find a store"
-        />
+        <div className="control has-icons-left has-icons-right">
+          <input
+            className="input is-rounded searchbar"
+            type="text"
+            value={this.state.search}
+            onChange={this.handleSearchChange}
+            placeholder="Enter an address to find a store"
+          />
+          <span className="icon is-small is-left">
+            <i className="fas fa-search"></i>
+          </span>
+        </div>
+
         <ul className="LocationAutoComplete-results">
           {this.state.results.map((place) => (
             <li
@@ -80,7 +86,7 @@ class LocationAutoComplete extends Component {
               className="LocationAutoComplete-items"
               onClick={() => this.handleItemClicked(place)}
             >
-              {place.place_name}
+              <p>{place.place_name}</p>
             </li>
           ))}
           {this.state.isLoading && (

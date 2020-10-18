@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ProjectCard = (props) => {
-  // console.log(props);
   return (
     <div className="item-card" onClick={() => props.displayProject(props.id)}>
       <Link to={`/project/${props.id}`}>
@@ -16,7 +15,8 @@ const ProjectCard = (props) => {
               <h3 className="has-text-grey-dark bold">{props.name}</h3>
               <div className="has-text-grey">
                 <p>
-                  <i className="fas fa-map-marker-alt "></i> <b></b> Paris, France
+                  <i className="fas fa-map-marker-alt "></i> <b></b> Paris,
+                  France
                 </p>
               </div>
               <div className="card-tags">
@@ -29,9 +29,9 @@ const ProjectCard = (props) => {
             </div>
           </div>
           <div className="card-state">
-            <div className="tag is-warning is-light">9/12 items collected</div> 
-            <span className="has-text-grey">18 Apr. 2020</span>  {/* creation date */}
-            
+            <div className="tag is-warning is-light">9/12 items collected</div>
+            <span className="has-text-grey">18 Apr. 2020</span>{" "}
+            {/* creation date */}
           </div>
         </div>
       </Link>

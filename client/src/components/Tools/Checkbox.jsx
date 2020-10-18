@@ -14,7 +14,7 @@ class Checkbox extends Component {
 
   render() {
     return (
-      <label>
+      <label className="checkbox">
         <input
           type="checkbox"
           checked={this.state.isChecked}

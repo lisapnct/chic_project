@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Progress from "./Progress";
 import Contributors from "./Contributors";
 import FormContribution from "../Forms/FormContribution";
+import DayJS from "react-dayjs";
 
 class ProjectContainer extends React.Component {
   state = {
@@ -20,21 +21,50 @@ class ProjectContainer extends React.Component {
     return (
       <div className="project-grid-container">
         <div className="project-info">
+          <div className="project-infos-header">
+            <h1 className="bold has-text-dark-gray">
+              {this.props.project.name}
+            </h1>
+            <p>
+              launched by <span className="tag is-info is-light">lisapnct</span>
+            </p>
+            <div className="project-description">
+              <i className="fas fa-quote-left has-text-grey-lighter fa-lg"></i>
+              <p>{this.props.project.description}</p>
+              <i className="fas fa-quote-right has-text-grey-lighter fa-lg"></i>
+            </div>
+            <div className="project-location">
+              {this.props.store.location && (
+                <React.Fragment>
+                  <span>
+                    <i className="fas fa-store-alt has-text-grey"></i>{" "}
+                    {this.props.store.name}
+                  </span>
+                  <span>
+                    <i className="fas fa-map-marker-alt has-text-grey"></i>{" "}
+                    {this.props.store.location.formattedAddress}
+                  </span>
+                </React.Fragment>
+              )}
+            </div>
+            <div className="tag is-warning is-light">
+              <DayJS format="MMMM D, YYYY">{this.props.project.deadline}</DayJS>
+            </div>
+            <hr/>
+            {/* <h4>Needed materials:</h4>
+            {this.props.project.materials &&
+              this.props.project.materials.map((material) => (
+                <React.Fragment key={material._id}>
+                  <p>{material.fabric_type}</p>
+                  <p>{material.color}</p>
+                  <p>required quantity: {material.required_quantity}</p>
+                  <p>collected quantity: {material.collected_quantity}</p>
+                </React.Fragment>
+              ))} */}
+          </div>
           <Link to="/">
             <div className="delete is-large"></div>
           </Link>
-          <h1>{this.props.project.name}</h1>
-          <h3>{this.props.project.description}</h3>
-          <h4>Needed materials:</h4>
-          {this.props.project.materials &&
-            this.props.project.materials.map((material) => (
-              <React.Fragment key={material._id}>
-                <p>{material.fabric_type}</p>
-                <p>{material.color}</p>
-                <p>required quantity: {material.required_quantity}</p>
-                <p>collected quantity: {material.collected_quantity}</p>
-              </React.Fragment>
-            ))}
         </div>
         <div className="progress-gauge">
           <Progress

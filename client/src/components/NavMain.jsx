@@ -23,7 +23,7 @@ const NavMain = (props) => {
         <div className="navbar-item">
           <NavLink to="/">
             <h1 className="title is-3 has-text-dark-grey has-text-weight-bold">
-             ch<i className="fas fa-socks has-text-info"></i>c
+              ch<i className="fas fa-socks has-text-info"></i>c
             </h1>
           </NavLink>
           <NavLink

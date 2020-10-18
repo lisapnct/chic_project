@@ -6,7 +6,7 @@ class Contributors extends React.Component {
       return (
         <div>
           <p>No contributor yet, be the first!</p>
-          <button className="button is-primary">contribute now</button>
+          {/* <button className="button is-primary">contribute now</button> */}
         </div>
       );
     } else {

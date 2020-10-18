@@ -56,11 +56,11 @@ router.get("/:id", async (req, res, next) => {
 
 // U
 router.patch("/:id", upload.single("images"), async (req, res, next) => {
+  const updatedProject = req.body;
+  if (req.file) {
+    updatedProject.image = req.file.location;
+  }
   try {
-    const updatedProject = req.body;
-    if (req.file) {
-      updatedProject.image = req.file.location;
-    }
     const apiRes = await Project.findByIdAndUpdate(
       req.params.id,
       updatedProject,

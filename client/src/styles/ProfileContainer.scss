@@ -9,8 +9,35 @@
   background-color: white;
 }
 
-.top-block {
+.profile-list-title {
+  margin-top: 15px;
 }
-.bottom-block {
 
+.top-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.edit-profile-btn {
+  margin-top: 10px;
+}
+
+.bottom-block-paillettes {
+ padding-top: 20px;
+ padding-bottom: 20px;
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: center;
+ align-items: center;
+}
+
+.paillettes-infos {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.paillettes-rules {
+  margin-top: 15px;
 }

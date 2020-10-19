@@ -85,10 +85,21 @@ class FormUser extends Component {
               value={this.state.address}
             />
           </div>
-          <p className="help">This is a help text</p>
         </div>
 
-        <button className="button is-primary">save</button>
+        <div className="field is-grouped is-grouped-right">
+          <p className="control">
+            <button className="button is-primary">Save</button>
+          </p>
+          <p className="control">
+            <a
+              onClick={() => this.props.cancelEdit()}
+              className="button is-light"
+            >
+              Cancel
+            </a>
+          </p>
+        </div>
       </form>
     );
   }

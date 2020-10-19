@@ -34,7 +34,7 @@ router.get("/user/:id", async (req, res, next) => {
       "contributors.id_users": req.params.id,
     })
     .populate("creator", "profilePicture userName")
-    .populate("contributors.id_users", "profilePicture userName");
+    .populate("contributors.id_user", "profilePicture userName");
     res.status(200).json(apiRes);
   } catch (err) {
     res.status(500).json(err);
@@ -45,7 +45,7 @@ router.get("/:id", async (req, res, next) => {
   try {
     const apiRes = await Project.findById(req.params.id)
       .populate("creator", "profilePicture userName")
-      .populate("contributors.id_users", "profilePicture userName");
+      .populate("contributors.id_user", "profilePicture userName");
     const contributor = apiRes.contributors;
     console.log(apiRes);
     res.status(200).json(apiRes);

@@ -166,7 +166,7 @@ class Dashboard extends React.Component {
             quantity: data.quantity,
           })
         : updatedproject.contributors.push({
-            id_users: currentUserId,
+            id_user: currentUserId,
             contributed_materials: [
               { fabric_type: data.fabric_type, quantity: data.quantity },
             ],
@@ -180,22 +180,32 @@ class Dashboard extends React.Component {
         ],
       })
     };
+    // Update user 
     apiHandler
       .updateOne(
         "/api/projects/" + this.state.selectedProject._id,
         updatedproject
       )
       .then((apiRes) => {
-        this.setState({ currentProject: apiRes.data });
+        this.setState({ selectedProject: apiRes.data });
       })
       .catch((err) => console.log());
-    console.log("form submitted", data);
+    // Update USER fidelity points
+    apiHandler
+      .updateOne(
+        "/routes/users" + currentUserId,
+        { paillettes: data.quantity}
+      )
+      .then((apiRes) => {
+        //Update context with SET USER 
+        this.setUser(apiRes);
+      })
+      .catch((err) => console.log());
+    };
+    
+    render() {
+      console.log(this.props.context.user);
 
-    // CALL API USER FIDELITY POINTS UPDATE AND CALL SET USER 
-  };
-
-  render() {
-    // console.log(this.state.fabricFilters);
     const boxShadow = {
       boxShadow: `25px 47px 100px -49px rgba(0, 0, 0, 0.69)`,
     };

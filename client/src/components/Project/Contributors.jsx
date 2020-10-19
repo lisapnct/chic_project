@@ -27,7 +27,6 @@ class Contributors extends React.Component {
   };
 
   render() {
-    console.log(this.props.contributors);
     return (
       <div>
         <h1>contributors</h1>

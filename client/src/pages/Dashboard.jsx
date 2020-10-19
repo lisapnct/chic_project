@@ -172,15 +172,16 @@ class Dashboard extends React.Component {
             ],
           });
     });
-    if(updatedproject.contributors.length === 0) {
+    if (updatedproject.contributors.length === 0) {
       updatedproject.contributors.push({
         id_user: currentUserId,
         contributed_materials: [
           { fabric_type: data.fabric_type, quantity: data.quantity },
         ],
-      })
-    };
-    // Update user 
+      });
+    }
+    console.log("updated project", updatedproject);
+    // Update user
     apiHandler
       .updateOne(
         "/api/projects/" + this.state.selectedProject._id,
@@ -189,23 +190,20 @@ class Dashboard extends React.Component {
       .then((apiRes) => {
         this.setState({ selectedProject: apiRes.data });
       })
-      .catch((err) => console.log());
+      .catch((err) => console.log(err));
     // Update USER fidelity points
     apiHandler
-      .updateOne(
-        "/routes/users" + currentUserId,
-        { paillettes: data.quantity}
-      )
+      .updateOne("/api/users/" + currentUserId, { paillettes: data.quantity })
       .then((apiRes) => {
-        //Update context with SET USER 
+        //Update context with SET USER
         console.log(apiRes.data);
         this.setUser(apiRes.data);
       })
       .catch((err) => console.log());
-    };
-    
-    render() {
-      console.log(this.props.context.user);
+  };
+
+  render() {
+    console.log(this.props.context.user);
 
     const boxShadow = {
       boxShadow: `25px 47px 100px -49px rgba(0, 0, 0, 0.4)`,

@@ -53,11 +53,11 @@ class ProjectContainer extends React.Component {
               {this.props.store.location && (
                 <React.Fragment>
                   <span>
-                    <i className="fas fa-store-alt has-text-grey"></i>{" "}
+                    <i className="fas fa-store-alt has-text-primary"></i>{" "}
                     {this.props.store.name}
                   </span>
                   <span>
-                    <i className="fas fa-map-marker-alt has-text-grey"></i>{" "}
+                    <i className="fas fa-map-marker-alt has-text-primary"></i>{" "}
                     {this.props.store.location.formattedAddress}
                   </span>
                 </React.Fragment>

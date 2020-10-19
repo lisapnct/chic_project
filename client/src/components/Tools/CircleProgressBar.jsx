@@ -15,7 +15,7 @@ const CircleProgressBar = (props) => {
             pathColor: "#00D1B2",
           })}
         />
-        <p className="tag">{props.material.fabric_type}</p>
+        <p className="tag legend-circle-progress">{props.material.fabric_type}</p>
       </div>
     </React.Fragment>
   );

@@ -56,20 +56,15 @@ class FormContribution extends React.Component {
 
               <div className="field is-grouped">
                 <p className="control">
-                  <button
-                    onClick={this.handleSubmit}
-                    className="button is-primary"
-                  >
-                    Submit
-                  </button>
+                  <button className="button is-primary">Submit</button>
                 </p>
                 <p className="control">
-                  <button
+                  <a
                     onClick={() => this.props.goBack()}
                     className="button is-light"
                   >
                     Cancel
-                  </button>
+                  </a>
                 </p>
               </div>
             </form>

@@ -93,7 +93,10 @@ progress.progress::-webkit-progress-value {
 svg.CircularProgressbar {
   max-height: 96px;
   max-width: 96px;
-  margin-bottom: 10px;
+}
+
+.legend-circle-progress {
+  margin-top: 10px;
 }
 
 .contributors-container {

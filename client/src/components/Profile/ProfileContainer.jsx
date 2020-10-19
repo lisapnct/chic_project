@@ -31,7 +31,6 @@ class ProfileContainer extends React.Component {
   };
 
   toggleEditState = () => {
-    // console.log("edit state");
     this.setState((prevState) => ({
       edit_profile: !prevState.edit_profile,
     }));
@@ -45,6 +44,7 @@ class ProfileContainer extends React.Component {
         address={this.props.context.user.address}
         profilePicture={this.props.context.user.profilePicture}
         updateProfile={this.updateUserProfile}
+        cancelEdit={this.toggleEditState}
       />
     ) : (
       <PointsCounter />
@@ -54,26 +54,36 @@ class ProfileContainer extends React.Component {
   render() {
     return (
       <div className="profile-grid-container">
+        <Link to="/">
+          <span className="delete is-medium"></span>
+        </Link>
         <div className="top-block">
-          <Link to="/">
-            <div className="delete is-large"></div>
-          </Link>
-          <figure className="image is-96x96">
+          <figure className="image is-128x128">
             <img
               className="is-rounded"
               src={this.props.context.user.profilePicture}
               alt={`${this.props.context.user.userName}-profile-pic`}
             />
           </figure>
-          <h1>{this.props.context.user.userName}</h1>
-          <h1>{this.props.context.user.email}</h1>
-          <h1>{this.props.context.user.address}</h1>
+          <h1 className="has-text-dark-gray bold">
+            {this.props.context.user.userName}
+          </h1>
+          <h3>{this.props.context.user.email}</h3>
+          <h3>{this.props.context.user.address}</h3>
           {!this.state.edit_profile && (
-            <button onClick={this.toggleEditState} className="button">
-              edit profile
+            <button
+              onClick={this.toggleEditState}
+              className="button is-primary is-outlined edit-profile-btn"
+            >
+              <span>
+                edit <i class="fas fa-user-edit"></i>
+              </span>
             </button>
           )}
         </div>
+
+        <hr />
+
         <div className="bottom-block">{this.renderBottomComponent()}</div>
       </div>
     );

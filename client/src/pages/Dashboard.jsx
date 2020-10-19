@@ -25,6 +25,7 @@ class Dashboard extends React.Component {
 
   componentDidMount() {
     this.resetState();
+    console.log("context on mount", this.props.context)
     if (this.props.context.user) this.getUsersContributions();
   }
 
@@ -137,7 +138,7 @@ class Dashboard extends React.Component {
   };
 
   getInputCoordinates = (coordinates) => {
-    console.log(coordinates);
+    // console.log(coordinates);
     this.setState({
       inputCoordinates: coordinates,
     });
@@ -180,7 +181,7 @@ class Dashboard extends React.Component {
         ],
       });
     }
-    console.log("updated project", updatedproject);
+    // console.log("updated project", updatedproject);
     // Update user
     apiHandler
       .updateOne(
@@ -203,8 +204,7 @@ class Dashboard extends React.Component {
   };
 
   render() {
-    console.log(this.props.context.user);
-
+    // console.log(this.props.context.user);
     const boxShadow = {
       boxShadow: `25px 47px 100px -49px rgba(0, 0, 0, 0.4)`,
     };
@@ -245,7 +245,6 @@ class Dashboard extends React.Component {
             />
             <Route path="/profile" component={ListTitle} />
           </Switch>
-
           {this.displayProjectList()}
         </div>
 
@@ -273,11 +272,7 @@ class Dashboard extends React.Component {
                 />
               )}
             />
-            <Route
-              path="/profile"
-              projects={this.state.userContributions}
-              component={ProfileContainer}
-            />
+            <Route path="/profile" component={ProfileContainer} />
           </Switch>
         </div>
       </div>

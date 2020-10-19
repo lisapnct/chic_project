@@ -71,7 +71,7 @@ class ProjectContainer extends React.Component {
           {!this.state.isContributing && (
             <button
               onClick={this.displayContributionForm}
-              className="button is-primary is-rounded contribute-btn"
+              className="button is-primary contribute-btn"
             >
               contribute
             </button>

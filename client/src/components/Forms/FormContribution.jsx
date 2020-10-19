@@ -58,7 +58,7 @@ class FormContribution extends React.Component {
                 <p className="control">
                   <button
                     onClick={this.handleSubmit}
-                    className="button is-rounded is-primary"
+                    className="button is-primary"
                   >
                     Submit
                   </button>
@@ -66,7 +66,7 @@ class FormContribution extends React.Component {
                 <p className="control">
                   <button
                     onClick={() => this.props.goBack()}
-                    className="button is-rounded is-light"
+                    className="button is-light"
                   >
                     Cancel
                   </button>

@@ -25,14 +25,14 @@ class FormContribution extends React.Component {
         <h1>What do you want to give?</h1>
         <form className="field has-addons" onSubmit={this.handleSubmit}>
           <p className="control">
-            <span className="select">
+            <div className="select">
               <select name="fabric_type" onChange={this.handleChange}>
                 {this.props.project.materials &&
                   this.props.project.materials.map((material) => {
                     return <option key={material.fabric_type}>{material.fabric_type}</option>;
                   })}
               </select>
-            </span>
+            </div>
           </p>
           <p className="control">
             <input className="input" name="quantity" type="number" placeholder="Amount" onChange={this.handleChange}/>

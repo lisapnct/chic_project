@@ -47,18 +47,26 @@ router.get("/user", async (req, res, next) => {
 
 router.patch("/:id/contributions", async (req,res,next) => {
   try {
+    
     let query; 
     let search;
     const currentUserId = req.session.currentUser;
     const { fabric_type, quantity } = req.body;
-
-    const case1query = {_id: req.params.id, 'contributors.id_user': currentUserId, 'contributors.contributed_materials.fabric_type': fabric_type }
+    
+    const case1query = { _id: req.params.id, 'contributors.id_user': currentUserId, 'contributors.contributed_materials.fabric_type': fabric_type }
     const case2query = {_id: req.params.id, 'contributors.id_user': currentUserId }
     const case3query = {_id: req.params.id}
 
-    const foundProjectAlr  = await Project.find(case1query);
+    let foundProjectAlr = await Project.find(case1query);
     const foundProjectNve  = await Project.find(case2query);
     const foundProject = await Project.find(case3query);
+
+    // THoses two lines Prevent bugs 
+    if(foundProjectAlr.length > 0) {
+      const contribution = foundProjectAlr[0].contributors.find(contributor => contributor.id_user == currentUserId);
+      contribution.contributed_materials.find(mat => mat.fabric_type === fabric_type) ? console.log('hello') : foundProjectAlr = []; 
+    }
+    
 
     if(foundProjectNve.length > 0 && foundProjectAlr.length > 0) {
       const material = foundProjectAlr[0].materials.find(mat => mat.fabric_type === fabric_type);
@@ -66,15 +74,16 @@ router.patch("/:id/contributions", async (req,res,next) => {
       if (material.collected_quantity === material.required_quantity) material.fullyCollected = true;
       if (foundProjectAlr[0].materials.every(elm => elm.fullyCollected === true)) foundProjectAlr[0].isSuccess = true;
       
-      const contribution = foundProjectAlr[0].contributors.find(contributor => contributor.id_user == currentUserId);
+      const contribution = foundProjectAlr[0].contributors.find(contributor => contributor.id_user == currentUserId)
       const updatedMaterial = contribution.contributed_materials.find(mat => mat.fabric_type === fabric_type);
       updatedMaterial.quantity += Number(quantity);
       
       search = case1query;
       query = foundProjectAlr[0]
+      console.log('Case 1');
     }
     
-    if(foundProjectNve.length > 0 && foundProjectAlr.length === 0) {
+    if (foundProjectNve.length > 0 && foundProjectAlr.length === 0) {
       const material = foundProjectNve[0].materials.find(mat => mat.fabric_type === fabric_type);
       material.collected_quantity += Number(quantity);
       if (material.collected_quantity === material.required_quantity) material.fullyCollected = true;
@@ -85,8 +94,9 @@ router.patch("/:id/contributions", async (req,res,next) => {
 
       search = case2query;
       query = foundProjectNve[0];
+      console.log('Case 2');
     }
-    else {
+    if (foundProjectNve.length === 0  && foundProjectAlr.length === 0 && foundProject.length > 0 ) {
       const material = foundProject[0].materials.find(mat => mat.fabric_type === fabric_type);
       material.collected_quantity += Number(quantity);
       if (material.collected_quantity === material.required_quantity) material.fullyCollected = true;
@@ -96,6 +106,7 @@ router.patch("/:id/contributions", async (req,res,next) => {
 
       search = case3query;
       query = foundProject[0]
+      console.log('Case 3');
     }
 
     const apiRes = await Project.findOneAndUpdate(

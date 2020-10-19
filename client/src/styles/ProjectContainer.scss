@@ -1,24 +1,44 @@
 .project-grid-container {
-  // display: grid;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin: 20px;
-  padding: 25px;
+  padding: 40px 40px 20px 40px;
   box-shadow: 0px 0px 18px -3px rgba(0, 0, 0, 0.08);
   border-radius: 15px;
   background-color: white;
-  transition: all 0.15s ease-in-out;
+}
+
+.bottom-container h3 {
+  margin-bottom: 20px;
+}
+
+.bottom-form-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.illu-gift {
+  max-width: 250px;
 }
 
 .project-infos-header {
   width: 100%;
 }
 
+.project-infos-header h1 {
+  margin-bottom: 5px;
+}
+
 .project-info {
-  // grid-area: 1 / 1 / 3 / 4;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+}
+
+.close-btn {
+  margin-bottom: 8px;
 }
 
 .project-description {
@@ -29,8 +49,12 @@
 .project-location {
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
+  margin-top: 15px;
   margin-bottom: 10px;
+}
+
+.project-location > p {
+  margin-bottom: 5px;
 }
 
 .project-location > span {
@@ -41,11 +65,49 @@
   margin-right: 8px;
 }
 
-.progress-gauge {
-  // grid-area: 3 / 1 / 4 / 4;
-}
-.contributors {
-  // grid-area: 4 / 1 / 6 / 4;
+.progressbar-container > h3 {
+  margin-bottom: 10px;
 }
 
+progress.progress::-webkit-progress-value {
+  transition: width 1.5s ease;
+}
 
+.circle-gauges-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 15px;
+}
+
+.circle-progress-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.circle-progress-item:not(:last-child) {
+  margin-right: 30px;
+}
+
+svg.CircularProgressbar {
+  max-height: 96px;
+  max-width: 96px;
+  margin-bottom: 10px;
+}
+
+.contributors-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.contributor-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.contributors h3 {
+  margin-bottom: 10px;
+}

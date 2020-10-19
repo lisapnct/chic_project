@@ -5,6 +5,7 @@ import Progress from "./Progress";
 import Contributors from "./Contributors";
 import FormContribution from "../Forms/FormContribution";
 import DayJS from "react-dayjs";
+import CircleProgressBar from "../Tools/CircleProgressBar";
 
 class ProjectContainer extends React.Component {
   state = {
@@ -22,59 +23,63 @@ class ProjectContainer extends React.Component {
       <div className="project-grid-container">
         <div className="project-info">
           <div className="project-infos-header">
+            <Link to="/">
+              <span className="delete close-btn"></span>
+            </Link>
             <h1 className="bold has-text-dark-gray">
               {this.props.project.name}
             </h1>
             <p>
-              launched by <span className="tag is-info is-light">lisapnct</span>
+              launched by{" "}
+              <span className="tag is-info is-light">
+                {/* {this.props.project.creator.userName} */} username
+              </span>{" "}
+              | deadline:{" "}
+              <span className="tag is-warning is-light">
+                <DayJS format="MMMM D, YYYY">
+                  {this.props.project.deadline}
+                </DayJS>
+              </span>
             </p>
             <div className="project-description">
               <i className="fas fa-quote-left has-text-grey-lighter fa-lg"></i>
-              <p>{this.props.project.description}</p>
+              <p>
+                <i>{this.props.project.description}</i>
+              </p>
               <i className="fas fa-quote-right has-text-grey-lighter fa-lg"></i>
             </div>
             <div className="project-location">
+              <p className="has-text-dark-gray bold">Drop your items here:</p>
               {this.props.store.location && (
                 <React.Fragment>
                   <span>
-                    <i className="fas fa-store-alt has-text-grey"></i>{" "}
+                    <i className="fas fa-store-alt has-text-primary"></i>{" "}
                     {this.props.store.name}
                   </span>
                   <span>
-                    <i className="fas fa-map-marker-alt has-text-grey"></i>{" "}
+                    <i className="fas fa-map-marker-alt has-text-primary"></i>{" "}
                     {this.props.store.location.formattedAddress}
                   </span>
                 </React.Fragment>
               )}
             </div>
-            <div className="tag is-warning is-light">
-              <DayJS format="MMMM D, YYYY">
-                {this.props.project.deadline}
-              </DayJS>
-            </div>
-            <hr />
-            {/* <h4>Needed materials:</h4>
-            {this.props.project.materials &&
-              this.props.project.materials.map((material) => (
-                <React.Fragment key={material._id}>
-                  <p>{material.fabric_type}</p>
-                  <p>{material.color}</p>
-                  <p>required quantity: {material.required_quantity}</p>
-                  <p>collected quantity: {material.collected_quantity}</p>
-                </React.Fragment>
-              ))} */}
+            <Progress
+              isSuccess={this.props.project.isSuccess}
+              materials={this.props.project.materials}
+            />
           </div>
-          <Link to="/">
-            <div className="delete is-large"></div>
-          </Link>
+          {!this.state.isContributing && (
+            <button
+              onClick={this.displayContributionForm}
+              className="button is-primary contribute-btn"
+            >
+              contribute
+            </button>
+          )}
         </div>
-        <div className="progress-gauge">
-          <Progress
-            isSuccess={this.props.project.isSuccess}
-            materials={this.props.project.materials}
-          />
-        </div>
-        <div className="contributors">
+        <hr />
+
+        <div className="bottom-container">
           {this.state.isContributing ? (
             <FormContribution
               project={this.props.project}
@@ -83,13 +88,15 @@ class ProjectContainer extends React.Component {
             />
           ) : (
             <React.Fragment>
+              <h3 className="has-text-dark-gray bold">Required materials:</h3>
+              <div className="circle-gauges-container">
+                {this.props.project.materials &&
+                  this.props.project.materials.map((material) => (
+                    <CircleProgressBar key={material._id} material={material} />
+                  ))}
+              </div>
+              <hr />
               <Contributors contributors={this.props.project.contributors} />
-              <button
-                onClick={this.displayContributionForm}
-                className="button is-primary"
-              >
-                contribute
-              </button>
             </React.Fragment>
           )}
         </div>

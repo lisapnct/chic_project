@@ -7,7 +7,7 @@ class Progress extends React.Component {
     this.props.materials.map((material) => {
       max += material.required_quantity;
       qt += material.collected_quantity;
-      return (max, qt)
+      return max, qt;
     });
     let value = (qt / max) * 100;
     return value.toFixed();
@@ -15,12 +15,16 @@ class Progress extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="progressbar-container">
         {this.props.materials && (
           <React.Fragment>
-            <h1>This project is {this.getValue()}% completed</h1>
+            <h3>
+              This project is{" "}
+              <span className="bold has-text-dark-gray is-medium">{this.getValue()}%</span>{" "}
+              completed
+            </h3>
             <progress
-              className="progress is-primary is-medium"
+              className="progress is-primary"
               value={this.getValue()}
               max="100"
             ></progress>
@@ -30,6 +34,5 @@ class Progress extends React.Component {
     );
   }
 }
-
 
 export default Progress;

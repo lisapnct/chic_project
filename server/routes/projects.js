@@ -92,6 +92,7 @@ router.get("/:id", async (req, res, next) => {
 // U
 router.patch("/:id", upload.single("images"), async (req, res, next) => {
   const updatedProject = req.body;
+  console.log(updatedProject)
   if (req.file) {
     updatedProject.image = req.file.location;
   }

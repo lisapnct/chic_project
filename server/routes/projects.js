@@ -33,10 +33,10 @@ router.get("/", async (req, res, next) => {
 });
 
 //get all users contributions (all projects with given user id in contributors)
-router.get("/user/:id", async (req, res, next) => {
+router.get("/user", async (req, res, next) => {
   try {
     const apiRes = await Project.find({
-      "contributors.id_users": req.params.id,
+      "contributors.id_user": req.session.currentUser,
     })
     .populate("creator", "profilePicture userName")
     .populate("contributors.id_user", "profilePicture userName");

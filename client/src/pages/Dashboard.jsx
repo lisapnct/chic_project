@@ -145,68 +145,20 @@ class Dashboard extends React.Component {
 
   // project contribution form handler
   handleContributionSubmit = (data) => {
-    let updatedproject = this.state.selectedProject;
-    let currentUserId = this.props.context.user._id;
-    // update of the the materials section
-    updatedproject.materials.map((mat) => {
-      if (mat.fabric_type === data.fabric_type)
-        mat.collected_quantity =
-          Number(mat.collected_quantity) + Number(data.quantity);
-      if (mat.collected_quantity > mat.required_quantity)
-        mat.fullyCollected = true;
-    });
-    // check if project objectif is filled
-    if (updatedproject.materials.every((mat) => mat.fullyCollected === true))
-      updatedproject.isSuccess = true;
-    // check if user is already contributor and update data
-    updatedproject.contributors.map((contributor) => {
-      contributor.id_user === currentUserId
-        ? contributor.contributed_materials.push({
-            fabric_type: data.fabric_type,
-            quantity: data.quantity,
-          })
-        : updatedproject.contributors.push({
-            id_user: currentUserId,
-            contributed_materials: [
-              { fabric_type: data.fabric_type, quantity: data.quantity },
-            ],
-          });
-    });
-    if(updatedproject.contributors.length === 0) {
-      updatedproject.contributors.push({
-        id_user: currentUserId,
-        contributed_materials: [
-          { fabric_type: data.fabric_type, quantity: data.quantity },
-        ],
-      })
-    };
-    // Update user 
+    // Update project 
     apiHandler
       .updateOne(
-        "/api/projects/" + this.state.selectedProject._id,
-        updatedproject
+        `/api/projects/${this.state.selectedProject._id}/contributions` ,
+        data
       )
       .then((apiRes) => {
         this.setState({ selectedProject: apiRes.data });
       })
       .catch((err) => console.log());
-    // Update USER fidelity points
-    apiHandler
-      .updateOne(
-        "/routes/users" + currentUserId,
-        { paillettes: data.quantity}
-      )
-      .then((apiRes) => {
-        //Update context with SET USER 
-        console.log(apiRes.data);
-        this.setUser(apiRes.data);
-      })
-      .catch((err) => console.log());
+
     };
     
     render() {
-      console.log(this.props.context.user);
-
     const boxShadow = {
       boxShadow: `25px 47px 100px -49px rgba(0, 0, 0, 0.4)`,
     };

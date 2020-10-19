@@ -18,9 +18,9 @@ class Progress extends React.Component {
       <div>
         {this.props.materials && (
           <React.Fragment>
-            <h1>This project is {this.getValue()}% completed</h1>
+            <h3>This project is {this.getValue()}% completed</h3>
             <progress
-              className="progress is-primary is-medium"
+              className="progress is-primary"
               value={this.getValue()}
               max="100"
             ></progress>

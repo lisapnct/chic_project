@@ -166,7 +166,7 @@ class Dashboard extends React.Component {
             quantity: data.quantity,
           })
         : updatedproject.contributors.push({
-            id_users: currentUserId,
+            id_user: currentUserId,
             contributed_materials: [
               { fabric_type: data.fabric_type, quantity: data.quantity },
             ],

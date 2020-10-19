@@ -5,6 +5,7 @@ import Progress from "./Progress";
 import Contributors from "./Contributors";
 import FormContribution from "../Forms/FormContribution";
 import DayJS from "react-dayjs";
+import CircleProgressBar from "../Tools/CircleProgressBar";
 
 class ProjectContainer extends React.Component {
   state = {
@@ -48,31 +49,27 @@ class ProjectContainer extends React.Component {
               )}
             </div>
             <div className="tag is-warning is-light">
-              <DayJS format="MMMM D, YYYY">
-                {this.props.project.deadline}
-              </DayJS>
+              <DayJS format="MMMM D, YYYY">{this.props.project.deadline}</DayJS>
+            </div>
+            <div className="progress-gauge">
+              <Progress
+                isSuccess={this.props.project.isSuccess}
+                materials={this.props.project.materials}
+              />
             </div>
             <hr />
-            {/* <h4>Needed materials:</h4>
-            {this.props.project.materials &&
-              this.props.project.materials.map((material) => (
-                <React.Fragment key={material._id}>
-                  <p>{material.fabric_type}</p>
-                  <p>{material.color}</p>
-                  <p>required quantity: {material.required_quantity}</p>
-                  <p>collected quantity: {material.collected_quantity}</p>
-                </React.Fragment>
-              ))} */}
+            <h4>Needed materials:</h4>
+            <div className="circle-gauges-container">
+              {this.props.project.materials &&
+                this.props.project.materials.map((material) => (
+                  <CircleProgressBar material={material} />
+                ))}
+            </div>
+            <hr/>
           </div>
           <Link to="/">
             <div className="delete is-large"></div>
           </Link>
-        </div>
-        <div className="progress-gauge">
-          <Progress
-            isSuccess={this.props.project.isSuccess}
-            materials={this.props.project.materials}
-          />
         </div>
         <div className="contributors">
           {this.state.isContributing ? (

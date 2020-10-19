@@ -155,6 +155,16 @@ class Dashboard extends React.Component {
         this.setState({ selectedProject: apiRes.data });
       })
       .catch((err) => console.log());
+
+      apiHandler
+      .updateOne(
+        `/api/users/paillettes`,
+        data
+      )
+      .then((apiRes) => {
+        this.props.setUser(apiRes);
+      })
+      .catch((err) => console.log());
   };
 
   render() {

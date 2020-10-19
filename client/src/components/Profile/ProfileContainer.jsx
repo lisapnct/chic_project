@@ -11,6 +11,10 @@ class ProfileContainer extends React.Component {
     edit_profile: false,
   };
 
+  componentDidMount() {
+    if (this.props.context.user) this.props.getContributions();
+  }
+
   updateUserProfile = (data) => {
     // console.log(data);
     const fd = new FormData();

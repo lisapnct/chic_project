@@ -25,7 +25,6 @@ class Dashboard extends React.Component {
 
   componentDidMount() {
     this.resetState();
-    console.log("context on mount", this.props.context)
     if (this.props.context.user) this.getUsersContributions();
   }
 
@@ -70,7 +69,7 @@ class Dashboard extends React.Component {
 
   getUsersContributions = () => {
     apiHandler
-      .getAllProjects("/api/projects/user/", this.props.context.user._id)
+      .getAllProjects("/api/projects/user")
       .then((apiRes) => {
         this.setState({
           userContributions: apiRes.data,
@@ -146,19 +145,19 @@ class Dashboard extends React.Component {
 
   // project contribution form handler
   handleContributionSubmit = (data) => {
-    // Update project 
+    // Update project
     apiHandler
       .updateOne(
-        `/api/projects/${this.state.selectedProject._id}/contributions` ,
+        `/api/projects/${this.state.selectedProject._id}/contributions`,
         data
       )
       .then((apiRes) => {
         this.setState({ selectedProject: apiRes.data });
       })
       .catch((err) => console.log());
-    };
-    
-    render() {
+  };
+
+  render() {
     const boxShadow = {
       boxShadow: `25px 47px 100px -49px rgba(0, 0, 0, 0.4)`,
     };
@@ -226,7 +225,15 @@ class Dashboard extends React.Component {
                 />
               )}
             />
-            <Route path="/profile" component={ProfileContainer} />
+            <Route
+              path="/profile"
+              render={(props) => (
+                <ProfileContainer
+                  {...props}
+                  getContributions={this.getUsersContributions}
+                />
+              )}
+            />
           </Switch>
         </div>
       </div>

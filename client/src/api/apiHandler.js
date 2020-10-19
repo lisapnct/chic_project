@@ -69,8 +69,8 @@ export default {
   },
 
   // Special requests :
-  getAllProjects(endPoint, id) {
-    return service.get(endPoint + id);
+  getAllProjects(endPoint) {
+    return service.get(endPoint);
   },
 
   filterProjectsByFabric(endPoint, fabricArr) {

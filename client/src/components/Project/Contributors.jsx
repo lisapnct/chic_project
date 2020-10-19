@@ -10,8 +10,8 @@ class Contributors extends React.Component {
       );
     } else {
       return this.props.contributors.map((contributor) => (
-        <div className="contributor-item">
-          <figure key={contributor._id} className="image is-96x96">
+        <div key={contributor._id} className="contributor-item">
+          <figure className="image is-96x96">
             <img
               className="is-rounded"
               src={contributor.id_user.profilePicture}

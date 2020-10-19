@@ -29,7 +29,7 @@ class FormContribution extends React.Component {
             </h3>
             <form className="field " onSubmit={this.handleSubmit}>
               <div className="field has-addons">
-                <p className="control">
+                <div className="control">
                   <div className="select">
                     <select name="fabric_type" onChange={this.handleChange}>
                       {this.props.project.materials &&
@@ -42,7 +42,7 @@ class FormContribution extends React.Component {
                         })}
                     </select>
                   </div>
-                </p>
+                </div>
                 <p className="control">
                   <input
                     className="input"
@@ -54,19 +54,22 @@ class FormContribution extends React.Component {
                 </p>
               </div>
 
-              <div class="field is-grouped">
-                <p class="control">
-                  <a onClick={this.handleSubmit} class="button is-rounded is-primary">
+              <div className="field is-grouped">
+                <p className="control">
+                  <button
+                    onClick={this.handleSubmit}
+                    className="button is-rounded is-primary"
+                  >
                     Submit
-                  </a>
+                  </button>
                 </p>
-                <p class="control">
-                  <a
+                <p className="control">
+                  <button
                     onClick={() => this.props.goBack()}
-                    class="button is-rounded is-light"
+                    className="button is-rounded is-light"
                   >
                     Cancel
-                  </a>
+                  </button>
                 </p>
               </div>
             </form>

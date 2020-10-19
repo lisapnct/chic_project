@@ -273,7 +273,11 @@ class Dashboard extends React.Component {
                 />
               )}
             />
-            <Route path="/profile" component={ProfileContainer} />
+            <Route
+              path="/profile"
+              projects={this.state.userContributions}
+              component={ProfileContainer}
+            />
           </Switch>
         </div>
       </div>

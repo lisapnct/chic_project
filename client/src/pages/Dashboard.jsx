@@ -197,7 +197,7 @@ class Dashboard extends React.Component {
   render() {
     // console.log(this.state.fabricFilters);
     const boxShadow = {
-      boxShadow: `25px 47px 100px -49px rgba(0, 0, 0, 0.69)`,
+      boxShadow: `25px 47px 100px -49px rgba(0, 0, 0, 0.4)`,
     };
     return (
       <div className="dashboard-container">

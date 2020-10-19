@@ -64,3 +64,6 @@ span {
   z-index: 700;
 }
 
+canvas.mapboxgl-canvas:focus {
+  outline: 0;
+}

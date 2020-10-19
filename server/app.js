@@ -52,7 +52,7 @@ app.use("/api/projects", projectsRouter);
 app.use("/api/stores", storesRouter);
 
 // 404 Middleware
-app.use((req, res, next) => {
+app.use((err, req, res, next) => {
   const error = new Error("Ressource not found.");
   error.status = 404;
   next(err);

@@ -46,7 +46,7 @@ export default {
 
   // C
   createOne(endPoint, data) {
-    return service.post(endPoint, data);
+    return service.post(endPoint, data, {});
   },
 
   // R
@@ -60,7 +60,7 @@ export default {
 
   // U
   updateOne(endPoint, data) {
-    return service.patch(endPoint, data);
+    return service.patch(endPoint, data, {});
   },
 
   // D
@@ -74,6 +74,9 @@ export default {
   },
 
   filterProjectsByFabric(endPoint, fabricArr) {
-    return service.get(endPoint, fabricArr);
+    return service.get(endPoint, {params: {
+      filters: fabricArr,
+        bar: "toto"
+    }});
   },
 };

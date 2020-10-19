@@ -41,6 +41,8 @@ class HomeMap extends Component {
               containerStyle={{
                 height: "96vh",
                 width: "100vw",
+                borderRadius: "20px",
+                // focus: "outline:0"
               }}
             >
               {stores

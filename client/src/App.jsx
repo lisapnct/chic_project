@@ -17,6 +17,7 @@ function App() {
         <Route exact path="/home" component={Home} />
         <Route exact path="/signin" component={Signin} />
         <Route exact path="/signup" component={Signup} />
+        {/* <Route exact path="/create/project" component={CreateProject} /> */}
         <Route exact path="/" component={Dashboard} />
         <Route exact path="/project/:id" component={Dashboard} /> 
         <ProtectedRoute exact path="/profile" component={Dashboard} />

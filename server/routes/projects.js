@@ -19,12 +19,12 @@ router.post("/", upload.single("images"), async (req, res, next) => {
 
 // R
 router.get("/", async (req, res, next) => {
-  const query= {};
+  const query = {};
   // if(query.filters){
   //   query["materials.fabric_type"] = ["lin","tissu"];
   // }
   try {
-    const apiRes = await Project.find(query).populate('creator', 'userName');
+    const apiRes = await Project.find(query).populate("creator", "userName");
     res.status(200).json(apiRes);
   } catch (err) {
     res.status(500).json(err);
@@ -37,15 +37,15 @@ router.get("/user", async (req, res, next) => {
     const apiRes = await Project.find({
       "contributors.id_user": req.session.currentUser,
     })
-    .populate("creator", "profilePicture userName")
-    .populate("contributors.id_user", "profilePicture userName");
+      .populate("creator", "profilePicture userName")
+      .populate("contributors.id_user", "profilePicture userName");
     res.status(200).json(apiRes);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.patch("/:id/contributions", async (req,res,next) => {
+router.patch("/:id/contributions", async (req, res, next) => {
   try {
     
     let query; 

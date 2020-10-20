@@ -8,6 +8,7 @@ import ProjectContainer from "../components/Project/ProjectContainer";
 import ProfileContainer from "../components/Profile/ProfileContainer";
 import { Switch, Route } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
+import ContributionsList from "../components/Profile/ContributionList";
 
 class Dashboard extends React.Component {
   state = {
@@ -71,6 +72,7 @@ class Dashboard extends React.Component {
     apiHandler
       .getAllProjects("/api/projects/user")
       .then((apiRes) => {
+        console.log(apiRes);
         this.setState({
           userContributions: apiRes.data,
         });
@@ -121,10 +123,11 @@ class Dashboard extends React.Component {
     // conditional logic for rendering project list
     const location = this.props.history.location.pathname.toString();
     return location.startsWith("/profile") ? (
-      <ProjectList
+      // render contrib list with this.state.userContrib
+      <ContributionsList
         projects={this.state.userContributions}
-        handleResetClick={this.resetState}
-        currentProject={this.getSelectedProject}
+        // handleResetClick={this.resetState}
+        // currentProject={this.getSelectedProject}
       />
     ) : (
       <ProjectList
@@ -237,12 +240,7 @@ class Dashboard extends React.Component {
             />
             <Route
               path="/profile"
-              render={(props) => (
-                <ProfileContainer
-                  {...props}
-                  getContributions={this.getUsersContributions}
-                />
-              )}
+              render={(props) => <ProfileContainer {...props} />}
             />
           </Switch>
         </div>

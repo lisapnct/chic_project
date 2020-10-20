@@ -71,6 +71,7 @@ class Dashboard extends React.Component {
     apiHandler
       .getAllProjects("/api/projects/user")
       .then((apiRes) => {
+        console.log(apiRes);
         this.setState({
           userContributions: apiRes.data,
         });
@@ -227,12 +228,7 @@ class Dashboard extends React.Component {
             />
             <Route
               path="/profile"
-              render={(props) => (
-                <ProfileContainer
-                  {...props}
-                  getContributions={this.getUsersContributions}
-                />
-              )}
+              render={(props) => <ProfileContainer {...props} />}
             />
           </Switch>
         </div>

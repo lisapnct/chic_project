@@ -19,6 +19,7 @@ class ProjectContainer extends React.Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <div className="project-grid-container">
         <div className="project-info">
@@ -31,15 +32,19 @@ class ProjectContainer extends React.Component {
             </h1>
             <p>
               launched by{" "}
-              <span className="tag is-info is-light">
-                {/* {this.props.project.creator.userName} */} username
-              </span>{" "}
+              {this.props.project.creator && (
+                <span className="tag is-info is-light">
+                  {this.props.project.creator.userName}
+                </span>
+              )}{" "}
               | deadline:{" "}
-              <span className="tag is-warning is-light">
-                <DayJS format="MMMM D, YYYY">
-                  {this.props.project.deadline}
-                </DayJS>
-              </span>
+              {this.props.project.deadline && (
+                <span className="tag is-warning is-light">
+                  <DayJS format="MMMM D, YYYY">
+                    {this.props.project.deadline}
+                  </DayJS>
+                </span>
+              )}
             </p>
             <div className="project-description">
               <i className="fas fa-quote-left has-text-grey-lighter fa-lg"></i>

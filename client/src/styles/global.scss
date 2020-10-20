@@ -2,6 +2,7 @@
 @import "bulma/bulma.sass";
 
 @import "../styles/Cards.scss";
+// @import "../styles/Home.scss";
 @import "../styles/Searchbar.scss";
 
 * {
@@ -62,8 +63,13 @@ span {
 
 .navbar {
   z-index: 700;
+  min-height: 4rem;
 }
 
 canvas.mapboxgl-canvas:focus {
   outline: 0;
+}
+
+.logo {
+  font-weight: 800;
 }

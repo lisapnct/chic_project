@@ -28,6 +28,10 @@ class Dashboard extends React.Component {
     this.resetState();
     if (this.props.context.user) this.getUsersContributions();
   }
+  
+  // componentDidUpdate = () => {
+
+  // }
 
   resetState = () => {
     apiHandler
@@ -55,7 +59,7 @@ class Dashboard extends React.Component {
         this.getSelectedProjectStore();
       })
       .catch((err) => console.log(err));
-  };
+    };
 
   getSelectedProjectStore = () => {
     apiHandler
@@ -80,8 +84,9 @@ class Dashboard extends React.Component {
   };
 
   handleMarkerClick = (storeId) => {
+    // console.log(storeId);
     apiHandler
-      .getAllProjects("/api/stores/projects/" + storeId)
+      .getAllProjects("/api/projects/stores/" + storeId)
       .then((apiRes) => {
         this.setState({
           projects: apiRes.data,
@@ -96,6 +101,7 @@ class Dashboard extends React.Component {
 
   filterByFabricTypes = (fabricList) => {
     let projectsArr = [];
+
     if (!this.state.store_selected) projectsArr = this.state.allProjects;
     else projectsArr = this.state.projects;
     let filteredProjects = [];
@@ -103,13 +109,13 @@ class Dashboard extends React.Component {
     fabricList.forEach((fabricType) => {
       projectsArr.map((project) =>
         project.materials.map((material) =>
-          material.fabric_type === fabricType
+          (material.fabric_type === fabricType && !filteredProjects.some(elm => elm._id === project._id))
             ? filteredProjects.push(project)
             : null
         )
       );
     });
-    this.setState({ projects: filteredProjects });
+    this.setState({ projects: filteredProjects }); // HEHEHE
   };
 
   filterByFabricTypesWhenMarkerClicked = (fabricList) => {
@@ -146,17 +152,18 @@ class Dashboard extends React.Component {
 
   // project contribution form handler
   handleContributionSubmit = (data) => {
+    let id; 
+    this.state.selectedProject.length === 0 ? id = this.props.match.params.id : id = this.state.selectedProject._id;
     // Update project
     apiHandler
       .updateOne(
-        `/api/projects/${this.state.selectedProject._id}/contributions`,
+        `/api/projects/${id}/contributions`,
         data
       )
       .then((apiRes) => {
         this.setState({ selectedProject: apiRes.data });
       })
       .catch((err) => console.log());
-
     apiHandler
       .updateOne(`/api/users/paillettes`, data)
       .then((apiRes) => {

@@ -21,6 +21,11 @@ class FormProject extends Component {
         this.props.handleChangeMaterials({ 'fabric_type': evt.target.name, 'required_quantity': evt.target.value } )
     }
 
+    handleSubmit = (evt) => {
+        
+        this.props.handleFormSubmit();
+    }
+
     render() {
         // console.log();
         return (

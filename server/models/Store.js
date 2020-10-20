@@ -3,12 +3,6 @@ const Schema = mongoose.Schema;
 
 const storeSchema = new Schema({
   name: String,
-  id_projects: [
-    {
-      type: Schema.ObjectId,
-      ref: "Project",
-    },
-  ],
   location: {
     type: {
       type: String,

@@ -6,7 +6,10 @@ const userSchema = new Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
   address: String, 
-  paillettes: Number,
+  paillettes: {
+    type: Number,
+    default: 0,
+  },
   profilePicture: {
     type: String,
     default:

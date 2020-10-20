@@ -81,7 +81,7 @@ class Dashboard extends React.Component {
 
   handleMarkerClick = (storeId) => {
     apiHandler
-      .getAllProjects("/api/stores/projects/", storeId)
+      .getAllProjects("/api/stores/projects/" + storeId)
       .then((apiRes) => {
         this.setState({
           projects: apiRes.data,
@@ -160,7 +160,7 @@ class Dashboard extends React.Component {
     apiHandler
       .updateOne(`/api/users/paillettes`, data)
       .then((apiRes) => {
-        this.props.setUser(apiRes);
+        this.props.context.setUser(apiRes);
       })
       .catch((err) => console.log());
   };

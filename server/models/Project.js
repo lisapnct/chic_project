@@ -49,7 +49,7 @@ const projectSchema = new Schema({
       ],
     },
   ],
-  images: {
+  image: {
     type: String,
     default: "",
   },

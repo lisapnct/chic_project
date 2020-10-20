@@ -18,7 +18,6 @@ class FormProject extends Component {
     }
 
     handleChangeObj = (evt, elm) => {
-        console.log(evt.target.name)
         this.props.handleChangeMaterials({ 'fabric_type': evt.target.name, 'required_quantity': evt.target.value } )
     }
 
@@ -30,7 +29,7 @@ class FormProject extends Component {
                     <h3 className="has-text-dark-gray bold">
                     How can we help you achieve your project ?
                     </h3>
-                    <form className="field " onSubmit={this.props.handleSubmit}>
+                    <form className="field " onSubmit={this.props.handleFormSubmit}>
                     <label className="label">Description picture</label>
                     <div className="file is-small">
                     <label className="file-label">
@@ -87,7 +86,7 @@ class FormProject extends Component {
                             {this.state.availableStores &&
                                 this.state.availableStores.map((str) => {
                                 return (
-                                    <option key={str.name}>
+                                    <option key={str.name} value={str._id}>
                                     {str.name}
                                     </option>
                                 );
@@ -101,7 +100,7 @@ class FormProject extends Component {
                     
                     {this.state.availableFabric && this.state.availableFabric.map(elm => {
                         return (
-                            <div className="field" name={elm}>
+                            <div className="field" key={elm} name={elm}>
                             <label className="label">{elm}</label> 
                             Required_quantity
                             <input

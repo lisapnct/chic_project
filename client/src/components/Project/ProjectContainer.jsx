@@ -49,17 +49,17 @@ class ProjectContainer extends React.Component {
               <i className="fas fa-quote-right has-text-grey-lighter fa-lg"></i>
             </div>
             <div className="project-location">
-              <p className="has-text-dark-gray bold">Drop your items here:</p>
+              <h3 className="has-text-dark-gray bold">Drop your items here:</h3>
               {this.props.store.location && (
                 <React.Fragment>
-                  <span>
+                  <p>
                     <i className="fas fa-store-alt has-text-primary"></i>{" "}
                     {this.props.store.name}
-                  </span>
-                  <span>
+                  </p>
+                  <p>
                     <i className="fas fa-map-marker-alt has-text-primary"></i>{" "}
                     {this.props.store.location.formattedAddress}
-                  </span>
+                  </p>
                 </React.Fragment>
               )}
             </div>

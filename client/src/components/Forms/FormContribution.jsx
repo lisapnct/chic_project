@@ -59,12 +59,12 @@ class FormContribution extends React.Component {
                   <button className="button is-primary">Submit</button>
                 </p>
                 <p className="control">
-                  <a
+                  <span
                     onClick={() => this.props.goBack()}
                     className="button is-light"
                   >
                     Cancel
-                  </a>
+                  </span>
                 </p>
               </div>
             </form>

@@ -72,7 +72,6 @@ class Dashboard extends React.Component {
     apiHandler
       .getAllProjects("/api/projects/user")
       .then((apiRes) => {
-        console.log(apiRes);
         this.setState({
           userContributions: apiRes.data,
         });
@@ -140,7 +139,6 @@ class Dashboard extends React.Component {
   };
 
   getInputCoordinates = (coordinates) => {
-    // console.log(coordinates);
     this.setState({
       inputCoordinates: coordinates,
     });
@@ -159,11 +157,8 @@ class Dashboard extends React.Component {
       })
       .catch((err) => console.log());
 
-      apiHandler
-      .updateOne(
-        `/api/users/paillettes`,
-        data
-      )
+    apiHandler
+      .updateOne(`/api/users/paillettes`, data)
       .then((apiRes) => {
         this.props.setUser(apiRes);
       })

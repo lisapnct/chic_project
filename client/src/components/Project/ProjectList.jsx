@@ -11,7 +11,6 @@ class ProjectList extends React.Component {
         )}
         {props.projects.map((project) => (
           <React.Fragment key={project._id}>
-            {/* CREATE A SWITCH > if on profile route > render contrib card (to create) and send as props project={project} */}
             <ProjectCard
               key={project._id}
               id={project._id}

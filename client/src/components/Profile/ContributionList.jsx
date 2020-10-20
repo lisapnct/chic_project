@@ -5,7 +5,7 @@ const ContributionsList = (props) => {
   return (
     <div className="card-list">
       {props.projects.map((project) => (
-        <ContributionCard project={project} />
+        <ContributionCard key={project._id} project={project} />
       ))}
     </div>
   );

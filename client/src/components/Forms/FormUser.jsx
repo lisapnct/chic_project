@@ -92,12 +92,12 @@ class FormUser extends Component {
             <button className="button is-primary">Save</button>
           </p>
           <p className="control">
-            <a
+            <span
               onClick={() => this.props.cancelEdit()}
               className="button is-light"
             >
               Cancel
-            </a>
+            </span>
           </p>
         </div>
       </form>

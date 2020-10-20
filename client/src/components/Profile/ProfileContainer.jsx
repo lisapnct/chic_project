@@ -72,7 +72,7 @@ class ProfileContainer extends React.Component {
               className="button is-primary is-outlined edit-profile-btn"
             >
               <span>
-                edit <i class="fas fa-user-edit"></i>
+                edit <i className="fas fa-user-edit"></i>
               </span>
             </button>
           )}

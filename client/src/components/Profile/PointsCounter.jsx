@@ -24,7 +24,7 @@ const PointsCounter = () => {
           </h3>
           <p>Only 16 paillette(s) left until next reward!</p>
           <span className="paillettes-rules">
-            <i class="fas fa-info-circle has-text-primary"></i> 1 item
+            <i className="fas fa-info-circle has-text-primary"></i> 1 item
             contributed = 1 paillette
           </span>
         </div>

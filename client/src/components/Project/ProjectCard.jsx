@@ -16,7 +16,6 @@ class ProjectCard extends React.Component {
   };
 
   getUserInfo = () => {
-    console.log('plop');
     apiHandler
       .getOne("/api/users/", this.props.creator._id)
       .then((apiRes) => {

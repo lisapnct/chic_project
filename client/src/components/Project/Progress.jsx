@@ -7,7 +7,7 @@ class Progress extends React.Component {
     this.props.materials.map((material) => {
       max += material.required_quantity;
       qt += material.collected_quantity;
-      return max, qt;
+      return (max, qt);
     });
     let value = (qt / max) * 100;
     return value.toFixed();

@@ -22,7 +22,7 @@ const NavMain = (props) => {
       <div className="navbar-brand">
         <div className="navbar-item">
           <NavLink to="/">
-            <h1 className="title is-4 has-text-dark-grey has-text-weight-bold">
+            <h1 className="title is-3 has-text-dark-grey has-text-weight-bold">
               ch<i className="fas fa-socks has-text-primary"></i>c
             </h1>
           </NavLink>
@@ -55,17 +55,21 @@ const NavMain = (props) => {
             <div className="buttons">
               {context.isLoggedIn && (
                 <React.Fragment>
-                  <div className="button is-white">
-                    <NavLink to="/profile">
-                      {context.user && context.user.email}
-                    </NavLink>
+                  <div className="button is-white is-small is-rounded">
+                    {context.user && context.user.paillettes} paillettes
                   </div>
+                  <h2 className="button has-text-dark-gray bold">
+                    <NavLink to="/profile">
+                      <i class="fas fa-user has-text-primary"></i>{" "}
+                      {context.user && context.user.userName}
+                    </NavLink>
+                  </h2>
                   <NavLink
                     to="/signin"
                     className="button is-danger is-light"
                     onClick={handleLogout}
                   >
-                    Logout
+                    <i class="fas fa-power-off"></i>
                   </NavLink>
                 </React.Fragment>
               )}

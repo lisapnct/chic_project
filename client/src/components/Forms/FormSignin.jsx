@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
 import { UserContext } from "../Auth/UserContext";
 import { withRouter } from "react-router-dom";
 import apiHandler from "../../api/apiHandler";
@@ -43,49 +43,52 @@ class FormSignin extends Component {
 
   render() {
     return (
-      <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
-        <div className="field">
-          <p className="control has-icons-left has-icons-right">
-            <input
-              className="input"
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Email"
-            />
-            <span className="icon is-small is-left">
-              <i className="fas fa-envelope"></i>
-            </span>
-          </p>
-        </div>
-        <div className="field">
-          <p className="control has-icons-left">
-            <input
-              className="input"
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Password"
-            />
-            <span className="icon is-small is-left">
-              <i className="fas fa-lock"></i>
-            </span>
-          </p>
-        </div>
-        <div className="field">
-          <p className="control">
-            <button className="button is-primary">Login</button>
-          </p>
-        </div>
-      </form>
+      <React.Fragment>
+        <h1 className="title is-4">Sign in</h1>
+        <p className="description">Welcome back!</p>
 
-      /* <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
-        <label htmlFor="email">Email</label>
-        <input type="email" id="email" name="email" />
-        <label htmlFor="password">Password</label>
-        <input type="password" id="password" name="password" />
-        <button>Submit</button>
-      </form> */
+        <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
+          <div className="field">
+            <div className="control has-icons-left">
+              <input
+                className="input"
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email"
+              />
+              <div className="icon is-small is-left">
+                <i className="fas fa-envelope"></i>
+              </div>
+            </div>
+          </div>
+
+          <div className="field">
+            <div className="control has-icons-left">
+              <input
+                className="input"
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+              />
+              <div className="icon is-small is-left">
+                <i className="fas fa-lock"></i>
+              </div>
+            </div>
+          </div>
+          <button className="button is-block is-primary is-fullwidth">
+            Submit
+          </button>
+          <br />
+          <small>
+            <span>Not account yet? Signup</span>{" "}
+            <Link to="/signup">
+              <span className="has-text-primary">now.</span>
+            </Link>
+          </small>
+        </form>
+      </React.Fragment>
     );
   }
 }

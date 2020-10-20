@@ -22,19 +22,11 @@ const NavMain = (props) => {
       <div className="navbar-brand">
         <div className="navbar-item">
           <NavLink to="/">
-            <h1 className="title is-3 has-text-dark-grey has-text-weight-bold">
+            <h1 className="title is-3 has-text-dark-grey logo">
               ch<i className="fas fa-socks has-text-primary"></i>c
             </h1>
           </NavLink>
-          {context.isLoggedIn && (
-                <React.Fragment>
-                  <div className="button is-white">
-                    <NavLink to="/create/project">
-                      Create a project
-                    </NavLink>
-                  </div>
-                </React.Fragment>
-              )}
+
           <NavLink
             to="/"
             role="button"
@@ -47,6 +39,15 @@ const NavMain = (props) => {
             <span aria-hidden="true"></span>
           </NavLink>
         </div>
+        <div className="navbar-item">
+          {context.isLoggedIn && context.user.role === "designer" && (
+            <React.Fragment>
+              <div className="button is-primary">
+                <NavLink to="/create/project">Create a project</NavLink>
+              </div>
+            </React.Fragment>
+          )}
+        </div>
       </div>
       <div className="navbar-menu">
         <div className="navbar-start"></div>
@@ -55,13 +56,11 @@ const NavMain = (props) => {
             <div className="buttons">
               {context.isLoggedIn && (
                 <React.Fragment>
-                  <div className="button is-white is-small is-rounded">
-                    {context.user && context.user.paillettes} paillettes
-                  </div>
-                  <h2 className="button has-text-dark-gray bold">
+                  <h2 className="button is-light has-text-dark-gray bold">
                     <NavLink to="/profile">
-                      <i className="fas fa-user has-text-primary"></i>{" "}
-                      {context.user && context.user.userName}
+                      {context.user && context.user.userName} |{" "}
+                      {context.user && context.user.paillettes}{" "}
+                      <i class="fas fa-fire "></i>
                     </NavLink>
                   </h2>
                   <NavLink

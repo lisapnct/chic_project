@@ -1,0 +1,105 @@
+:root {
+  --brandColor: hsl(166, 67%, 51%);
+  --background: rgb(247, 247, 247);
+  --textDark: hsla(0, 0%, 0%, 0.66);
+  --textLight: hsla(0, 0%, 0%, 0.33);
+}
+
+.fullscreen-container {
+  min-height: 93vh;
+  //   background-color: lightgray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blocks-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+  width: 95%;
+  height: 90%;
+  background-color: white;
+}
+
+.block-home {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.left .title {
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.left p {
+  color: var(--textLight);
+  font-size: 1.15rem;
+}
+
+.left .colored {
+  color: var(--brandColor);
+  font-weight: 500;
+  margin-top: 1rem !important;
+  letter-spacing: -1px;
+}
+
+.left,
+.right {
+  padding: 4.5rem;
+}
+
+.left {
+  border-right: 5px solid var(--background);
+}
+
+.right .title {
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.right .description {
+  margin-top: 1rem;
+  margin-bottom: 1rem !important;
+  color: var(--textLight);
+  font-size: 1.15rem;
+}
+
+.right small {
+  color: var(--textLight);
+}
+
+input {
+  font-size: 1rem;
+}
+
+input:focus {
+  border-color: var(--brandColor) !important;
+  box-shadow: 0 0 0 1px var(--brandColor) !important;
+}
+
+.fab,
+.fas {
+  color: var(--textLight);
+  margin-right: 1rem;
+}
+
+.role-radio > input {
+  display: none;
+}
+
+.role-radio {
+  margin-bottom: 10px;
+}
+
+.description-block {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.description-block > img {
+}

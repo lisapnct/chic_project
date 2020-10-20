@@ -165,7 +165,7 @@ class Dashboard extends React.Component {
         data
       )
       .then((apiRes) => {
-        this.props.setUser(apiRes);
+        this.props.context.setUser(apiRes);
       })
       .catch((err) => console.log());
   };

@@ -26,6 +26,15 @@ const NavMain = (props) => {
               ch<i className="fas fa-socks has-text-primary"></i>c
             </h1>
           </NavLink>
+          {context.isLoggedIn && (
+                <React.Fragment>
+                  <div className="button is-white">
+                    <NavLink to="/create/project">
+                      Create a project
+                    </NavLink>
+                  </div>
+                </React.Fragment>
+              )}
           <NavLink
             to="/"
             role="button"

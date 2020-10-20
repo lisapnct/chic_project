@@ -160,7 +160,7 @@ class Dashboard extends React.Component {
     apiHandler
       .updateOne(`/api/users/paillettes`, data)
       .then((apiRes) => {
-        this.props.context.setUser(apiRes);
+        this.props.context.setUser(apiRes.data);
       })
       .catch((err) => console.log());
   };

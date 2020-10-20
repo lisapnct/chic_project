@@ -60,7 +60,7 @@ const NavMain = (props) => {
                   </div>
                   <h2 className="button has-text-dark-gray bold">
                     <NavLink to="/profile">
-                      <i class="fas fa-user has-text-primary"></i>{" "}
+                      <i className="fas fa-user has-text-primary"></i>{" "}
                       {context.user && context.user.userName}
                     </NavLink>
                   </h2>
@@ -69,7 +69,7 @@ const NavMain = (props) => {
                     className="button is-danger is-light"
                     onClick={handleLogout}
                   >
-                    <i class="fas fa-power-off"></i>
+                    <i className="fas fa-power-off"></i>
                   </NavLink>
                 </React.Fragment>
               )}

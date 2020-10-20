@@ -3,6 +3,8 @@ import FormProject from '../components/Forms/FormProject';
 import { withUser } from "../components/Auth/withUser";
 import apiHandler from '../api/apiHandler';
 
+const materialsList = [];
+
 class CreateProject extends Component {
     state = {
         creator: "",
@@ -20,26 +22,35 @@ class CreateProject extends Component {
 
     handleChange = (evt) => {
         this.setState({ [evt.target.name]: evt.target.value });
-        console.log('change');
     }
 
     handleChangeMaterials = (newVal) => {
-        const materials = [];
-        materials.push(newVal)
-        console.log(newVal);
+        if (materialsList.length === 0 || !materialsList.some(elm => elm.fabric_type === newVal.fabric_type)) materialsList.push(newVal);
+        else {
+            for (let i = 0; i < materialsList.length; i++) {
+                if (materialsList[i].fabric_type === newVal.fabric_type) {
+                    materialsList.splice(i, 1);
+                    materialsList.push(newVal);
+                }
+            }
+        }
+        this.setState({ materials : materialsList })
     }
 
     handleSubmit = (evt) => {
         evt.preventDefault();
-        console.log('submitted');
+        apiHandler
+            .createOne('/api/projects', this.state)
+            .then(apiRes => console.log(apiRes))
+            .catch(err => console.log(err));
     }
 
     render() {
-        // console.log(this.state);
+        console.log(this.state);
         return (
             <div>
                 <h1>Create a project here</h1>
-                <FormProject handleChange={this.handleChange} handleChangeMaterials={this.handleChangeMaterials} handleSubmit={this.handleSubmit} />
+                <FormProject handleChange={this.handleChange} handleChangeMaterials={this.handleChangeMaterials} handleFormSubmit={this.handleSubmit} handleMatAtSubmit={this.handleMatAtSubmit} />
             </div>
         )
     }

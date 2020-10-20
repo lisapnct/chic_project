@@ -18,7 +18,7 @@ router.patch("/paillettes", async (req, res, next) => {
     const { quantity } = req.body;
     const currentUserId = req.session.currentUser;
     const user = await User.findById(currentUserId);
-    user.paillettes += quantity;
+    user.paillettes += Number(quantity);
 
     const apiRes = await User.findByIdAndUpdate(currentUserId, user, {
       new: true,

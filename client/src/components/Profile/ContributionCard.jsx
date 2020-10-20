@@ -21,7 +21,7 @@ const ContributionCard = (props) => {
                       {mat.quantity} piece(s) of {mat.fabric_type}
                     </div>
                   ));
-                return contributor;
+                return null;
               })}
             </div>
           </div>

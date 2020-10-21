@@ -44,4 +44,11 @@ ul.location-autocomplete-results {
   transition: all 0.15s ease-in-out;
 }
 
+.projects-found {
+  display: flex;
+  align-items: center;
+}
 
+.projects-found h3 {
+  margin-right: 10px;
+}

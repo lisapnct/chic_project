@@ -55,9 +55,21 @@ class Searchbar extends Component {
             />
           ))}
         </div>
-        <h3 className="bold has-text-grey">
-          {this.props.projectsNumber} project(s) found:
-        </h3>
+        <div className="projects-found">
+          <h3 className="bold has-text-grey">
+            {this.props.projectsNumber} project(s) found:
+          </h3>
+          {this.props.isStoreSelected && (
+            <div>
+              <button
+                className="button is-primary is-small is-light"
+                onClick={this.props.handleResetClick}
+              >
+                show all
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     );
   }

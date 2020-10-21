@@ -39,11 +39,10 @@ class FormSignup extends Component {
         this.props.history.push("/");
       })
       .catch((error) => {
-        this.setState({message: error});
+        this.setState({ message: error });
       });
   };
 
-  
   render() {
     console.log(this.state.message);
     return (
@@ -56,21 +55,27 @@ class FormSignup extends Component {
         <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
           <div className="control">
             <label
-              
-              className = {this.state.role === "designer" ? "is-primary tag is-large radio role-radio" : "tag is-large radio role-radio"}
+              className={
+                this.state.role === "designer"
+                  ? "is-primary tag is-large radio role-radio"
+                  : "tag is-large radio role-radio"
+              }
             >
               <input
                 onChange={this.handleChange}
                 type="radio"
                 name="role"
                 id="designer"
-                checked={this.state.role === "designer" ? true : false} 
+                checked={this.state.role === "designer" ? true : false}
               />
               Designer
             </label>
             <label
-             
-              className = {this.state.role === "user" ?"is-primary tag is-large radio role-radio" : "tag is-large radio role-radio"}
+              className={
+                this.state.role === "user"
+                  ? "is-primary tag is-large radio role-radio"
+                  : "tag is-large radio role-radio"
+              }
             >
               <input
                 onChange={this.handleChange}
@@ -99,9 +104,13 @@ class FormSignup extends Component {
           </div>
 
           {this.state.message && (
-            <>
-              <p>Email already taken</p>
-            </> 
+            <React.Fragment>
+              <p className="has-text-danger">
+                <i class="fas fa-exclamation-triangle"></i> This email already
+                exists
+              </p>{" "}
+              <br />
+            </React.Fragment>
           )}
 
           <div className="field">

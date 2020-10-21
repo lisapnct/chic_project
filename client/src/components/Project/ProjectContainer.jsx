@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Progress from "./Progress";
 import Contributors from "./Contributors";
 import FormContribution from "../Forms/FormContribution";
-import DayJS from "react-dayjs";
+import DateFormat from '../Tools/DateFormat';
 import CircleProgressBar from "../Tools/CircleProgressBar";
 import apiHandler from "../../api/apiHandler";
 
@@ -58,9 +58,7 @@ class ProjectContainer extends React.Component {
               | deadline:{" "}
               {project.deadline && (
                 <span className="tag is-warning is-light">
-                  <DayJS format="MMMM D, YYYY">
-                    {project.deadline}
-                  </DayJS>
+                  <DateFormat format="MMMM D, YYYY" date={project.deadline}/>
                 </span>
               )}
             </p>

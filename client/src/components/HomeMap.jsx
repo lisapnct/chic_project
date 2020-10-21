@@ -20,10 +20,24 @@ class HomeMap extends Component {
       .catch((apiErr) => console.log(apiErr));
   };
 
-  handleClickMarker = (id) => {
-    this.props.handleMarkClic(id);
-    // openPopup(id);
-    console.log('hello');
+  handleClickMarker = (elm) => {
+    this.props.handleMarkClic(elm._id);
+    console.log(elm);
+    return (
+      <Popup
+      latitude={elm.location.coordinates[1]}
+      longitude={elm.location.coordinates[0]}
+      // onClose={closePopup}
+      // closeButton={true}
+      // closeOnClick={false}
+      offsetTop={-30}
+    >
+      <p>{elm.name}</p>
+    {/* //   <div>
+    //     <Button color="secondary" onClick={() => remove(index)}>Remove</Button>
+    //   </div> */}
+    </Popup>
+    )
   }
 
   render() {
@@ -34,7 +48,7 @@ class HomeMap extends Component {
       borderColor: "white",
       cursor: "pointer",
     };
-    const mapstyle = { style: "mapbox://styles/mapbox/light-v10" };
+    const mapstyle = { style: "mapbox://styles/mapbox/streets-v11" };
     return (
       <div>
         {this.props.searchInput && (
@@ -56,7 +70,7 @@ class HomeMap extends Component {
                       key={elm._id}
                       coordinates={elm.location.coordinates}
                       anchor="bottom"
-                      onClick={() => this.handleClickMarker(elm._id)}
+                      onClick={() => this.handleClickMarker(elm)}
                     >
                       <img alt={elm.name} style={mapElmStyle} src={elm.image}/>
                     </Marker>

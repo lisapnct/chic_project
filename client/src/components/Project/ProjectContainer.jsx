@@ -49,7 +49,7 @@ class ProjectContainer extends React.Component {
               <span className="delete close-btn is-medium"></span>
             </Link>
             <h1 className="bold has-text-dark-gray">{project.name}</h1>
-            <p>
+            <div>
               launched by{" "}
               {project.creator && (
                 <span className="tag is-info is-light">
@@ -58,11 +58,11 @@ class ProjectContainer extends React.Component {
               )}{" "}
               | deadline:{" "}
               {project.deadline && (
-                <span className="tag is-warning is-light">
-                  <DateFormat format="MMMM D, YYYY" date={project.deadline} />
-                </span>
+                <div className="tag is-warning is-light">
+                  <DateFormat format="MMMM D, YYYY" date={project.deadline}/>
+                </div>
               )}
-            </p>
+            </div>
             <div className="project-description">
               <i className="fas fa-quote-left has-text-grey-lighter fa-lg"></i>
               <p>

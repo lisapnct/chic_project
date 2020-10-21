@@ -3,19 +3,6 @@ var router = express.Router();
 const Store = require("../models/store");
 const upload = require('../config/aws');
 
-// Special requests : 
-
-// get all projects related to a store
-router.get("/projects/:id", async (req, res, next) => {
-  try {
-    const apiRes = await Store.findById(req.params.id).populate({ path:'id_projects', populate: { path:'id_projects'} });
-    const projects = apiRes.id_projects
-    res.status(200).json(projects);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
 // C
 router.post("/", upload.single('image'), async (req, res, next) => {
   try {

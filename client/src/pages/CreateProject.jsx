@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
 import FormProject from '../components/Forms/FormProject';
 import { withUser } from "../components/Auth/withUser";
 import apiHandler from '../api/apiHandler';
@@ -13,11 +14,16 @@ class CreateProject extends Component {
         description: "",
         deadline: "", 
         contributors: [],
-        materials: []
+        materials: [],
+        store: "",
     }
 
     componentDidMount = () => {
         if(this.props.context.user) this.setState({ creator: this.props.context.user._id});
+        apiHandler
+            .getAll('/api/stores')
+            .then((apiRes) => this.setState({store : apiRes.data[0]._id}))
+            .catch(err => console.log(err));
     }
 
     handleChange = (evt) => {
@@ -43,17 +49,18 @@ class CreateProject extends Component {
             .createOne('/api/projects', this.state)
             .then(apiRes => console.log(apiRes))
             .catch(err => console.log(err));
+        this.props.history.push("/")
     }
 
     render() {
-        console.log(this.state);
+        // console.log(this.state);
         return (
             <div>
                 <h1>Create a project here</h1>
-                <FormProject handleChange={this.handleChange} handleChangeMaterials={this.handleChangeMaterials} handleFormSubmit={this.handleSubmit} handleMatAtSubmit={this.handleMatAtSubmit} />
+                <FormProject handleChange={this.handleChange} handleChangeMaterials={this.handleChangeMaterials} handleFormSubmit={this.handleSubmit} />
             </div>
         )
     }
 }
 
-export default withUser(CreateProject);
+export default withRouter(withUser(CreateProject));

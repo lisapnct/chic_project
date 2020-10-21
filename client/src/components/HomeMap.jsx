@@ -29,7 +29,6 @@ class HomeMap extends Component {
       cursor: "pointer",
     };
     const mapstyle = { style: "mapbox://styles/mapbox/light-v10" };
-
     return (
       <div>
         {this.props.searchInput && (

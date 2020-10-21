@@ -16,13 +16,15 @@ class ProjectCard extends React.Component {
   };
 
   getUserInfo = () => {
+    let query;
+    (this.props.creator._id) ? query = this.props.creator._id : query = this.props.creator;
     apiHandler
-      .getOne("/api/users/", this.props.creator._id)
-      .then((apiRes) => {
-        this.setState({
-          creator_pic: apiRes.data.profilePicture,
-        });
-      })
+    .getOne("/api/users/", query)
+    .then((apiRes) => {
+      this.setState({
+        creator_pic: apiRes.data.profilePicture,
+      });
+    })
       .catch((err) => console.log(err));
   };
 

@@ -60,7 +60,7 @@ const NavMain = (props) => {
                     <NavLink to="/profile">
                       {context.user && context.user.userName} |{" "}
                       {context.user && context.user.paillettes}{" "}
-                      <i class="fas fa-fire "></i>
+                      <i className="fas fa-fire "></i>
                     </NavLink>
                   </h2>
                   <NavLink

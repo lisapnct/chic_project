@@ -21,6 +21,11 @@ class FormProject extends Component {
         this.props.handleChangeMaterials({ 'fabric_type': evt.target.name, 'required_quantity': evt.target.value } )
     }
 
+    handleSubmit = (evt) => {
+        
+        this.props.handleFormSubmit();
+    }
+
     render() {
         // console.log();
         return (
@@ -129,12 +134,12 @@ class FormProject extends Component {
                         <button className="button is-primary">Submit</button>
                         </p>
                         <p className="control">
-                        <a
+                        <link
                             // onClick={() => this.props.goBack()}
                             className="button is-light"
                         >
                             Cancel
-                        </a>
+                        </link>>
                         </p>
                     </div>
                     </form>

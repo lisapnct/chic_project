@@ -6,10 +6,27 @@ import Contributors from "./Contributors";
 import FormContribution from "../Forms/FormContribution";
 import DayJS from "react-dayjs";
 import CircleProgressBar from "../Tools/CircleProgressBar";
+import apiHandler from "../../api/apiHandler";
 
 class ProjectContainer extends React.Component {
   state = {
     isContributing: false,
+    currentProject: '',
+  };
+
+  componentDidMount = () => {
+    if (this.props.project.length === 0)this.getSelectedProject(this.props.match.params.id)
+  }
+
+  getSelectedProject = (projectId) => {
+    apiHandler
+      .getOne("/api/projects/", projectId)
+      .then((apiRes) => {
+        this.setState({
+          currentProject : apiRes.data,
+        });
+      })
+      .catch((err) => console.log(err));
   };
 
   displayContributionForm = () => {
@@ -19,7 +36,8 @@ class ProjectContainer extends React.Component {
   };
 
   render() {
-    console.log(this.props);
+    let project; 
+    this.props.project.length === 0 ? project = this.state.currentProject : project = this.props.project;
     return (
       <div className="project-grid-container">
         <div className="project-info">
@@ -28,20 +46,20 @@ class ProjectContainer extends React.Component {
               <span className="delete close-btn is-medium"></span>
             </Link>
             <h1 className="bold has-text-dark-gray">
-              {this.props.project.name}
+              {project.name}
             </h1>
             <p>
               launched by{" "}
-              {this.props.project.creator && (
+              {project.creator && (
                 <span className="tag is-info is-light">
-                  {this.props.project.creator.userName}
+                  {project.creator.userName}
                 </span>
               )}{" "}
               | deadline:{" "}
-              {this.props.project.deadline && (
+              {project.deadline && (
                 <span className="tag is-warning is-light">
                   <DayJS format="MMMM D, YYYY">
-                    {this.props.project.deadline}
+                    {project.deadline}
                   </DayJS>
                 </span>
               )}
@@ -49,7 +67,7 @@ class ProjectContainer extends React.Component {
             <div className="project-description">
               <i className="fas fa-quote-left has-text-grey-lighter fa-lg"></i>
               <p>
-                <i>{this.props.project.description}</i>
+                <i>{project.description}</i>
               </p>
               <i className="fas fa-quote-right has-text-grey-lighter fa-lg"></i>
             </div>
@@ -69,11 +87,11 @@ class ProjectContainer extends React.Component {
               )}
             </div>
             <Progress
-              isSuccess={this.props.project.isSuccess}
-              materials={this.props.project.materials}
+              isSuccess={project.isSuccess}
+              materials={project.materials}
             />
           </div>
-          {!this.state.isContributing && (
+          {!this.state.isContributing && project.isSuccess === false && (
             <button
               onClick={this.displayContributionForm}
               className="button is-primary contribute-btn"
@@ -81,13 +99,18 @@ class ProjectContainer extends React.Component {
               contribute
             </button>
           )}
+          {project.isSuccess && (
+            <>
+              <h3><span role="img" aria-label="congratulation">🙌</span> We did it! <span role="img" aria-label="congratulation">💪</span>Thank you!!!</h3>
+            </> 
+          )}
         </div>
         <hr />
 
         <div className="bottom-container">
           {this.state.isContributing ? (
             <FormContribution
-              project={this.props.project}
+              project={project}
               goBack={this.displayContributionForm}
               handleContributionForm={this.props.handleContributionFormSubmit}
             />
@@ -95,13 +118,13 @@ class ProjectContainer extends React.Component {
             <React.Fragment>
               <h3 className="has-text-dark-gray bold">Required materials:</h3>
               <div className="circle-gauges-container">
-                {this.props.project.materials &&
-                  this.props.project.materials.map((material) => (
+                {project.materials &&
+                  project.materials.map((material) => (
                     <CircleProgressBar key={material._id} material={material} />
                   ))}
               </div>
               <hr />
-              <Contributors contributors={this.props.project.contributors} />
+              <Contributors contributors={project.contributors} />
             </React.Fragment>
           )}
         </div>

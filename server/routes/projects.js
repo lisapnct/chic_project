@@ -31,6 +31,18 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+// Special requests : 
+
+// get all projects related to a store
+router.get("/stores/:id", async (req, res, next) => {
+  try {
+    const apiRes = await Project.find({store: req.params.id});
+    res.status(200).json(apiRes);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 //get all users contributions (all projects with given user id in contributors)
 router.get("/user", async (req, res, next) => {
   try {
@@ -115,7 +127,8 @@ router.patch("/:id/contributions", async (req, res, next) => {
       {
         new: true,
       }
-    );
+    ).populate("contributors.id_user", "profilePicture userName")
+     .populate("creator", "profilePicture userName");
     res.status(200).json(apiRes);
 
   } catch(err) {

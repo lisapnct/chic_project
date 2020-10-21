@@ -3,6 +3,8 @@ const router = express.Router();
 const User = require("../models/User");
 const upload = require("../config/aws");
 
+
+
 // R
 router.get("/", async (req, res, next) => {
   try {
@@ -28,6 +30,8 @@ router.patch("/paillettes", async (req, res, next) => {
     res.status(500).json(err);
   }
 });
+
+
 
 // U
 router.patch(

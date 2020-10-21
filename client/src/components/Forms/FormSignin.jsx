@@ -37,7 +37,7 @@ class FormSignin extends Component {
       })
       .catch((error) => {
         console.log(error);
-        // Display error message here, if you set the state
+        this.setState({ message: error });
       });
   };
 
@@ -46,6 +46,12 @@ class FormSignin extends Component {
       <React.Fragment>
         <h1 className="title is-4">Sign in</h1>
         <p className="description">Welcome back!</p>
+
+        {this.state.message && (
+            <>
+              <p>Invalid credentials</p>
+            </> 
+          )}
 
         <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
           <div className="field">

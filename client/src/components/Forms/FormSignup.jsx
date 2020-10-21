@@ -11,7 +11,7 @@ class FormSignup extends Component {
     email: "",
     password: "",
     userName: "",
-    role: "",
+    role: "user",
   };
 
   handleChange = (event) => {
@@ -39,22 +39,13 @@ class FormSignup extends Component {
         this.props.history.push("/");
       })
       .catch((error) => {
-        console.log(error);
+        this.setState({message: error});
       });
   };
 
-  handleSelect = (event) => {
-    let buttons = document.querySelectorAll(".role-radio");
-    let thisBtn = event.target;
-    // console.log("buttons >>>>", buttons);
-    // buttons.forEach((btn) => {
-    //   if (btn.classList.contains("is-primary"))
-    //     btn.classList.remove("is-primary");
-    // });
-    thisBtn.classList.toggle("is-primary");
-  };
-
+  
   render() {
+    console.log(this.state.message);
     return (
       <React.Fragment>
         <h1 className="title is-4">Create an account</h1>
@@ -65,27 +56,28 @@ class FormSignup extends Component {
         <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
           <div className="control">
             <label
-              onClick={this.handleSelect}
-              className="tag is-large radio role-radio"
+              
+              className = {this.state.role === "designer" ? "is-primary tag is-large radio role-radio" : "tag is-large radio role-radio"}
             >
               <input
                 onChange={this.handleChange}
                 type="radio"
                 name="role"
                 id="designer"
+                checked={this.state.role === "designer" ? true : false} 
               />
               Designer
             </label>
             <label
-              onClick={this.handleSelect}
-              className="tag is-large radio role-radio"
+             
+              className = {this.state.role === "user" ?"is-primary tag is-large radio role-radio" : "tag is-large radio role-radio"}
             >
               <input
                 onChange={this.handleChange}
                 id="user"
                 type="radio"
                 name="role"
-                checked
+                checked={this.state.role === "user"}
               />
               User
             </label>
@@ -105,6 +97,12 @@ class FormSignup extends Component {
               </div>
             </div>
           </div>
+
+          {this.state.message && (
+            <>
+              <p>Email already taken</p>
+            </> 
+          )}
 
           <div className="field">
             <div className="control has-icons-left">

@@ -1,0 +1,22 @@
+{
+  "name": "chic_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+      "preinstall":"cd ../client && npm install && npm run build && cp -r build/* ../server/public/ && cd .. && cd ./server && npm install && cd ..",
+      "start": "./server && npm run start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lisapnct/chic_project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lisapnct/chic_project/issues"
+  },
+  "homepage": "https://github.com/lisapnct/chic_project#readme"
+}

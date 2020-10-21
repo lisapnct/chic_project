@@ -6,6 +6,7 @@
     "axios": "^0.19.2",
     "bulma": "^0.9.1",
     "dayjs": "^1.9.3",
+    "dotenv-cli": "^4.0.0",
     "mapbox-gl": "^1.12.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
@@ -18,7 +19,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "dotenv -e .env.production react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

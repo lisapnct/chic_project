@@ -9,6 +9,7 @@ class FormContribution extends React.Component {
   handleSubmit = (evt) => {
     evt.preventDefault();
     this.props.handleContributionForm(this.state);
+    this.props.contributionDone();
     this.props.goBack();
   };
 
@@ -48,8 +49,10 @@ class FormContribution extends React.Component {
                     className="input"
                     name="quantity"
                     type="number"
-                    placeholder="Amount"
+                    placeholder="amount"
                     onChange={this.handleChange}
+                    min={1}
+                    required
                   />
                 </p>
               </div>

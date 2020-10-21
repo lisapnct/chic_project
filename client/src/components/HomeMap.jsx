@@ -43,9 +43,7 @@ class HomeMap extends Component {
   render() {
     const stores = this.state.stores;
     const mapElmStyle = {
-      width: 4 + "vw",
-      borderRadius: "50%",
-      borderColor: "white",
+      width: 1.5 + "vw",
       cursor: "pointer",
     };
     const mapstyle = { style: "mapbox://styles/mapbox/streets-v11" };
@@ -72,7 +70,7 @@ class HomeMap extends Component {
                       anchor="bottom"
                       onClick={() => this.handleClickMarker(elm)}
                     >
-                      <img alt={elm.name} style={mapElmStyle} src={elm.image}/>
+                      <img alt={elm.name} style={mapElmStyle} src="https://static.thenounproject.com/png/1516539-200.png"/>
                     </Marker>
                   ))
                 : null}

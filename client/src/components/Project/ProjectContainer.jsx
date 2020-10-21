@@ -11,6 +11,7 @@ import apiHandler from "../../api/apiHandler";
 class ProjectContainer extends React.Component {
   state = {
     isContributing: false,
+    contributionDone: false,
     currentProject: "",
   };
 
@@ -18,6 +19,11 @@ class ProjectContainer extends React.Component {
     if (this.props.project.length === 0)
       this.getSelectedProject(this.props.match.params.id);
   };
+
+  componentDidUpdate() {
+    console.log("update", this.props);
+    // CHECK IF URL PATH CHANGED > IF YES, RESET CONTRIBDONE STATE (false)
+  }
 
   getSelectedProject = (projectId) => {
     apiHandler
@@ -33,6 +39,12 @@ class ProjectContainer extends React.Component {
   displayContributionForm = () => {
     this.setState((prevState) => ({
       isContributing: !prevState.isContributing,
+    }));
+  };
+
+  displaySuccessMessage = () => {
+    this.setState((prevState) => ({
+      contributionDone: !prevState.contributionDone,
     }));
   };
 
@@ -59,7 +71,7 @@ class ProjectContainer extends React.Component {
               | deadline:{" "}
               {project.deadline && (
                 <div className="tag is-warning is-light">
-                  <DateFormat format="MMMM D, YYYY" date={project.deadline}/>
+                  <DateFormat format="MMMM D, YYYY" date={project.deadline} />
                 </div>
               )}
             </div>
@@ -106,6 +118,7 @@ class ProjectContainer extends React.Component {
             <FormContribution
               project={project}
               goBack={this.displayContributionForm}
+              contributionDone={this.displaySuccessMessage}
               handleContributionForm={this.props.handleContributionFormSubmit}
             />
           ) : project.isSuccess ? (
@@ -119,13 +132,46 @@ class ProjectContainer extends React.Component {
               </div>
               <div className="success-message">
                 <h2 className="has-text-dark-gray bold">Well done!</h2>
-                <p>This project found all required materials</p>
+                <p>This project found all required materials.</p>
                 <p>
-                  <span className="tag is-primary is-light">{project.creator.userName}</span> will
-                  be able to launch it!
+                  <span className="tag is-primary is-light">
+                    {project.creator.userName}
+                  </span>{" "}
+                  will be able to launch it!
                 </p>
                 <br />
-                <span>Thanks for your support.</span>
+                <span>
+                  Thanks for your support{" "}
+                  <i class="fas fa-heart has-text-grey"></i>
+                </span>
+              </div>
+            </div>
+          ) : this.state.contributionDone === true ? (
+            <div className="success-container">
+              <div className="success-message contribution">
+                <h2 className="has-text-dark-gray bold">
+                  Thanks for your contribution!
+                </h2>
+                <p>
+                  Next step: give the number
+                  <span className="tag is-warning is-light">324</span> when you
+                  drop your item(s) at <b>{this.props.store.name}</b>
+                </p>
+                <div className="btn-ok-container">
+                  <button
+                    onClick={() => this.displaySuccessMessage()}
+                    className="button is-primary btn-scale-hover"
+                  >
+                    OK
+                  </button>
+                </div>
+              </div>
+              <div className="success-image">
+                <img
+                  className="illu-gift"
+                  src="/contribution-done.svg"
+                  alt="illu-success-contribution"
+                />
               </div>
             </div>
           ) : (

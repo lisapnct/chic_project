@@ -25,7 +25,7 @@ class ProjectContainer extends React.Component {
         <div className="project-info">
           <div className="project-infos-header">
             <Link to="/">
-              <span className="delete close-btn"></span>
+              <span className="delete close-btn is-medium"></span>
             </Link>
             <h1 className="bold has-text-dark-gray">
               {this.props.project.name}

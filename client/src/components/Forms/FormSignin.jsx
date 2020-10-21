@@ -48,10 +48,13 @@ class FormSignin extends Component {
         <p className="description">Welcome back!</p>
 
         {this.state.message && (
-            <>
-              <p>Invalid credentials</p>
-            </> 
-          )}
+          <React.Fragment>
+            <p className="has-text-danger">
+              <i class="fas fa-exclamation-triangle"></i> Invalid credentials
+            </p>{" "}
+            <br />
+          </React.Fragment>
+        )}
 
         <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
           <div className="field">

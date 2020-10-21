@@ -28,7 +28,7 @@ class Dashboard extends React.Component {
     this.resetState();
     if (this.props.context.user) this.getUsersContributions();
   }
-  
+
   // componentDidUpdate = () => {
 
   // }
@@ -59,7 +59,7 @@ class Dashboard extends React.Component {
         this.getSelectedProjectStore();
       })
       .catch((err) => console.log(err));
-    };
+  };
 
   getSelectedProjectStore = () => {
     apiHandler
@@ -109,7 +109,8 @@ class Dashboard extends React.Component {
     fabricList.forEach((fabricType) => {
       projectsArr.map((project) =>
         project.materials.map((material) =>
-          (material.fabric_type === fabricType && !filteredProjects.some(elm => elm._id === project._id))
+          material.fabric_type === fabricType &&
+          !filteredProjects.some((elm) => elm._id === project._id)
             ? filteredProjects.push(project)
             : null
         )
@@ -129,17 +130,11 @@ class Dashboard extends React.Component {
     const location = this.props.history.location.pathname.toString();
     return location.startsWith("/profile") ? (
       // render contrib list with this.state.userContrib
-      <ContributionsList
-        projects={this.state.userContributions}
-        // handleResetClick={this.resetState}
-        // currentProject={this.getSelectedProject}
-      />
+      <ContributionsList projects={this.state.userContributions} />
     ) : (
       <ProjectList
-        handleResetClick={this.resetState}
         projects={this.state.projects}
         currentProject={this.getSelectedProject}
-        isStoreSelected={this.state.store_selected}
       />
     );
   };
@@ -152,14 +147,13 @@ class Dashboard extends React.Component {
 
   // project contribution form handler
   handleContributionSubmit = (data) => {
-    let id; 
-    this.state.selectedProject.length === 0 ? id = this.props.match.params.id : id = this.state.selectedProject._id;
+    let id;
+    this.state.selectedProject.length === 0
+      ? (id = this.props.match.params.id)
+      : (id = this.state.selectedProject._id);
     // Update project
     apiHandler
-      .updateOne(
-        `/api/projects/${id}/contributions`,
-        data
-      )
+      .updateOne(`/api/projects/${id}/contributions`, data)
       .then((apiRes) => {
         this.setState({ selectedProject: apiRes.data });
       })
@@ -196,6 +190,7 @@ class Dashboard extends React.Component {
                   isStoreSelected={this.state.store_selected}
                   sendCoordinates={this.getInputCoordinates}
                   projectsNumber={this.state.projects.length}
+                  handleResetClick={this.resetState}
                 />
               )}
             />
@@ -208,6 +203,7 @@ class Dashboard extends React.Component {
                   displayAllProjects={this.resetState}
                   isStoreSelected={this.state.store_selected}
                   projectsNumber={this.state.projects.length}
+                  handleResetClick={this.resetState}
                 />
               )}
             />

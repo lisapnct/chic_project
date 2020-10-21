@@ -17,9 +17,9 @@ class Home extends React.Component {
                 Give materials, help creators, get rewards.
               </h2>
               <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Maiores neque molestiae tenetur officiis distinctio laboriosam
-                repellat perferendis aliquid.
+                Tired of your old clothes getting dust in your closet? <br/>
+                Why not get rid of them and help your local disigners?! <br/>
+                Join the CHIIC project and make the world a slightly more fair, stylich and ecofriendly place! 
               </p>
             </div>
 

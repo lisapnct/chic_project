@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import apiHandler from "../api/apiHandler";
 import ReactMapboxGl from "react-mapbox-gl";
-import { Marker } from "react-mapbox-gl";
+import { Marker, Popup } from "react-mapbox-gl";
 
 const Map = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOX_TOKEN,
@@ -19,6 +19,12 @@ class HomeMap extends Component {
       .then((apiRes) => this.setState({ stores: apiRes.data }))
       .catch((apiErr) => console.log(apiErr));
   };
+
+  handleClickMarker = (id) => {
+    this.props.handleMarkClic(id);
+    openPopup(id);
+    console.log('hello');
+  }
 
   render() {
     const stores = this.state.stores;
@@ -50,9 +56,9 @@ class HomeMap extends Component {
                       key={elm._id}
                       coordinates={elm.location.coordinates}
                       anchor="bottom"
-                      onClick={() => this.props.handleMarkClic(elm._id)}
+                      onClick={() => this.handleClickMarker(elm._id)}
                     >
-                      <img alt={elm.name} style={mapElmStyle} src={elm.image} />
+                      <img alt={elm.name} style={mapElmStyle} src={elm.image}/>
                     </Marker>
                   ))
                 : null}

@@ -20,7 +20,7 @@ class Dashboard extends React.Component {
     store_selected: false,
     currentStoreId: null,
     selectedStoreId: null,
-    inputCoordinates: [2.35183, 48.85658], // default Paris coordinates
+    inputCoordinates: [2.3968998, 48.8651136], // default Paris coordinates 20th arrondissement
     fabricFilters: [],
   };
 

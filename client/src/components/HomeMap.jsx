@@ -10,7 +10,7 @@ const Map = ReactMapboxGl({
 class HomeMap extends Component {
   state = {
     stores: null,
-    location: [2.35183, 48.85658],
+    location: [2.35140, 48.85658],
   };
 
   componentDidMount = () => {
@@ -36,7 +36,7 @@ class HomeMap extends Component {
             <Map
               style={mapstyle.style}
               center={this.props.searchInput}
-              zoom={[14]}
+              zoom={[12]}
               containerStyle={{
                 height: "96vh",
                 width: "100vw",

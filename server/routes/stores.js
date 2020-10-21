@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const Store = require("../models/store");
+const Store = require("../models/Store");
 const upload = require('../config/aws');
 
 // C

@@ -119,14 +119,13 @@ class ProjectContainer extends React.Component {
               </div>
               <div className="success-message">
                 <h2 className="has-text-dark-gray bold">Well done!</h2>
-                <h3>This project found all required materials</h3>
-                <div className="is-flex">
-                  <span className="tag is-primary is-light">
-                    {project.creator.userName}
-                  </span>
-                  <p> wil be able to launch it!</p>
-                </div>
-                <p>Thanks for your support</p>
+                <p>This project found all required materials</p>
+                <p>
+                  <span className="tag is-primary is-light">{project.creator.userName}</span> will
+                  be able to launch it!
+                </p>
+                <br />
+                <span>Thanks for your support.</span>
               </div>
             </div>
           ) : (

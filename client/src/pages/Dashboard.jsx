@@ -29,10 +29,6 @@ class Dashboard extends React.Component {
     if (this.props.context.user) this.getUsersContributions();
   }
 
-  // componentDidUpdate = () => {
-
-  // }
-
   resetState = () => {
     apiHandler
       .getAll("/api/projects")

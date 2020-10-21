@@ -20,9 +20,13 @@ class ProjectContainer extends React.Component {
       this.getSelectedProject(this.props.match.params.id);
   };
 
-  componentDidUpdate() {
-    console.log("update", this.props);
-    // CHECK IF URL PATH CHANGED > IF YES, RESET CONTRIBDONE STATE (false)
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.location !== prevProps.location) {
+      console.log("change location");
+      this.setState({
+        contributionDone: false,
+      });
+    }
   }
 
   getSelectedProject = (projectId) => {
@@ -153,9 +157,12 @@ class ProjectContainer extends React.Component {
                   Thanks for your contribution!
                 </h2>
                 <p>
-                  Next step: give the number
-                  <span className="tag is-warning is-light">324</span> when you
-                  drop your item(s) at <b>{this.props.store.name}</b>
+                  Next step: give the number{" "}
+                  <span className="tag is-warning is-light">324</span> when
+                  dropping your item(s) at{" "}
+                  <b>
+                    <i class="fas fa-store-alt"></i> {this.props.store.name}
+                  </b>
                 </p>
                 <div className="btn-ok-container">
                   <button

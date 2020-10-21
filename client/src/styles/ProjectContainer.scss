@@ -118,14 +118,21 @@ svg.CircularProgressbar {
 .success-container {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+
   justify-content: center;
+}
+
+.success-message {
+  margin-left: 30px;
 }
 
 .success-message.contribution {
   min-height: 30vh;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: space-evenly;
-  margin-right: 30px;
+  margin: 0px 50px 0px 0px;
+  max-width: 22vw;
 }
-

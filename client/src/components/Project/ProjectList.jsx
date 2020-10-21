@@ -6,16 +6,6 @@ class ProjectList extends React.Component {
     const props = this.props;
     return (
       <React.Fragment>
-        {/* {props.isStoreSelected && (
-          <div>
-            <button
-              className="button is-primary is-light"
-              onClick={props.handleResetClick}
-            >
-              Display all
-            </button>
-          </div>
-        )} */}
         <div className="card-list">
           {props.projects.map((project) => (
             <React.Fragment key={project._id}>
@@ -28,6 +18,7 @@ class ProjectList extends React.Component {
                 materials={project.materials}
                 deadline={project.deadline}
                 store_id={project.store}
+                isSuccess={project.isSuccess}
                 displayProject={props.currentProject}
               />
             </React.Fragment>

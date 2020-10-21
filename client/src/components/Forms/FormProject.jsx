@@ -136,22 +136,22 @@ class FormProject extends Component {
 
           <div className="input-image">
             <label className="label">Image</label>
-            <div class="file has-name">
-              <label class="file-label">
+            <div className="file has-name">
+              <label className="file-label">
                 <input
                   className="file-input"
                   type="file"
                   name="image"
                   onChange={this.props.handleChange}
                 />
-                <span class="file-cta">
-                  <span class="file-icon">
-                    <i class="fas fa-upload"></i>
+                <span className="file-cta">
+                  <span className="file-icon">
+                    <i className="fas fa-upload"></i>
                   </span>
-                  <span class="file-label">Choose a file…</span>
+                  <span className="file-label">Choose a file…</span>
                 </span>
                 {this.props.projectImage && (
-                  <span class="file-name">{this.props.projectImage}</span>
+                  <span className="file-name">{this.props.projectImage}</span>
                 )}
               </label>
             </div>

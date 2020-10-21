@@ -17,14 +17,16 @@ class ProjectCard extends React.Component {
 
   getUserInfo = () => {
     let query;
-    (this.props.creator._id) ? query = this.props.creator._id : query = this.props.creator;
+    this.props.creator._id
+      ? (query = this.props.creator._id)
+      : (query = this.props.creator);
     apiHandler
-    .getOne("/api/users/", query)
-    .then((apiRes) => {
-      this.setState({
-        creator_pic: apiRes.data.profilePicture,
-      });
-    })
+      .getOne("/api/users/", query)
+      .then((apiRes) => {
+        this.setState({
+          creator_pic: apiRes.data.profilePicture,
+        });
+      })
       .catch((err) => console.log(err));
   };
 
@@ -98,10 +100,17 @@ class ProjectCard extends React.Component {
               </div>
             </div>
             <div className="card-state">
-              <p className="tag is-warning is-light">
-                {this.getItemsCollected()}/{this.getTotalItemsRequired()} items
-                collected
-              </p>
+              {this.props.isSuccess ? (
+                <p className="tag is-success is-light">
+                  completed
+                </p>
+              ) : (
+                <p className="tag is-warning is-light">
+                  {this.getItemsCollected()}/{this.getTotalItemsRequired()}{" "}
+                  items collected
+                </p>
+              )}
+
               <span className="has-text-grey">
                 <DayJS format="MMM D, YYYY">{this.props.deadline}</DayJS>
               </span>

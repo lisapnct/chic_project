@@ -50,7 +50,7 @@ class FormSignin extends Component {
         {this.state.message && (
           <React.Fragment>
             <p className="has-text-danger">
-              <i class="fas fa-exclamation-triangle"></i> Invalid credentials
+              <i className="fas fa-exclamation-triangle"></i> Invalid credentials
             </p>{" "}
             <br />
           </React.Fragment>

@@ -146,7 +146,7 @@ class ProjectContainer extends React.Component {
                 <br />
                 <span>
                   Thanks for your support{" "}
-                  <i class="fas fa-heart has-text-grey"></i>
+                  <i className="fas fa-heart has-text-grey"></i>
                 </span>
               </div>
             </div>
@@ -161,7 +161,7 @@ class ProjectContainer extends React.Component {
                   <span className="tag is-warning is-light">324</span> when
                   dropping your item(s) at{" "}
                   <b>
-                    <i class="fas fa-store-alt"></i> {this.props.store.name}
+                    <i className="fas fa-store-alt"></i> {this.props.store.name}
                   </b>
                 </p>
                 <div className="btn-ok-container">

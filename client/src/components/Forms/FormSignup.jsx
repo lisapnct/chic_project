@@ -106,7 +106,7 @@ class FormSignup extends Component {
           {this.state.message && (
             <React.Fragment>
               <p className="has-text-danger">
-                <i class="fas fa-exclamation-triangle"></i> This email already
+                <i className="fas fa-exclamation-triangle"></i> This email already
                 exists
               </p>{" "}
               <br />

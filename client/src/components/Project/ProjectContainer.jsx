@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Progress from "./Progress";
 import Contributors from "./Contributors";
 import FormContribution from "../Forms/FormContribution";
-import DateFormat from '../Tools/DateFormat';
+import DateFormat from "../Tools/DateFormat";
 import CircleProgressBar from "../Tools/CircleProgressBar";
 import apiHandler from "../../api/apiHandler";
 
@@ -98,20 +98,6 @@ class ProjectContainer extends React.Component {
               contribute
             </button>
           )}
-          {project.isSuccess && (
-            <>
-              <h3>
-                <span role="img" aria-label="congratulation">
-                  🙌
-                </span>{" "}
-                We did it!{" "}
-                <span role="img" aria-label="congratulation">
-                  💪
-                </span>
-                Thank you!!!
-              </h3>
-            </>
-          )}
         </div>
         <hr />
 
@@ -122,6 +108,27 @@ class ProjectContainer extends React.Component {
               goBack={this.displayContributionForm}
               handleContributionForm={this.props.handleContributionFormSubmit}
             />
+          ) : project.isSuccess ? (
+            <div className="success-container">
+              <div className="success-image">
+                <img
+                  className="illu-gift"
+                  src="/success-illu.svg"
+                  alt="illu-success"
+                />
+              </div>
+              <div className="success-message">
+                <h2 className="has-text-dark-gray bold">Well done!</h2>
+                <h3>This project found all required materials</h3>
+                <div className="is-flex">
+                  <span className="tag is-primary is-light">
+                    {project.creator.userName}
+                  </span>
+                  <p> wil be able to launch it!</p>
+                </div>
+                <p>Thanks for your support</p>
+              </div>
+            </div>
           ) : (
             <React.Fragment>
               <h3 className="has-text-dark-gray bold">Required materials:</h3>

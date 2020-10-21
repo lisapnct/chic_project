@@ -22,7 +22,7 @@ class HomeMap extends Component {
 
   handleClickMarker = (id) => {
     this.props.handleMarkClic(id);
-    openPopup(id);
+    // openPopup(id);
     console.log('hello');
   }
 

@@ -47,10 +47,10 @@ class FormSignup extends Component {
     let buttons = document.querySelectorAll(".role-radio");
     let thisBtn = event.target;
     // console.log("buttons >>>>", buttons);
-    buttons.forEach((btn) => {
-      if (btn.classList.contains("is-primary"))
-        btn.classList.remove("is-primary");
-    });
+    // buttons.forEach((btn) => {
+    //   if (btn.classList.contains("is-primary"))
+    //     btn.classList.remove("is-primary");
+    // });
     thisBtn.classList.toggle("is-primary");
   };
 

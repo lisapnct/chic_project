@@ -15,9 +15,9 @@ function App() {
         <Route exact path="/home" component={Home} />
         <Route exact path="/signin" component={Home} />
         <Route exact path="/signup" component={Home} />
-        <Route exact path="/create/project" component={CreateProject} />
-        <Route exact path="/" component={Dashboard} />
-        <Route exact path="/project/:id" component={Dashboard} />
+        <ProtectedRoute exact path="/create/project" component={CreateProject} />
+        <ProtectedRoute exact path="/" component={Dashboard} />
+        <ProtectedRoute exact path="/project/:id" component={Dashboard} />
         <ProtectedRoute exact path="/profile" component={Dashboard} />
       </Switch>
     </div>

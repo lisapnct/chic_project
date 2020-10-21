@@ -5,7 +5,6 @@ const userSchema = new Schema({
   userName: String,
   email: { type: String, required: true },
   password: { type: String, required: true },
-  address: String, 
   paillettes: {
     type: Number,
     default: 0,
@@ -13,20 +12,11 @@ const userSchema = new Schema({
   profilePicture: {
     type: String,
     default:
-      'https://projetchic.s3.eu-west-3.amazonaws.com/undraw_social_girl_562b.png',
+      "https://projetchic.s3.eu-west-3.amazonaws.com/undraw_social_girl_562b.png",
   },
   role: {
-    type: String, 
-    enum: ['user', 'designer', 'admin'],
-  },
-  // created projects (for designers only)
-  id_projects: {
-    type: [Schema.Types.ObjectId],
-    ref: "Project",
-  },
-  fav_id_projects: {
-    type: [Schema.Types.ObjectId],
-    ref: "Project",
+    type: String,
+    enum: ["user", "designer", "admin"],
   },
 });
 

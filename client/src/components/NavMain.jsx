@@ -41,11 +41,9 @@ const NavMain = (props) => {
         </div>
         <div className="navbar-item">
           {context.isLoggedIn && context.user.role === "designer" && (
-            <React.Fragment>
               <div className="button is-primary">
                 <NavLink to="/create/project">Create a project</NavLink>
               </div>
-            </React.Fragment>
           )}
         </div>
       </div>

@@ -27,7 +27,7 @@ class Contributors extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <h3 className="has-text-dark-gray bold">Contributors:</h3>
+        <h3 className="has-text-dark bold">Contributors:</h3>
         <div className="contributors-container">
           {this.props.contributors && this.displayContributors()}
         </div>

@@ -25,7 +25,7 @@ class FormContribution extends React.Component {
             <img className="illu-gift" src="/gift-woman.svg" alt="illu-gift" />
           </div>
           <div className="form-container">
-            <h3 className="has-text-dark-gray bold">
+            <h3 className="has-text-dark bold">
               What do you want to give?
             </h3>
             <form className="field " onSubmit={this.handleSubmit}>

@@ -50,7 +50,8 @@ class FormSignin extends Component {
         {this.state.message && (
           <React.Fragment>
             <p className="has-text-danger">
-              <i className="fas fa-exclamation-triangle"></i> Invalid credentials
+              <i className="fas fa-exclamation-triangle"></i> Invalid
+              credentials
             </p>{" "}
             <br />
           </React.Fragment>
@@ -86,6 +87,7 @@ class FormSignin extends Component {
               </div>
             </div>
           </div>
+
           <button className="button is-block is-primary is-fullwidth">
             Submit
           </button>

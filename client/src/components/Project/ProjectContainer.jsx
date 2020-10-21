@@ -64,11 +64,11 @@ class ProjectContainer extends React.Component {
             <Link to="/">
               <span className="delete close-btn is-medium"></span>
             </Link>
-            <h1 className="bold has-text-dark-gray">{project.name}</h1>
+            <h1 className=" has-text-dark main-title">{project.name}</h1>
             <div>
               launched by{" "}
               {project.creator && (
-                <span className="tag is-info is-light">
+                <span className="tag is-primary is-light">
                   {project.creator.userName}
                 </span>
               )}{" "}
@@ -80,14 +80,14 @@ class ProjectContainer extends React.Component {
               )}
             </div>
             <div className="project-description">
-              <i className="fas fa-quote-left has-text-grey-lighter fa-lg"></i>
+              <i className="fas fa-quote-left has-text-primary-light fa-lg"></i>
               <p>
                 <i>{project.description}</i>
               </p>
-              <i className="fas fa-quote-right has-text-grey-lighter fa-lg"></i>
+              <i className="fas fa-quote-right has-text-primary-light fa-lg"></i>
             </div>
             <div className="project-location">
-              <h3 className="has-text-dark-gray bold">Drop your items here:</h3>
+              <h3 className="has-text-dark bold">Drop your items here:</h3>
               {this.props.store.location && (
                 <React.Fragment>
                   <p>
@@ -109,7 +109,7 @@ class ProjectContainer extends React.Component {
           {!this.state.isContributing && project.isSuccess === false && (
             <button
               onClick={this.displayContributionForm}
-              className="button is-primary contribute-btn btn-scale-hover"
+              className="button bold is-primary contribute-btn btn-scale-hover"
             >
               contribute
             </button>
@@ -135,7 +135,7 @@ class ProjectContainer extends React.Component {
                 />
               </div>
               <div className="success-message">
-                <h2 className="has-text-dark-gray bold">Well done!</h2>
+                <h2 className="has-text-dark bold">Well done!</h2>
                 <p>This project found all required materials.</p>
                 <p>
                   <span className="tag is-primary is-light">
@@ -153,7 +153,7 @@ class ProjectContainer extends React.Component {
           ) : this.state.contributionDone === true ? (
             <div className="success-container">
               <div className="success-message contribution">
-                <h2 className="has-text-dark-gray bold">
+                <h2 className="has-text-dark bold">
                   Thanks for your contribution!
                 </h2>
                 <p>
@@ -183,7 +183,7 @@ class ProjectContainer extends React.Component {
             </div>
           ) : (
             <React.Fragment>
-              <h3 className="has-text-dark-gray bold">Required materials:</h3>
+              <h3 className="has-text-dark bold">Required materials:</h3>
               <div className="circle-gauges-container">
                 {project.materials &&
                   project.materials.map((material) => (

@@ -20,7 +20,7 @@ class Progress extends React.Component {
           <React.Fragment>
             <h3>
               This project is{" "}
-              <span className="bold has-text-dark-gray is-medium">{this.getValue()}%</span>{" "}
+              <span className="bold has-text-dark is-medium">{this.getValue()}%</span>{" "}
               completed
             </h3>
             <progress

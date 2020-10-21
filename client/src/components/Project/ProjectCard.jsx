@@ -76,7 +76,7 @@ class ProjectCard extends React.Component {
               </div>
               <div className="card-infos">
                 <p className="has-text-grey">{this.props.creator.userName}</p>
-                <h3 className="has-text-grey-dark bold">{this.props.name}</h3>
+                <h3 className="has-text-dark main-title">{this.props.name}</h3>
                 <div className="location-container has-text-grey">
                   <span>
                     <i className="fas fa-store-alt has-text-grey"></i>{" "}
@@ -91,7 +91,7 @@ class ProjectCard extends React.Component {
                   {this.props.materials.map((material) => (
                     <div
                       key={material.fabric_type}
-                      className="a-tag tag is-info is-light"
+                      className="a-tag tag is-primary is-light"
                     >
                       {material.fabric_type}
                     </div>

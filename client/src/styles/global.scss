@@ -1,8 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
 @import "bulma/bulma.sass";
 
-@import "../styles/Cards.scss";
 // @import "../styles/Home.scss";
+@import "../styles/Cards.scss";
+@import "../styles/FormProject.scss";
 @import "../styles/Searchbar.scss";
 
 * {
@@ -34,7 +35,7 @@ a {
 }
 
 a:hover {
-  color: inherit
+  color: inherit;
 }
 
 ul {
@@ -76,4 +77,12 @@ canvas.mapboxgl-canvas:focus {
 
 .logo {
   font-weight: 800;
+}
+
+.btn-scale-hover {
+  transition: all 0.15s ease-in-out;
+}
+
+.btn-scale-hover:hover {
+  transform: scale(0.97);
 }

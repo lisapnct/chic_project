@@ -13,7 +13,7 @@ class Checkbox extends Component {
   };
 
   toggleColor = (event) => {
-    event.target.parentNode.classList.toggle("is-info");
+    event.target.parentNode.classList.toggle("is-primary");
   };
 
   render() {

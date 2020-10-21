@@ -28,10 +28,14 @@
 }
 
 .card-list {
+  display: flex;
+  flex-direction: column;
   overflow: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
   height: 100%;
+  padding-bottom: 40px;
+  padding-top: 10px;
 }
 
 .card-list::-webkit-scrollbar {

@@ -11,19 +11,20 @@ import apiHandler from "../../api/apiHandler";
 class ProjectContainer extends React.Component {
   state = {
     isContributing: false,
-    currentProject: '',
+    currentProject: "",
   };
 
   componentDidMount = () => {
-    if (this.props.project.length === 0)this.getSelectedProject(this.props.match.params.id)
-  }
+    if (this.props.project.length === 0)
+      this.getSelectedProject(this.props.match.params.id);
+  };
 
   getSelectedProject = (projectId) => {
     apiHandler
       .getOne("/api/projects/", projectId)
       .then((apiRes) => {
         this.setState({
-          currentProject : apiRes.data,
+          currentProject: apiRes.data,
         });
       })
       .catch((err) => console.log(err));
@@ -36,8 +37,10 @@ class ProjectContainer extends React.Component {
   };
 
   render() {
-    let project; 
-    this.props.project.length === 0 ? project = this.state.currentProject : project = this.props.project;
+    let project;
+    this.props.project.length === 0
+      ? (project = this.state.currentProject)
+      : (project = this.props.project);
     return (
       <div className="project-grid-container">
         <div className="project-info">
@@ -45,9 +48,7 @@ class ProjectContainer extends React.Component {
             <Link to="/">
               <span className="delete close-btn is-medium"></span>
             </Link>
-            <h1 className="bold has-text-dark-gray">
-              {project.name}
-            </h1>
+            <h1 className="bold has-text-dark-gray">{project.name}</h1>
             <p>
               launched by{" "}
               {project.creator && (
@@ -92,15 +93,24 @@ class ProjectContainer extends React.Component {
           {!this.state.isContributing && project.isSuccess === false && (
             <button
               onClick={this.displayContributionForm}
-              className="button is-primary contribute-btn"
+              className="button is-primary contribute-btn btn-scale-hover"
             >
               contribute
             </button>
           )}
           {project.isSuccess && (
             <>
-              <h3><span role="img" aria-label="congratulation">🙌</span> We did it! <span role="img" aria-label="congratulation">💪</span>Thank you!!!</h3>
-            </> 
+              <h3>
+                <span role="img" aria-label="congratulation">
+                  🙌
+                </span>{" "}
+                We did it!{" "}
+                <span role="img" aria-label="congratulation">
+                  💪
+                </span>
+                Thank you!!!
+              </h3>
+            </>
           )}
         </div>
         <hr />

@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler";
 
@@ -41,9 +42,9 @@ const NavMain = (props) => {
         </div>
         <div className="navbar-item">
           {context.isLoggedIn && context.user.role === "designer" && (
-              <div className="button is-primary">
-                <NavLink to="/create/project">Create a project</NavLink>
-              </div>
+            <div className="button is-primary btn-scale-hover">
+              <Link to="/create/project">Create a project</Link>
+            </div>
           )}
         </div>
       </div>

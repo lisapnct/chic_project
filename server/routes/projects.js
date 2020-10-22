@@ -25,6 +25,7 @@ router.get("/", async (req, res, next) => {
   // }
   try {
     const apiRes = await Project.find(query).populate("creator", "userName");
+    apiRes.sort((a, b) => a.deadline > b.deadline ? 1 : a.deadline < b.deadline ? -1 : 0);
     res.status(200).json(apiRes);
   } catch (err) {
     res.status(500).json(err);
@@ -37,6 +38,7 @@ router.get("/", async (req, res, next) => {
 router.get("/stores/:id", async (req, res, next) => {
   try {
     const apiRes = await Project.find({store: req.params.id});
+    apiRes.sort((a, b) => a.deadline > b.deadline ? 1 : a.deadline < b.deadline ? -1 : 0)
     res.status(200).json(apiRes);
   } catch (err) {
     res.status(500).json(err);
@@ -51,6 +53,7 @@ router.get("/user", async (req, res, next) => {
     })
       .populate("creator", "profilePicture userName")
       .populate("contributors.id_user", "profilePicture userName");
+    apiRes.sort((a, b) => a.deadline > b.deadline ? 1 : a.deadline < b.deadline ? -1 : 0)
     res.status(200).json(apiRes);
   } catch (err) {
     res.status(500).json(err);
@@ -92,7 +95,7 @@ router.patch("/:id/contributions", async (req, res, next) => {
       
       search = case1query;
       query = foundProjectAlr[0]
-      console.log('Case 1');
+      // console.log('Case 1');
     }
     
     if (foundProjectNve.length > 0 && foundProjectAlr.length === 0) {
@@ -106,7 +109,7 @@ router.patch("/:id/contributions", async (req, res, next) => {
 
       search = case2query;
       query = foundProjectNve[0];
-      console.log('Case 2');
+      // console.log('Case 2');
     }
     if (foundProjectNve.length === 0  && foundProjectAlr.length === 0 && foundProject.length > 0 ) {
       const material = foundProject[0].materials.find(mat => mat.fabric_type === fabric_type);
@@ -118,7 +121,7 @@ router.patch("/:id/contributions", async (req, res, next) => {
 
       search = case3query;
       query = foundProject[0]
-      console.log('Case 3');
+      // console.log('Case 3');
     }
 
     const apiRes = await Project.findOneAndUpdate(
@@ -129,7 +132,6 @@ router.patch("/:id/contributions", async (req, res, next) => {
       }
     ).populate("contributors.id_user", "profilePicture userName")
      .populate("creator", "profilePicture userName")
-    //  .populate("store");
     res.status(200).json(apiRes);
 
   } catch(err) {
@@ -142,8 +144,6 @@ router.get("/:id", async (req, res, next) => {
     const apiRes = await Project.findById(req.params.id)
       .populate("creator", "profilePicture userName")
       .populate("contributors.id_user", "profilePicture userName")
-      // .populate("store");
-    const contributor = apiRes.contributors;
     res.status(200).json(apiRes);
   } catch (err) {
     res.status(500).json(err);
@@ -181,5 +181,3 @@ router.delete("/:id", async (req, res, next) => {
 });
 
 module.exports = router;
-
-//  .populate({ path:'id_users', populate: { path:'id_users'} });

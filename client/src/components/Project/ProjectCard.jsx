@@ -62,7 +62,6 @@ class ProjectCard extends React.Component {
     const selectedStyle = {
       boxShadow: "0px 0px 18px -2.5px rgba(96, 60, 234, 0.35)",
     };
-    console.log(window.location)
     let collected = this.getItemsCollected(this.props);
     let goal = this.getTotalItemsRequired(this.props);
     let result = String(collected + "/" + goal)

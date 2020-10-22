@@ -15,13 +15,13 @@ const PointsCounter = (props) => {
             value={props.context.user.paillettes}
             text={`${Math.round((props.context.user.paillettes/goal)*100)}%`}
             styles={buildStyles({
-              textColor: "#00D1B2",
-              pathColor: "#00D1B2",
+              textColor: "#603CEA",
+              pathColor: "#603CEA",
             })}
           />
         </div>
         <div className="paillettes-infos">
-          <h3 className="bold has-text-dark-gray">
+          <h3 className="bold has-text-dark">
             You collected{" "}
             <span className="tag is-primary is-light">{props.context.user.paillettes} paillette(s)</span>
           </h3>

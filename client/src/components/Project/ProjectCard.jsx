@@ -17,14 +17,16 @@ class ProjectCard extends React.Component {
 
   getUserInfo = () => {
     let query;
-    (this.props.creator._id) ? query = this.props.creator._id : query = this.props.creator;
+    this.props.creator._id
+      ? (query = this.props.creator._id)
+      : (query = this.props.creator);
     apiHandler
-    .getOne("/api/users/", query)
-    .then((apiRes) => {
-      this.setState({
-        creator_pic: apiRes.data.profilePicture,
-      });
-    })
+      .getOne("/api/users/", query)
+      .then((apiRes) => {
+        this.setState({
+          creator_pic: apiRes.data.profilePicture,
+        });
+      })
       .catch((err) => console.log(err));
   };
 
@@ -74,7 +76,7 @@ class ProjectCard extends React.Component {
               </div>
               <div className="card-infos">
                 <p className="has-text-grey">{this.props.creator.userName}</p>
-                <h3 className="has-text-grey-dark bold">{this.props.name}</h3>
+                <h3 className="has-text-dark main-title">{this.props.name}</h3>
                 <div className="location-container has-text-grey">
                   <span>
                     <i className="fas fa-store-alt has-text-grey"></i>{" "}
@@ -89,7 +91,7 @@ class ProjectCard extends React.Component {
                   {this.props.materials.map((material) => (
                     <div
                       key={material.fabric_type}
-                      className="a-tag tag is-info is-light"
+                      className="a-tag tag is-primary is-light"
                     >
                       {material.fabric_type}
                     </div>
@@ -98,10 +100,17 @@ class ProjectCard extends React.Component {
               </div>
             </div>
             <div className="card-state">
-              <p className="tag is-warning is-light">
-                {this.getItemsCollected()}/{this.getTotalItemsRequired()} items
-                collected
-              </p>
+              {this.props.isSuccess ? (
+                <p className="tag is-success is-light">
+                  completed
+                </p>
+              ) : (
+                <p className="tag is-warning is-light">
+                  {this.getItemsCollected()}/{this.getTotalItemsRequired()}{" "}
+                  items collected
+                </p>
+              )}
+
               <span className="has-text-grey">
                 <DayJS format="MMM D, YYYY">{this.props.deadline}</DayJS>
               </span>

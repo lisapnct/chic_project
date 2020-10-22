@@ -83,7 +83,7 @@ router.patch("/:id/contributions", async (req, res, next) => {
     if(foundProjectNve.length > 0 && foundProjectAlr.length > 0) {
       const material = foundProjectAlr[0].materials.find(mat => mat.fabric_type === fabric_type);
       material.collected_quantity += Number(quantity);
-      if (material.collected_quantity === material.required_quantity) material.fullyCollected = true;
+      if (material.collected_quantity >= material.required_quantity) material.fullyCollected = true;
       if (foundProjectAlr[0].materials.every(elm => elm.fullyCollected === true)) foundProjectAlr[0].isSuccess = true;
       
       const contribution = foundProjectAlr[0].contributors.find(contributor => contributor.id_user == currentUserId)
@@ -111,7 +111,7 @@ router.patch("/:id/contributions", async (req, res, next) => {
     if (foundProjectNve.length === 0  && foundProjectAlr.length === 0 && foundProject.length > 0 ) {
       const material = foundProject[0].materials.find(mat => mat.fabric_type === fabric_type);
       material.collected_quantity += Number(quantity);
-      if (material.collected_quantity === material.required_quantity) material.fullyCollected = true;
+      if (material.collected_quantity >= material.required_quantity) material.fullyCollected = true;
       if (foundProject[0].materials.every(elm => elm.fullyCollected === true)) foundProject[0].isSuccess = true;
       
       foundProject[0].contributors.push( {"id_user": currentUserId , contributed_materials: [{ "fabric_type": fabric_type , "quantity": Number(quantity) }]})

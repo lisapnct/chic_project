@@ -1,5 +1,5 @@
 :root {
-  --brandColor: hsl(166, 67%, 51%);
+  --brandColor: #603CEA;
   --background: rgb(247, 247, 247);
   --textDark: hsla(0, 0%, 0%, 0.66);
   --textLight: hsla(0, 0%, 0%, 0.33);
@@ -7,7 +7,6 @@
 
 .fullscreen-container {
   min-height: 93vh;
-  //   background-color: lightgray;
   display: flex;
   align-items: center;
   justify-content: center;

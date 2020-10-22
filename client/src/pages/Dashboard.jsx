@@ -29,10 +29,6 @@ class Dashboard extends React.Component {
     if (this.props.context.user) this.getUsersContributions();
   }
 
-  // componentDidUpdate = () => {
-
-  // }
-
   resetState = () => {
     apiHandler
       .getAll("/api/projects")
@@ -129,7 +125,6 @@ class Dashboard extends React.Component {
     // conditional logic for rendering project list
     const location = this.props.history.location.pathname.toString();
     return location.startsWith("/profile") ? (
-      // render contrib list with this.state.userContrib
       <ContributionsList projects={this.state.userContributions} />
     ) : (
       <ProjectList

@@ -11,8 +11,8 @@ const CircleProgressBar = (props) => {
           value={props.material.collected_quantity}
           text={`${props.material.collected_quantity}/${props.material.required_quantity}`}
           styles={buildStyles({
-            textColor: "#00D1B2",
-            pathColor: "#00D1B2",
+            textColor: "#603CEA",
+            pathColor: "#603CEA",
           })}
         />
         <p className="tag legend-circle-progress">{props.material.fabric_type}</p>

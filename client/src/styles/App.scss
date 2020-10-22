@@ -1,0 +1,20 @@
+@import "../styles/Cards.scss";
+@import "../styles/FormProject.scss";
+@import "../styles/Searchbar.scss";
+
+// my vars
+$purple: #603cea;
+$raisin-black: #272932;
+$mint: #52b792;
+$fiery-rose: #f86366;
+$corn: #FFEC5C;
+
+// update bulma's var
+$primary: $purple;
+$dark: $raisin-black;
+$success: $mint;
+$danger: $fiery-rose;
+$warning: $corn;
+
+@import "../../node_modules/bulma/";
+@import "../styles/Global.scss";

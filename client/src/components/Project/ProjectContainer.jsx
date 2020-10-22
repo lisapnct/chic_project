@@ -11,6 +11,7 @@ import apiHandler from "../../api/apiHandler";
 class ProjectContainer extends React.Component {
   state = {
     isContributing: false,
+    contributionDone: false,
     currentProject: "",
   };
 
@@ -18,6 +19,15 @@ class ProjectContainer extends React.Component {
     if (this.props.project.length === 0)
       this.getSelectedProject(this.props.match.params.id);
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.location !== prevProps.location) {
+      console.log("change location");
+      this.setState({
+        contributionDone: false,
+      });
+    }
+  }
 
   getSelectedProject = (projectId) => {
     apiHandler
@@ -36,6 +46,12 @@ class ProjectContainer extends React.Component {
     }));
   };
 
+  displaySuccessMessage = () => {
+    this.setState((prevState) => ({
+      contributionDone: !prevState.contributionDone,
+    }));
+  };
+
   render() {
     let project;
     this.props.project.length === 0
@@ -48,30 +64,30 @@ class ProjectContainer extends React.Component {
             <Link to="/">
               <span className="delete close-btn is-medium"></span>
             </Link>
-            <h1 className="bold has-text-dark-gray">{project.name}</h1>
+            <h1 className=" has-text-dark main-title">{project.name}</h1>
             <div>
               launched by{" "}
               {project.creator && (
-                <span className="tag is-info is-light">
+                <span className="tag is-primary is-light">
                   {project.creator.userName}
                 </span>
               )}{" "}
               | deadline:{" "}
               {project.deadline && (
                 <div className="tag is-warning is-light">
-                  <DateFormat format="MMMM D, YYYY" date={project.deadline}/>
+                  <DateFormat format="MMMM D, YYYY" date={project.deadline} />
                 </div>
               )}
             </div>
             <div className="project-description">
-              <i className="fas fa-quote-left has-text-grey-lighter fa-lg"></i>
+              <i className="fas fa-quote-left has-text-primary-light fa-lg"></i>
               <p>
                 <i>{project.description}</i>
               </p>
-              <i className="fas fa-quote-right has-text-grey-lighter fa-lg"></i>
+              <i className="fas fa-quote-right has-text-primary-light fa-lg"></i>
             </div>
             <div className="project-location">
-              <h3 className="has-text-dark-gray bold">Drop your items here:</h3>
+              <h3 className="has-text-dark bold">Drop your items here:</h3>
               {this.props.store.location && (
                 <React.Fragment>
                   <p>
@@ -105,7 +121,7 @@ class ProjectContainer extends React.Component {
           {!this.state.isContributing && project.isSuccess === false && (
             <button
               onClick={this.displayContributionForm}
-              className="button is-primary contribute-btn btn-scale-hover"
+              className="button bold is-primary contribute-btn btn-scale-hover"
             >
               contribute
             </button>
@@ -118,6 +134,7 @@ class ProjectContainer extends React.Component {
             <FormContribution
               project={project}
               goBack={this.displayContributionForm}
+              contributionDone={this.displaySuccessMessage}
               handleContributionForm={this.props.handleContributionFormSubmit}
             />
           ) : project.isSuccess ? (
@@ -130,20 +147,55 @@ class ProjectContainer extends React.Component {
                 />
               </div>
               <div className="success-message">
-                <h2 className="has-text-dark-gray bold">Well done!</h2>
-                <h3>This project found all required materials</h3>
-                <div className="is-flex">
+                <h2 className="has-text-dark bold">Well done!</h2>
+                <p>This project found all required materials.</p>
+                <p>
                   <span className="tag is-primary is-light">
                     {project.creator.userName}
-                  </span>
-                  <p> wil be able to launch it!</p>
+                  </span>{" "}
+                  will be able to launch it!
+                </p>
+                <br />
+                <span>
+                  Thanks for your support{" "}
+                  <i className="fas fa-heart has-text-grey"></i>
+                </span>
+              </div>
+            </div>
+          ) : this.state.contributionDone === true ? (
+            <div className="success-container">
+              <div className="success-message contribution">
+                <h2 className="has-text-dark bold">
+                  Thanks for your contribution!
+                </h2>
+                <p>
+                  Next step: give the number{" "}
+                  <span className="tag is-warning is-light">324</span> when
+                  dropping your item(s) at{" "}
+                  <b>
+                    <i className="fas fa-store-alt"></i> {this.props.store.name}
+                  </b>
+                </p>
+                <div className="btn-ok-container">
+                  <button
+                    onClick={() => this.displaySuccessMessage()}
+                    className="button is-primary btn-scale-hover"
+                  >
+                    OK
+                  </button>
                 </div>
-                <p>Thanks for your support</p>
+              </div>
+              <div className="success-image">
+                <img
+                  className="illu-gift"
+                  src="/contribution-done.svg"
+                  alt="illu-success-contribution"
+                />
               </div>
             </div>
           ) : (
             <React.Fragment>
-              <h3 className="has-text-dark-gray bold">Required materials:</h3>
+              <h3 className="has-text-dark bold">Required materials:</h3>
               <div className="circle-gauges-container">
                 {project.materials &&
                   project.materials.map((material) => (

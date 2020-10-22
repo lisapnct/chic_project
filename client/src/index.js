@@ -5,7 +5,7 @@ import UserProvider from "./components/Auth/UserProvider";
 import App from "./App";
 
 import "./styles/reset.scss";
-import "./styles/global.scss";
+import "./styles/App.scss";
 
 ReactDOM.render(
   <BrowserRouter>

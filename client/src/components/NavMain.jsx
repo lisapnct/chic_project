@@ -23,8 +23,8 @@ const NavMain = (props) => {
       <div className="navbar-brand">
         <div className="navbar-item">
           <NavLink to="/">
-            <h1 className="title is-3 has-text-dark-grey logo">
-              ch<i className="fas fa-socks has-text-primary"></i>c
+            <h1 className="title is-3 has-text-dark logo">
+              ch<i className="fas fa-socks has-text-primary"></i>c.
             </h1>
           </NavLink>
 
@@ -42,9 +42,11 @@ const NavMain = (props) => {
         </div>
         <div className="navbar-item">
           {context.isLoggedIn && context.user.role === "designer" && (
-            <div className="button is-primary btn-scale-hover">
-              <Link to="/create/project">Create a project</Link>
-            </div>
+            <Link to="/create/project">
+              <button className="button is-primary btn-scale-hover bold">
+                <i class="fas fa-plus"></i>  create project
+              </button>
+            </Link>
           )}
         </div>
       </div>
@@ -55,16 +57,16 @@ const NavMain = (props) => {
             <div className="buttons">
               {context.isLoggedIn && (
                 <React.Fragment>
-                  <h2 className="button is-light has-text-dark-gray bold">
+                  <h2 className="button is-light has-text-dark bold">
                     <NavLink to="/profile">
                       {context.user && context.user.userName} |{" "}
                       {context.user && context.user.paillettes}{" "}
-                      <i className="fas fa-fire "></i>
+                      <i className="fas fa-fire has-text-dark"></i>
                     </NavLink>
                   </h2>
                   <NavLink
                     to="/signin"
-                    className="button is-danger is-light"
+                    className="button is-primary is-light"
                     onClick={handleLogout}
                   >
                     <i className="fas fa-power-off"></i>

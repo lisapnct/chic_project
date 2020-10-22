@@ -1,11 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
-@import "bulma/bulma.sass";
-
-// @import "../styles/Home.scss";
-@import "../styles/Cards.scss";
-@import "../styles/FormProject.scss";
-@import "../styles/Searchbar.scss";
-
 * {
   margin: 0;
   padding: 0;
@@ -76,7 +68,7 @@ canvas.mapboxgl-canvas:focus {
 }
 
 .logo {
-  font-weight: 800;
+  font-weight: 900;
 }
 
 .btn-scale-hover {
@@ -85,4 +77,9 @@ canvas.mapboxgl-canvas:focus {
 
 .btn-scale-hover:hover {
   transform: scale(0.97);
+}
+
+.main-title {
+  font-weight: 750;
+  letter-spacing: -0.5px;
 }

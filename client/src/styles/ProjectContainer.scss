@@ -16,7 +16,7 @@
 .bottom-form-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -29,7 +29,8 @@
 }
 
 .project-infos-header h1 {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
 }
 
 .project-info {
@@ -118,5 +119,21 @@ svg.CircularProgressbar {
 .success-container {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+
   justify-content: center;
+}
+
+.success-message {
+  margin-left: 30px;
+}
+
+.success-message.contribution {
+  min-height: 30vh;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 0px 50px 0px 0px;
+  max-width: 22vw;
 }

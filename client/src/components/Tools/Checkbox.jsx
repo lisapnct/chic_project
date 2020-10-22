@@ -14,6 +14,7 @@ class Checkbox extends Component {
 
   toggleColor = (event) => {
     event.target.parentNode.classList.toggle("is-primary");
+    event.target.parentNode.classList.toggle("is-light");
   };
 
   render() {

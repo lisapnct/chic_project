@@ -61,7 +61,7 @@ class ProfileContainer extends React.Component {
               alt={`${this.props.context.user.userName}-profile-pic`}
             />
           </figure>
-          <h1 className="has-text-dark-gray bold">
+          <h1 className="has-text-dark main-title">
             {this.props.context.user.userName}
           </h1>
           <h3>{this.props.context.user.email}</h3>
@@ -71,9 +71,7 @@ class ProfileContainer extends React.Component {
               onClick={this.toggleEditState}
               className="button is-primary is-outlined edit-profile-btn"
             >
-              <span>
-                edit <i className="fas fa-user-edit"></i>
-              </span>
+              edit <i className="fas fa-user-edit"></i>
             </button>
           )}
         </div>

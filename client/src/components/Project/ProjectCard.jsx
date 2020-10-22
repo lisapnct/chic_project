@@ -68,7 +68,7 @@ class ProjectCard extends React.Component {
               <div className="card-img image is-96x96">
                 <img
                   className="is-rounded"
-                  src={this.state.creator_pic}
+                  src={this.props.image ? this.props.image : this.state.creator_pic}
                   alt="creator-pic"
                 />
               </div>

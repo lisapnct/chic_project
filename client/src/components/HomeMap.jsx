@@ -7,10 +7,12 @@ const Map = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOX_TOKEN,
 });
 
+
 class HomeMap extends Component {
   state = {
     stores: null,
     location: [2.35140, 48.85658],
+    showPopup: true
   };
 
   componentDidMount = () => {
@@ -22,22 +24,13 @@ class HomeMap extends Component {
 
   handleClickMarker = (elm) => {
     this.props.handleMarkClic(elm._id);
-    console.log(elm);
     return (
       <Popup
-      latitude={elm.location.coordinates[1]}
-      longitude={elm.location.coordinates[0]}
-      // onClose={closePopup}
-      // closeButton={true}
-      // closeOnClick={false}
-      offsetTop={-30}
-    >
-      <p>{elm.name}</p>
-    {/* //   <div>
-    //     <Button color="secondary" onClick={() => remove(index)}>Remove</Button>
-    //   </div> */}
-    </Popup>
-    )
+        latitude={elm.location.coordinates[1]}
+        longitude={elm.location.coordinates[0]}
+        anchor="top" >
+        <p>{elm.name}</p>
+      </Popup>)
   }
 
   render() {
@@ -49,6 +42,7 @@ class HomeMap extends Component {
       cursor: "pointer",
     };
     const mapstyle = { style: "mapbox://styles/mapbox/streets-v11" };
+    const {showPopup} = this.state;
     return (
       <div>
         {this.props.searchInput && (

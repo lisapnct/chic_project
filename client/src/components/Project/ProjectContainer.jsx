@@ -22,9 +22,9 @@ class ProjectContainer extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.location !== prevProps.location) {
-      // console.log("change location");
       this.setState({
         contributionDone: false,
+        isContributing: false,
       });
     }
   }
@@ -55,7 +55,7 @@ class ProjectContainer extends React.Component {
   render() {
     let project;
     this.props.project.length === 0
-      ? (project = this.state.currentProject) 
+      ? (project = this.state.currentProject)
       : (project = this.props.project);
     return (
       <div className="project-grid-container">

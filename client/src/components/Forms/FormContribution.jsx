@@ -18,10 +18,10 @@ class FormContribution extends React.Component {
   };
 
   render() {
-    // let currentMat = this.props.project.materials.filter(elm => elm.fabric_type === this.state.fabric_type)
-    // let max;
-    // if(this.props.project) max = currentMat[0].required_quantity - currentMat[0].collected_quantity
-    // console.log(max);
+    let currentMat = this.props.project.materials.filter(elm => elm.fabric_type === this.state.fabric_type)
+    let max;
+    if(this.props.project) max = currentMat[0].required_quantity - currentMat[0].collected_quantity
+    console.log(max);
     return (
       <React.Fragment>
         <div className="bottom-form-container">
@@ -52,7 +52,7 @@ class FormContribution extends React.Component {
                   <input
                     className="input"
                     name="quantity"
-                    max="10"
+                    max={max}
                     type="number"
                     placeholder="amount"
                     onChange={this.handleChange}

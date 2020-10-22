@@ -54,7 +54,7 @@ class ProfileContainer extends React.Component {
           <Link to="/">
             <span className="delete is-medium"></span>
           </Link>
-        </div>
+        </div> 
         <div className="top-block">
           <figure className="image is-128x128">
             <img

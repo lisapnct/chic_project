@@ -12,7 +12,7 @@ const userSchema = new Schema({
   profilePicture: {
     type: String,
     default:
-      "https://projetchic.s3.eu-west-3.amazonaws.com/undraw_social_girl_562b.png",
+      "https://projetchic.s3.eu-west-3.amazonaws.com/default_profile_picture.svg",
   },
   role: {
     type: String,

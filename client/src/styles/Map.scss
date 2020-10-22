@@ -1,0 +1,18 @@
+.popup-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.popup-container h2 {
+  margin-bottom: 5px;
+}
+
+.popup-close {
+  display: flex;
+  align-items: flex-start;
+}
+
+.mapboxgl-popup-content {
+  border-radius: 10px;
+  padding: 15px;
+}

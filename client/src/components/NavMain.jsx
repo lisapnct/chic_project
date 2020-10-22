@@ -44,7 +44,7 @@ const NavMain = (props) => {
           {context.isLoggedIn && context.user.role === "designer" && (
             <Link to="/create/project">
               <button className="button is-primary btn-scale-hover bold">
-                <i class="fas fa-plus"></i>  create project
+                <i className="fas fa-plus"></i>  create project
               </button>
             </Link>
           )}

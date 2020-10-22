@@ -7,12 +7,11 @@ const Map = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOX_TOKEN,
 });
 
-
 class HomeMap extends Component {
   state = {
     stores: null,
-    location: [2.35140, 48.85658],
-    showPopup: true
+    location: [2.3514, 48.85658],
+    markerSelected: null,
   };
 
   componentDidMount = () => {
@@ -22,25 +21,25 @@ class HomeMap extends Component {
       .catch((apiErr) => console.log(apiErr));
   };
 
-  handleClickMarker = (elm) => {
-    this.props.handleMarkClic(elm._id);
-    return (
-      <Popup
-        latitude={elm.location.coordinates[1]}
-        longitude={elm.location.coordinates[0]}
-        anchor="top" >
-        <p>{elm.name}</p>
-      </Popup>)
-  }
+  handleClickMarker = (store) => {
+    this.setState({
+      markerSelected: store,
+    });
+    this.props.handleMarkClic(store._id);
+  };
+
+  handleClosePopup = () => {
+    this.setState({
+      markerSelected: null,
+    });
+    this.props.displayAllProjects();
+  };
 
   render() {
     const stores = this.state.stores;
-    const mapElmStyle = {
-      width: 1.5 + "vw",
-      cursor: "pointer",
+    const mapstyle = {
+      style: "mapbox://styles/lisapnct/ckgkmeiqm0d5119qq3bw4nsht",
     };
-    const mapstyle = { style: "mapbox://styles/mapbox/streets-v11" };
-    const {showPopup} = this.state;
     return (
       <div>
         {this.props.searchInput && (
@@ -48,26 +47,64 @@ class HomeMap extends Component {
             <Map
               style={mapstyle.style}
               center={this.props.searchInput}
-              zoom={[12]}
+              zoom={[11.5]}
               containerStyle={{
-                height: "96vh",
-                width: "100vw",
+                height: "100vh",
+                width: "70vw",
                 borderRadius: "20px",
-                // focus: "outline:0"
               }}
             >
               {stores
-                ? stores.map((elm) => (
+                ? stores.map((store) => (
                     <Marker
-                      key={elm._id}
-                      coordinates={elm.location.coordinates}
+                      key={store._id}
+                      coordinates={store.location.coordinates}
                       anchor="bottom"
-                      onClick={() => this.handleClickMarker(elm)}
                     >
-                      <img alt={elm.name} style={mapElmStyle} src="https://static.thenounproject.com/png/1516539-200.png"/>
+                      <div
+                        onClick={(e) => {
+                          e.preventDefault();
+                          this.handleClickMarker(store);
+                        }}
+                      >
+                        <i className="fas fa-2x has-text-primary fa-store-alt"></i>
+                      </div>
                     </Marker>
                   ))
                 : null}
+
+              {this.state.markerSelected ? (
+                <Popup
+                  coordinates={this.state.markerSelected.location.coordinates}
+                  offset={{
+                    "bottom-left": [12, -38],
+                    bottom: [0, -38],
+                    "bottom-right": [-12, -38],
+                  }}
+                  className="popup"
+                >
+                  <div className="popup-container">
+                    <div>
+                      <h2 className="main-title has-text-primary">
+                        {this.state.markerSelected.name}
+                      </h2>
+                      <p>
+                        <i className="fas fa-map-marker-alt"></i> 
+                        {this.state.markerSelected.location.formattedAddress}
+                      </p>
+                    </div>
+                    <div className="popup-close">
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          this.handleClosePopup();
+                        }}
+                        className="delete"
+                      ></button>
+                    </div>
+                  </div>
+                </Popup>
+              ) : null}
             </Map>
           </React.Fragment>
         )}

@@ -116,24 +116,26 @@ class ProjectCard extends React.Component {
               </div>
             </div>
             <div className="card-state">
-              <div>
+              <div className="delete-container">
+                {this.props.isDeletable && (
+                  <div>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        this.props.deleteProject(this.props.id);
+                      }}
+                      className="button is-small is-danger is-light"
+                    >
+                      <i class="fas fa-trash"></i> delete
+                    </button>
+                  </div>
+                )}
                 {this.props.isSuccess ? (
                   <p className="tag is-success is-light">completed</p>
                 ) : (
                   <p className="tag is-warning is-light">
                     {result} items collected
                   </p>
-                )}
-                {this.props.isDeletable && (
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      this.props.deleteProject(this.props.id);
-                    }}
-                    className="button is-small is-danger is-light"
-                  >
-                    delete
-                  </button>
                 )}
               </div>
 

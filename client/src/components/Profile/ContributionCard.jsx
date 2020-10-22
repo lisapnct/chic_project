@@ -7,7 +7,7 @@ const ContributionCard = (props) => {
       <div className="card-content-container">
         <div className="left-container">
           <div className="card-img-contribution">
-            <i className="fas fa-4x has-text-primary-light fa-hand-holding-heart"></i>
+            <i className="fas fa-5x has-text-primary-light fa-hand-holding-heart"></i>
           </div>
           <div className="card-infos">
             <p className="has-text-grey">{props.project.creator.userName}</p>

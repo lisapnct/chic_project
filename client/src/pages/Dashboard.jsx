@@ -144,7 +144,10 @@ class Dashboard extends React.Component {
   deleteProject = (id) => {
     apiHandler
       .deleteOne("/api/projects/", id)
-      .then(() => this.getDesignerProjects())
+      .then(() => {
+        this.getDesignerProjects();
+        this.resetState();
+      })
       .catch((err) => console.log(err));
   };
 

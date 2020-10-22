@@ -50,9 +50,11 @@ class ProfileContainer extends React.Component {
   render() {
     return (
       <div className="profile-grid-container">
-        <Link to="/">
-          <span className="delete is-medium"></span>
-        </Link>
+        <div className="close-btn-container">
+          <Link to="/">
+            <span className="delete is-medium"></span>
+          </Link>
+        </div>
         <div className="top-block">
           <figure className="image is-128x128">
             <img

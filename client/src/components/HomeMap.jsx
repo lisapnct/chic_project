@@ -38,7 +38,7 @@ class HomeMap extends Component {
   render() {
     const stores = this.state.stores;
     const mapstyle = {
-      style: "mapbox://styles/lisapnct/ckgkmeiqm0d5119qq3bw4nsht",
+      style: "mapbox://styles/lisapnct/ckgkly9xo0y3g19nx3mf2yhep",
     };
     return (
       <div>
@@ -47,10 +47,10 @@ class HomeMap extends Component {
             <Map
               style={mapstyle.style}
               center={this.props.searchInput}
-              zoom={[11.5]}
+              zoom={[12]}
               containerStyle={{
                 height: "100vh",
-                width: "70vw",
+                width: "100vw",
                 borderRadius: "20px",
               }}
             >

@@ -59,10 +59,17 @@ class ProjectCard extends React.Component {
   };
 
   render() {
+    const selectedStyle = {
+      boxShadow: "0px 0px 18px -2.5px rgba(96, 60, 234, 0.35)",
+    };
+    console.log(window.location)
     return (
       <div
+        style={this.props.isSelected && window.location.pathname.startsWith("/project") ? selectedStyle : null}
         className="item-card"
-        onClick={() => this.props.displayProject(this.props.id)}
+        onClick={() => {
+          this.props.displayProject(this.props.id);
+        }}
       >
         <Link to={`/project/${this.props.id}`}>
           <div className="card-content-container">
@@ -70,7 +77,9 @@ class ProjectCard extends React.Component {
               <div className="card-img image is-96x96">
                 <img
                   className="is-rounded"
-                  src={this.props.image ? this.props.image : this.state.creator_pic}
+                  src={
+                    this.props.image ? this.props.image : this.state.creator_pic
+                  }
                   alt="creator-pic"
                 />
               </div>
@@ -101,9 +110,7 @@ class ProjectCard extends React.Component {
             </div>
             <div className="card-state">
               {this.props.isSuccess ? (
-                <p className="tag is-success is-light">
-                  completed
-                </p>
+                <p className="tag is-success is-light">completed</p>
               ) : (
                 <p className="tag is-warning is-light">
                   {this.getItemsCollected()}/{this.getTotalItemsRequired()}{" "}

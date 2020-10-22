@@ -128,6 +128,7 @@ class Dashboard extends React.Component {
       <ContributionsList projects={this.state.userContributions} />
     ) : (
       <ProjectList
+        selectedProjectID={this.state.selectedProject._id}
         projects={this.state.projects}
         currentProject={this.getSelectedProject}
       />

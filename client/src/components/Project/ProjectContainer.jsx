@@ -19,7 +19,7 @@ class ProjectContainer extends React.Component {
   componentDidMount = () => {
     if (this.props.project.length === 0)
       this.getSelectedProject(this.props.match.params.id);
-      this.getSelectedStore(this.state.currentProject.store);
+    this.getSelectedStore(this.state.currentProject.store);
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -74,9 +74,6 @@ class ProjectContainer extends React.Component {
       <div className="project-grid-container">
         <div className="project-info">
           <div className="project-infos-header">
-            <Link to="/">
-              <span className="delete close-btn is-medium"></span>
-            </Link>
             <h1 className=" has-text-dark main-title">{project.name}</h1>
             <div>
               launched by{" "}
@@ -131,14 +128,21 @@ class ProjectContainer extends React.Component {
               materials={project.materials}
             />
           </div>
-          {!this.state.isContributing && project.isSuccess === false && (
-            <button
-              onClick={this.displayContributionForm}
-              className="button bold is-primary contribute-btn btn-scale-hover"
-            >
-              contribute
-            </button>
-          )}
+          <div className="project-action-btn">
+            {!this.state.isContributing && project.isSuccess === false && (
+              <button
+                onClick={this.displayContributionForm}
+                className="button bold is-primary contribute-btn btn-scale-hover"
+              >
+                contribute
+              </button>
+            )}
+            <div>
+              <Link to="/">
+                <span className="delete close-btn is-medium"></span>
+              </Link>
+            </div>
+          </div>
         </div>
         <hr />
 

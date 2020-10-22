@@ -33,7 +33,7 @@ class FormProject extends Component {
     // console.log();
     return (
       <div className="form-project-container">
-        <h1 className="bold title is-3">New project</h1>
+        <h1 className="main-title title">New project</h1>
         <form
           className="project-form field "
           onSubmit={this.props.handleFormSubmit}

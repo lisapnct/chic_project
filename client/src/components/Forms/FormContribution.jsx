@@ -56,11 +56,11 @@ class FormContribution extends React.Component {
                 </div>
                 <p className="control">
                   <input
-                    className="input"
+                    className="input contribution-amount"
                     name="quantity"
                     max={max}
                     type="number"
-                    placeholder="amount"
+                    placeholder={`max: ${max}`}
                     onChange={this.handleChange}
                     min={1}
                     required

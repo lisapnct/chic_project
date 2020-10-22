@@ -140,7 +140,8 @@ router.get("/:id", async (req, res, next) => {
   try {
     const apiRes = await Project.findById(req.params.id)
       .populate("creator", "profilePicture userName")
-      .populate("contributors.id_user", "profilePicture userName");
+      .populate("contributors.id_user", "profilePicture userName")
+      .populate("store");;
     const contributor = apiRes.contributors;
     res.status(200).json(apiRes);
   } catch (err) {

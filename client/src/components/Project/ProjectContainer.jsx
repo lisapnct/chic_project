@@ -55,7 +55,7 @@ class ProjectContainer extends React.Component {
   render() {
     let project;
     this.props.project.length === 0
-      ? (project = this.state.currentProject)
+      ? (project = this.state.currentProject) 
       : (project = this.props.project);
     return (
       <div className="project-grid-container">
@@ -97,6 +97,18 @@ class ProjectContainer extends React.Component {
                   <p>
                     <i className="fas fa-map-marker-alt has-text-primary"></i>{" "}
                     {this.props.store.location.formattedAddress}
+                  </p>
+                </React.Fragment>
+              )}
+              {this.state.currentProject && (
+                <React.Fragment>
+                  <p>
+                    <i className="fas fa-store-alt has-text-primary"></i>{" "}
+                    {project.store.name}
+                  </p>
+                  <p>
+                    <i className="fas fa-map-marker-alt has-text-primary"></i>{" "}
+                    {project.store.location.formattedAddress}
                   </p>
                 </React.Fragment>
               )}

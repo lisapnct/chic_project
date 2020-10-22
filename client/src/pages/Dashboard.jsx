@@ -147,19 +147,45 @@ class Dashboard extends React.Component {
     this.state.selectedProject.length === 0
       ? (id = this.props.match.params.id)
       : (id = this.state.selectedProject._id);
+
     // Update project
     apiHandler
       .updateOne(`/api/projects/${id}/contributions`, data)
       .then((apiRes) => {
+        console.log(apiRes);
         this.setState({ selectedProject: apiRes.data });
-      })
-      .catch((err) => console.log());
+
+        this.state.store_selected === true
+        ? apiHandler
+        .getAllProjects("/api/projects/stores/" + this.state.currentStoreId )
+        .then((apiRes) => {
+          this.setState({
+            projects: apiRes.data,
+          });
+          if (this.state.fabricFilters.length > 0)
+            this.filterByFabricTypes(this.state.fabricFilters);
+          })
+        .catch((err) => console.log(err))
+        : apiHandler
+          .getAll("/api/projects")
+          .then((apiRes) => {
+            this.setState({
+              projects: apiRes.data,
+            });
+            if (this.state.fabricFilters.length > 0)
+              this.filterByFabricTypes(this.state.fabricFilters);
+            })
+          .catch((err) => console.log(err));
+        })
+        .catch((err) => console.log());
+
+    // Update user
     apiHandler
       .updateOne(`/api/users/paillettes`, data)
       .then((apiRes) => {
         this.props.context.setUser(apiRes.data);
       })
-      .catch((err) => console.log());
+      .catch((err) => console.log(err));
   };
 
   render() {

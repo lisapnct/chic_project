@@ -42,23 +42,26 @@ class ProjectCard extends React.Component {
       .catch((err) => console.log(err));
   };
 
-  getItemsCollected = () => {
+  getItemsCollected = (prop) => {
     let qt = 0;
-    this.props.materials.map((material) => {
+    prop.materials.map((material) => {
       return (qt += material.collected_quantity);
     });
     return qt;
   };
 
-  getTotalItemsRequired = () => {
+  getTotalItemsRequired = (prop) => {
     let max = 0;
-    this.props.materials.map((material) => {
+    prop.materials.map((material) => {
       return (max += material.required_quantity);
     });
     return max;
   };
 
   render() {
+    let collected = this.getItemsCollected(this.props);
+    let goal = this.getTotalItemsRequired(this.props);
+    let result = String(collected + "/" + goal)
     return (
       <div
         className="item-card"
@@ -106,7 +109,7 @@ class ProjectCard extends React.Component {
                 </p>
               ) : (
                 <p className="tag is-warning is-light">
-                  {this.getItemsCollected()}/{this.getTotalItemsRequired()}{" "}
+                  {result}{" "}
                   items collected
                 </p>
               )}

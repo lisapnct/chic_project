@@ -2,14 +2,16 @@ import React from "react";
 
 class FormContribution extends React.Component {
   state = {
-    firstFabric: this.props.project.materials.find(material => material.required_quantity !== material.collected_quantity),
+    firstFabric: this.props.project.materials.find(
+      (material) => material.required_quantity !== material.collected_quantity
+    ),
     fabric_type: null,
     quantity: "",
   };
 
   componentDidMount = () => {
-    this.setState({ fabric_type: this.state.firstFabric.fabric_type})
-  }
+    this.setState({ fabric_type: this.state.firstFabric.fabric_type });
+  };
 
   handleSubmit = (evt) => {
     evt.preventDefault();
@@ -23,9 +25,12 @@ class FormContribution extends React.Component {
   };
 
   render() {
-    let currentMat = this.props.project.materials.filter(elm => elm.fabric_type === this.state.fabric_type)
+    let currentMat = this.props.project.materials.filter(
+      (elm) => elm.fabric_type === this.state.fabric_type
+    );
     let max = 0;
-    if(currentMat.length > 0) max = currentMat[0].required_quantity - currentMat[0].collected_quantity;
+    if (currentMat.length > 0)
+      max = currentMat[0].required_quantity - currentMat[0].collected_quantity;
     return (
       <React.Fragment>
         <div className="bottom-form-container">
@@ -33,9 +38,7 @@ class FormContribution extends React.Component {
             <img className="illu-gift" src="/gift-woman.svg" alt="illu-gift" />
           </div>
           <div className="form-container">
-            <h3 className="has-text-dark bold">
-              What do you want to give?
-            </h3>
+            <h3 className="has-text-dark bold">What do you want to give?</h3>
             <form className="field " onSubmit={this.handleSubmit}>
               <div className="field has-addons">
                 <div className="control">
@@ -43,13 +46,17 @@ class FormContribution extends React.Component {
                     <select name="fabric_type" onChange={this.handleChange}>
                       {this.props.project.materials &&
                         this.props.project.materials.map((material) => {
-                          if(material.required_quantity !== material.collected_quantity) {
-                          return (
-                            <option key={material.fabric_type}>
-                              {material.fabric_type}
-                            </option>
-                          );
+                          if (
+                            material.required_quantity !==
+                            material.collected_quantity
+                          ) {
+                            return (
+                              <option key={material.fabric_type}>
+                                {material.fabric_type}
+                              </option>
+                            );
                           }
+                          return null;
                         })}
                     </select>
                   </div>

@@ -64,10 +64,15 @@ class ProjectCard extends React.Component {
     };
     let collected = this.getItemsCollected(this.props);
     let goal = this.getTotalItemsRequired(this.props);
-    let result = String(collected + "/" + goal)
+    let result = String(collected + "/" + goal);
     return (
       <div
-        style={this.props.isSelected && window.location.pathname.startsWith("/project") ? selectedStyle : null}
+        style={
+          this.props.isSelected &&
+          window.location.pathname.startsWith("/project")
+            ? selectedStyle
+            : null
+        }
         className="item-card"
         onClick={() => {
           this.props.displayProject(this.props.id);
@@ -111,14 +116,26 @@ class ProjectCard extends React.Component {
               </div>
             </div>
             <div className="card-state">
-              {this.props.isSuccess ? (
-                <p className="tag is-success is-light">completed</p>
-              ) : (
-                <p className="tag is-warning is-light">
-                  {result}{" "}
-                  items collected
-                </p>
-              )}
+              <div>
+                {this.props.isSuccess ? (
+                  <p className="tag is-success is-light">completed</p>
+                ) : (
+                  <p className="tag is-warning is-light">
+                    {result} items collected
+                  </p>
+                )}
+                {this.props.isDeletable && (
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      this.props.deleteProject(this.props.id);
+                    }}
+                    className="button is-small is-danger is-light"
+                  >
+                    delete
+                  </button>
+                )}
+              </div>
 
               <span className="has-text-grey">
                 <DayJS format="MMM D, YYYY">{this.props.deadline}</DayJS>

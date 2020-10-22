@@ -17,16 +17,19 @@ class Dashboard extends React.Component {
     selectedProject: [],
     selectedProjectStoreInfo: [],
     userContributions: [],
+    designerProjects: [],
     store_selected: false,
     currentStoreId: null,
     selectedStoreId: null,
     inputCoordinates: [2.3968998, 48.8651136], // default Paris coordinates 20th arrondissement
     fabricFilters: [],
+    profileListView: "contributions",
   };
 
   componentDidMount() {
     this.resetState();
     if (this.props.context.user) this.getUsersContributions();
+    if (this.props.context.user.role === "designer") this.getDesignerProjects();
   }
 
   resetState = () => {
@@ -79,8 +82,25 @@ class Dashboard extends React.Component {
       .catch((err) => console.log(err));
   };
 
+  getDesignerProjects = () => {
+    apiHandler
+      .getAllProjects("/api/projects/designer")
+      .then((apiRes) => {
+        this.setState({
+          designerProjects: apiRes.data,
+        });
+        console.log("here", apiRes);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  handleCardListView = (view) => {
+    this.setState({
+      profileListView: view,
+    });
+  };
+
   handleMarkerClick = (storeId) => {
-    // console.log(storeId);
     apiHandler
       .getAllProjects("/api/projects/stores/" + storeId)
       .then((apiRes) => {
@@ -121,11 +141,25 @@ class Dashboard extends React.Component {
       this.handleMarkerClick(this.state.currentStoreId);
   };
 
+  deleteProject = (id) => {
+    apiHandler
+      .deleteOne("/api/projects/", id)
+      .then(() => this.getDesignerProjects())
+      .catch((err) => console.log(err));
+  };
+
   displayProjectList = () => {
     // conditional logic for rendering project list
     const location = this.props.history.location.pathname.toString();
     return location.startsWith("/profile") ? (
-      <ContributionsList projects={this.state.userContributions} />
+      <ContributionsList
+        contributions={this.state.userContributions}
+        projects={this.state.designerProjects}
+        listView={this.state.profileListView}
+        currentProject={this.getSelectedProject}
+        selectedProjectID={this.state.selectedProject._id}
+        deleteProject={this.deleteProject}
+      />
     ) : (
       <ProjectList
         selectedProjectID={this.state.selectedProject._id}
@@ -152,32 +186,33 @@ class Dashboard extends React.Component {
     apiHandler
       .updateOne(`/api/projects/${id}/contributions`, data)
       .then((apiRes) => {
-        console.log(apiRes);
         this.setState({ selectedProject: apiRes.data });
 
         this.state.store_selected === true
-        ? apiHandler
-        .getAllProjects("/api/projects/stores/" + this.state.currentStoreId )
-        .then((apiRes) => {
-          this.setState({
-            projects: apiRes.data,
-          });
-          if (this.state.fabricFilters.length > 0)
-            this.filterByFabricTypes(this.state.fabricFilters);
-          })
-        .catch((err) => console.log(err))
-        : apiHandler
-          .getAll("/api/projects")
-          .then((apiRes) => {
-            this.setState({
-              projects: apiRes.data,
-            });
-            if (this.state.fabricFilters.length > 0)
-              this.filterByFabricTypes(this.state.fabricFilters);
-            })
-          .catch((err) => console.log(err));
-        })
-        .catch((err) => console.log());
+          ? apiHandler
+              .getAllProjects(
+                "/api/projects/stores/" + this.state.currentStoreId
+              )
+              .then((apiRes) => {
+                this.setState({
+                  projects: apiRes.data,
+                });
+                if (this.state.fabricFilters.length > 0)
+                  this.filterByFabricTypes(this.state.fabricFilters);
+              })
+              .catch((err) => console.log(err))
+          : apiHandler
+              .getAll("/api/projects")
+              .then((apiRes) => {
+                this.setState({
+                  projects: apiRes.data,
+                });
+                if (this.state.fabricFilters.length > 0)
+                  this.filterByFabricTypes(this.state.fabricFilters);
+              })
+              .catch((err) => console.log(err));
+      })
+      .catch((err) => console.log());
 
     // Update user
     apiHandler
@@ -190,7 +225,7 @@ class Dashboard extends React.Component {
 
   render() {
     const boxShadow = {
-      boxShadow: `25px 47px 100px -49px rgba(0, 0, 0, 0.4)`,
+      boxShadow: `25px 47px 100px -49px rgba(0, 0, 0, 0.5)`,
     };
     return (
       <div className="dashboard-container">
@@ -229,7 +264,12 @@ class Dashboard extends React.Component {
                 />
               )}
             />
-            <Route path="/profile" component={ListTitle} />
+            <Route
+              path="/profile"
+              render={(props) => (
+                <ListTitle {...props} handleListBtn={this.handleCardListView} />
+              )}
+            />
           </Switch>
           {this.displayProjectList()}
         </div>

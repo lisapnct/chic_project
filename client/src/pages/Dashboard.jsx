@@ -243,6 +243,7 @@ class Dashboard extends React.Component {
                   {...props}
                   handleMarkClic={this.handleMarkerClick}
                   searchInput={this.state.inputCoordinates}
+                  displayAllProjects={this.resetState}
                 />
               )}
             />

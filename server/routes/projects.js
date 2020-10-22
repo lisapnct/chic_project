@@ -128,7 +128,8 @@ router.patch("/:id/contributions", async (req, res, next) => {
         new: true,
       }
     ).populate("contributors.id_user", "profilePicture userName")
-     .populate("creator", "profilePicture userName");
+     .populate("creator", "profilePicture userName")
+    //  .populate("store");
     res.status(200).json(apiRes);
 
   } catch(err) {
@@ -141,7 +142,7 @@ router.get("/:id", async (req, res, next) => {
     const apiRes = await Project.findById(req.params.id)
       .populate("creator", "profilePicture userName")
       .populate("contributors.id_user", "profilePicture userName")
-      .populate("store");;
+      // .populate("store");
     const contributor = apiRes.contributors;
     res.status(200).json(apiRes);
   } catch (err) {

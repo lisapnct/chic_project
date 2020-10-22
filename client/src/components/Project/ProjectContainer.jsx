@@ -13,11 +13,13 @@ class ProjectContainer extends React.Component {
     isContributing: false,
     contributionDone: false,
     currentProject: "",
+    currentStore: null,
   };
 
   componentDidMount = () => {
     if (this.props.project.length === 0)
       this.getSelectedProject(this.props.match.params.id);
+      this.getSelectedStore(this.state.currentProject.store);
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -35,6 +37,17 @@ class ProjectContainer extends React.Component {
       .then((apiRes) => {
         this.setState({
           currentProject: apiRes.data,
+        });
+      })
+      .catch((err) => console.log(err));
+  };
+
+  getSelectedStore = (storeId) => {
+    apiHandler
+      .getOne("/api/stores/", storeId)
+      .then((apiRes) => {
+        this.setState({
+          currentStore: apiRes.data,
         });
       })
       .catch((err) => console.log(err));
@@ -100,15 +113,15 @@ class ProjectContainer extends React.Component {
                   </p>
                 </React.Fragment>
               )}
-              {this.state.currentProject && (
+              {this.state.currentStore && (
                 <React.Fragment>
                   <p>
                     <i className="fas fa-store-alt has-text-primary"></i>{" "}
-                    {project.store.name}
+                    {this.currentStore.name}
                   </p>
                   <p>
                     <i className="fas fa-map-marker-alt has-text-primary"></i>{" "}
-                    {project.store.location.formattedAddress}
+                    {this.currentStore.location.formattedAddress}
                   </p>
                 </React.Fragment>
               )}

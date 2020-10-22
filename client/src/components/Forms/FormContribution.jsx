@@ -2,9 +2,14 @@ import React from "react";
 
 class FormContribution extends React.Component {
   state = {
-    fabric_type: this.props.project.materials[0].fabric_type,
+    firstFabric: this.props.project.materials.find(material => material.required_quantity !== material.collected_quantity),
+    fabric_type: null,
     quantity: "",
   };
+
+  componentDidMount = () => {
+    this.setState({ fabric_type: this.state.firstFabric.fabric_type})
+  }
 
   handleSubmit = (evt) => {
     evt.preventDefault();
@@ -19,9 +24,8 @@ class FormContribution extends React.Component {
 
   render() {
     let currentMat = this.props.project.materials.filter(elm => elm.fabric_type === this.state.fabric_type)
-    let max;
-    if(this.props.project) max = currentMat[0].required_quantity - currentMat[0].collected_quantity
-    console.log(max);
+    let max = 0;
+    if(currentMat.length > 0) max = currentMat[0].required_quantity - currentMat[0].collected_quantity;
     return (
       <React.Fragment>
         <div className="bottom-form-container">
@@ -39,11 +43,13 @@ class FormContribution extends React.Component {
                     <select name="fabric_type" onChange={this.handleChange}>
                       {this.props.project.materials &&
                         this.props.project.materials.map((material) => {
+                          if(material.required_quantity !== material.collected_quantity) {
                           return (
                             <option key={material.fabric_type}>
                               {material.fabric_type}
                             </option>
                           );
+                          }
                         })}
                     </select>
                   </div>

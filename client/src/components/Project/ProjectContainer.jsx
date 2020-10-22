@@ -22,7 +22,7 @@ class ProjectContainer extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.location !== prevProps.location) {
-      console.log("change location");
+      // console.log("change location");
       this.setState({
         contributionDone: false,
       });

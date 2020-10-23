@@ -159,7 +159,7 @@ class Dashboard extends React.Component {
         projects={this.state.designerProjects}
         listView={this.state.profileListView}
         currentProject={this.getSelectedProject}
-        selectedProjectID={this.state.selectedProject._id}
+        // selectedProjectID={this.state.selectedProject._id}
         deleteProject={this.deleteProject}
       />
     ) : (

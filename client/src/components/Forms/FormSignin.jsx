@@ -15,7 +15,6 @@ class FormSignin extends Component {
   handleChange = (event) => {
     const key = event.target.name;
 
-    // You can test more if you have to handle different sorts of inputs.
     const value =
       event.target.type === "file"
         ? event.target.files[0]

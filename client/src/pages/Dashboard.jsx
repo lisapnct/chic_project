@@ -89,7 +89,6 @@ class Dashboard extends React.Component {
         this.setState({
           designerProjects: apiRes.data,
         });
-        console.log("here", apiRes);
       })
       .catch((err) => console.log(err));
   };

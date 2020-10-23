@@ -6,11 +6,11 @@ const ContributionCard = (props) => {
     <div className="item-card">
       <div className="card-content-container">
         <div className="left-container">
-          <div className="card-img-contribution">
+          <div className="card-img">
             <i className="fas fa-5x has-text-primary-light fa-hand-holding-heart"></i>
           </div>
           <div className="card-infos">
-            <p className="has-text-grey">{props.project.creator.userName}</p>
+            <p className="has-text-grey">{props.context.user.userName}</p>
             <h3 className="has-text-grey-dark main-title">{props.project.name}</h3>
             <p>You contributed with:</p>
             <div className="card-tags">

@@ -38,7 +38,7 @@ class HomeMap extends Component {
   render() {
     const stores = this.state.stores;
     const mapstyle = {
-      style: "mapbox://styles/lisapnct/ckgkly9xo0y3g19nx3mf2yhep",
+      style: "mapbox://styles/mapbox/streets-v11",
     };
     return (
       <div>

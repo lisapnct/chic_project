@@ -13,7 +13,9 @@ const PointsCounter = (props) => {
           <CircularProgressbar
             maxValue={goal}
             value={props.context.user.paillettes}
-            text={`${Math.round((props.context.user.paillettes/goal)*100)}%`}
+            text={`${Math.round(
+              (props.context.user.paillettes / goal) * 100
+            )}%`}
             styles={buildStyles({
               textColor: "#603CEA",
               pathColor: "#603CEA",
@@ -21,15 +23,23 @@ const PointsCounter = (props) => {
           />
         </div>
         <div className="paillettes-infos">
-          <h3 className="bold has-text-dark">
+          <h2 className="bold has-text-dark">
             You collected{" "}
-            <span className="tag is-primary is-light">{props.context.user.paillettes} paillette(s)</span>
+            <span className="tag is-primary is-light">
+              {props.context.user.paillettes} paillette(s) 
+              <i className="fas fa-fire"></i>{" "}
+            </span>
+          </h2>
+          <h3>
+             <i className="fas fa-gifts"></i> Only{" "}
+            {goal - props.context.user.paillettes} paillette(s) left until next
+            reward!
           </h3>
-          <p>Only { goal - props.context.user.paillettes } paillette(s) left until next reward!</p>
-          <span className="paillettes-rules">
+          
+          <p className="paillettes-rules">
             <i className="fas fa-info-circle has-text-primary"></i> 1 item
             contributed = 1 paillette
-          </span>
+          </p>
         </div>
       </div>
     </React.Fragment>

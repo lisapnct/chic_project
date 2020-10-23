@@ -45,9 +45,11 @@ class FormUser extends Component {
           </label>
         </div>
 
+        <br />
+
         <div className="field">
           <label className="label">Username</label>
-          <div className="control">
+          <div className="control has-icons-left">
             <input
               className="input"
               type="text"
@@ -56,12 +58,17 @@ class FormUser extends Component {
               onChange={this.handleChange}
               value={this.state.userName}
             />
+            <div className="icon is-small is-left">
+              <i className="fas fa-user"></i>
+            </div>
           </div>
         </div>
 
+        <br />
+
         <div className="field">
           <label className="label">Email</label>
-          <div className="control">
+          <div className="control has-icons-left">
             <input
               className="input"
               type="email"
@@ -70,22 +77,13 @@ class FormUser extends Component {
               placeholder="e.g. alexsmith@gmail.com"
               onChange={this.handleChange}
             />
+            <div className="icon is-small is-left">
+              <i className="fas fa-envelope"></i>
+            </div>
           </div>
         </div>
 
-        <div className="field">
-          <label className="label">Address</label>
-          <div className="control">
-            <input
-              className="input"
-              type="text"
-              name="address"
-              placeholder="e.g. 40 boulevard Voltaire, Paris"
-              onChange={this.handleChange}
-              value={this.state.address}
-            />
-          </div>
-        </div>
+        <br />
 
         <div className="field is-grouped is-grouped-right">
           <p className="control">

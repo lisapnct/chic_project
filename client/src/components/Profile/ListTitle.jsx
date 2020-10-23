@@ -22,8 +22,8 @@ class ListTitle extends React.Component {
             onClick={this.handleClick}
             className={
               this.state.view === "contributions"
-                ? "button is-small is-primary"
-                : "button is-light is-small"
+                ? "button  is-primary is-light"
+                : "button is-light "
             }
           >
             my contributions
@@ -34,8 +34,8 @@ class ListTitle extends React.Component {
               onClick={this.handleClick}
               className={
                 this.state.view === "projects"
-                  ? "button is-small is-primary"
-                  : "button is-light is-small"
+                  ? "button  is-primary is-light"
+                  : "button is-light "
               }
             >
               my projects

@@ -16,11 +16,17 @@ class Home extends React.Component {
               <h2 className="subtitle colored is-4">
                 Give materials, help creators, get rewards.
               </h2>
-              <p>
-                Tired of your old clothes getting dust in your closet? <br/>
-                Why not get rid of them and help your local disigners?! <br/>
-                Join the CHIIC project and make the world a slightly more fair, stylich and ecofriendly place! 
+              <p className="has-text-grey">
+                Tired of your old clothes getting dust in your closet? <br />
+                Why don't your get rid of them and help local creators?! <br />
+                Join the chiic project and make the world a slightly fairer,
+                elegant and ecofriendly place!
               </p>
+              <br/>
+              <span className="has-text-grey-light">
+                An app developed with <i className="fas fa-heart"></i> by François
+                V. and Lisa P. (Ironhack students)
+              </span>
             </div>
 
             <div className="right block-home">

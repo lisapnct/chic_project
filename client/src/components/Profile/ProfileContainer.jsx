@@ -56,7 +56,7 @@ class ProfileContainer extends React.Component {
           </Link>
         </div> 
         <div className="top-block">
-          <figure className="image is-128x128">
+          <figure className="image profile-img is-128x128">
             <img
               className="is-rounded"
               src={this.props.context.user.profilePicture}

@@ -27,18 +27,6 @@ const NavMain = (props) => {
               ch<i className="fas fa-socks has-text-primary"></i>c.
             </h1>
           </NavLink>
-
-          <NavLink
-            to="/"
-            role="button"
-            className="navbar-burger"
-            aria-label="menu"
-            aria-expanded="false"
-          >
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </NavLink>
         </div>
         <div className="navbar-item">
           {context.isLoggedIn && context.user.role === "designer" && (

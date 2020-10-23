@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import DayJS from "react-dayjs";
 import apiHandler from "../../api/apiHandler";
+import { withUser } from "../Auth/withUser";
 
 class ProjectCard extends React.Component {
   state = {
@@ -65,6 +66,7 @@ class ProjectCard extends React.Component {
     let collected = this.getItemsCollected(this.props);
     let goal = this.getTotalItemsRequired(this.props);
     let result = String(collected + "/" + goal);
+
     return (
       <div
         style={
@@ -81,17 +83,25 @@ class ProjectCard extends React.Component {
         <Link to={`/project/${this.props.id}`}>
           <div className="card-content-container">
             <div className="left-container">
-              <div className="card-img image is-96x96">
-                <img
-                  className="is-rounded"
-                  src={
-                    this.props.image ? this.props.image : this.state.creator_pic
-                  }
-                  alt="creator-pic"
-                />
-              </div>
+              {window.location.pathname === "/profile" ? (
+                <div className="card-img">
+                  <i className="fas fa-5x has-text-primary-light fa-socks"></i>
+                </div>
+              ) : (
+                <div className="card-img image is-96x96">
+                  <img
+                    className="is-rounded"
+                    src={
+                      this.props.image
+                        ? this.props.image
+                        : this.state.creator_pic
+                    }
+                    alt="creator-pic"
+                  />
+                </div>
+              )}
               <div className="card-infos">
-                <p className="has-text-grey">{this.props.creator.userName}</p>
+                <p className="has-text-grey">{this.props.context.user.userName}</p>
                 <h3 className="has-text-dark main-title">{this.props.name}</h3>
                 <div className="location-container has-text-grey">
                   <span>
@@ -126,7 +136,7 @@ class ProjectCard extends React.Component {
                       }}
                       className="button is-small is-danger is-light"
                     >
-                      <i class="fas fa-trash"></i> delete
+                      <i className="fas fa-trash"></i> delete
                     </button>
                   </div>
                 )}
@@ -150,4 +160,4 @@ class ProjectCard extends React.Component {
   }
 }
 
-export default ProjectCard;
+export default withUser(ProjectCard);

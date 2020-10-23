@@ -17,7 +17,7 @@ class ProjectContainer extends React.Component {
   };
 
   componentDidMount = () => {
-    if (this.props.project.length === 0)
+    if (!this.props.project)
       this.getSelectedProject(this.props.match.params.id);
     this.getSelectedStore(this.state.currentProject.store);
   };
@@ -67,7 +67,7 @@ class ProjectContainer extends React.Component {
 
   render() {
     let project;
-    this.props.project.length === 0
+    !this.props.project
       ? (project = this.state.currentProject)
       : (project = this.props.project);
     return (

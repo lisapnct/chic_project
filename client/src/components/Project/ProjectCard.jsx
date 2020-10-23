@@ -101,7 +101,9 @@ class ProjectCard extends React.Component {
                 </div>
               )}
               <div className="card-infos">
-                <p className="has-text-grey">{this.props.context.user.userName}</p>
+                <p className="has-text-grey">
+                  {this.props.context.user.userName}
+                </p>
                 <h3 className="has-text-dark main-title">{this.props.name}</h3>
                 <div className="location-container has-text-grey">
                   <span>

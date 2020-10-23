@@ -14,7 +14,7 @@ class Dashboard extends React.Component {
   state = {
     projects: [],
     allProjects: [],
-    selectedProject: [],
+    selectedProject: null,
     selectedProjectStoreInfo: [],
     userContributions: [],
     designerProjects: [],
@@ -41,6 +41,7 @@ class Dashboard extends React.Component {
           allProjects: apiRes.data,
           store_selected: false,
           currentStoreId: null,
+          selectedProject: null
         });
         if (this.state.fabricFilters.length > 0)
           this.filterByFabricTypes(this.state.fabricFilters);
@@ -159,12 +160,20 @@ class Dashboard extends React.Component {
         projects={this.state.designerProjects}
         listView={this.state.profileListView}
         currentProject={this.getSelectedProject}
-        // selectedProjectID={this.state.selectedProject._id}
+        selectedProjectID={
+          this.state.selectedProject 
+            ? this.state.selectedProject._id
+            : 0
+        }
         deleteProject={this.deleteProject}
       />
     ) : (
       <ProjectList
-        selectedProjectID={this.state.selectedProject._id}
+        selectedProjectID={
+          this.state.selectedProject
+            ? this.state.selectedProject._id
+            : 0
+        }
         projects={this.state.projects}
         currentProject={this.getSelectedProject}
       />
@@ -180,7 +189,7 @@ class Dashboard extends React.Component {
   // project contribution form handler
   handleContributionSubmit = (data) => {
     let id;
-    this.state.selectedProject.length === 0
+    !this.state.selectedProject
       ? (id = this.props.match.params.id)
       : (id = this.state.selectedProject._id);
 

@@ -12,7 +12,7 @@ class Home extends React.Component {
         <div className="fullscreen-container">
           <div className="blocks-container">
             <div className="left block-home">
-              <h1 className="title is-1">A second life for your clothes!</h1>
+              <h1 className="title is-1">A second life for your clothes!</h1>
               <h2 className="subtitle colored is-4">
                 Give materials, help creators, get rewards.
               </h2>

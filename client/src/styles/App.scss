@@ -1,8 +1,8 @@
-@import "../styles/Cards.scss";
-@import "../styles/FormProject.scss";
-@import "../styles/Searchbar.scss";
-@import "../styles/Map.scss";
-@import "../styles/ProfileList.scss";
+@import "./Cards.scss";
+@import "./FormProject.scss";
+@import "./Searchbar.scss";
+@import "./Map.scss";
+@import "./ProfileList.scss";
 
 // my vars
 $purple: #603cea;
@@ -19,4 +19,85 @@ $danger: $fiery-rose;
 $warning: $corn;
 
 @import "../../node_modules/bulma/";
-@import "../styles/Global.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow: hidden;
+}
+
+body {
+  font-size: 10px;
+  max-height: 100vh;
+  max-width: 100vw;
+  overflow: hidden;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  color: inherit;
+}
+
+ul {
+  list-style-type: none;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.8em;
+}
+
+h3 {
+  font-size: 1.6em;
+}
+
+p {
+  font-size: 1.4em;
+}
+
+span {
+  font-size: 1.2em;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.navbar {
+  z-index: 700;
+  min-height: 4rem;
+}
+
+.logo {
+  font-weight: 900;
+}
+
+.btn-scale-hover {
+  transition: all 0.15s ease-in-out;
+}
+
+.btn-scale-hover:hover {
+  transform: scale(0.97);
+}
+
+.main-title {
+  font-weight: 750;
+  letter-spacing: -0.5px;
+}

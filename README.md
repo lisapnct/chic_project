@@ -1,4 +1,6 @@
-chiic is an app to promote clothes recycling and help designers find the materials they need for their projects.
+# chiic
+
+**chiic** is an app to promote clothes recycling and help designers find the materials they need for their projects.
 
 🧥 Try it here: http://wwww.chiic.com/ 
 
@@ -7,7 +9,7 @@ chiic is an app to promote clothes recycling and help designers find the materia
 
 Hi there! We are François and Lisa, the creators of this app!
 
-We developed and deployed chiic within a week and half as part of our Ironhack coding bootcamp journey.
+We developed and deployed **chiic** within a week and half as part of our **Ironhack coding bootcamp** journey.
 
 Technologies used:
 

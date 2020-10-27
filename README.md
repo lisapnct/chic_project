@@ -1,19 +1,23 @@
-Chiic is an app with an ambition to reduce clothing waste and help small designers to source the materials easily.
+chiic is an app to promote clothes recycling and help designers find the materials they need for their projects.
 
-🥼 Try it here: http://chiic.com/ 🧥
+🧥 Try it here: http://wwww.chiic.com/ 
+
+----
+
 
 Hi there! We are François and Lisa, the creators of this app!
 
-We developed and deployed Chiic within a week and half as part of our Ironhack coding bootcamp journey.
+We developed and deployed chiic within a week and half as part of our Ironhack coding bootcamp journey.
 
 Technologies used:
 
-Javascript
-Node.js
-Express.js
-MongoDB & Mongoose
-ReactJs 
-HTML & CSS
+- ReactJs
+- Node.js
+- Express.js
+- MongoDB & Mongoose
+- HTML & CSS
+- Mapbox (API)
+
 Feel free to fork and contribute!
 
 Lisa Poncet https://www.linkedin.com/in/lisaponcet/

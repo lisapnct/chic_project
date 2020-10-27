@@ -2,7 +2,7 @@
 
 **chiic** is an app to promote clothes recycling and help designers find the materials they need for their projects.
 
-🧥 Try it here: http://wwww.chiic.com/ 
+🧥 Try it here: http://www.chiic.com/ 
 
 ----
 

@@ -42,7 +42,7 @@ function App() {
                 <i class="fas fa-lg has-text-primary fa-exclamation-circle"></i>
                  
                 <span className="has-text-primary">
-                   Your screen seems to small...
+                   Your screen seems too small...
                 </span>
                 <br />
                 <br />

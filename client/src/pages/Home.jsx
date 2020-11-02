@@ -12,19 +12,19 @@ class Home extends React.Component {
         <div className="fullscreen-container">
           <div className="blocks-container">
             <div className="left block-home">
-              <h1 className="title is-1">A second life for your clothes!</h1>
+              <h1 className="title is-1">A second life for your clothes!</h1>
               <h2 className="subtitle colored is-4">
                 Give materials, help creators, get rewards.
               </h2>
               <p className="has-text-grey">
-                Tired of your old clothes getting dust in your closet? <br />
-                Why don't your get rid of them and help local creators?! <br />
+                Tired of your old clothes getting dust in your closet? 
+                Why don't your get rid of them and help local creators? <br />
                 Join the chiic project and make the world a slightly fairer,
-                elegant and ecofriendly place!
+                elegant and eco-friendly place!
               </p>
               <br/>
               <span className="has-text-grey-light">
-                An app developed with <i className="fas fa-heart"></i> by François
+                An app prototype developed with <i className="fas fa-heart"></i> by François
                 V. and Lisa P. (Ironhack students)
               </span>
             </div>

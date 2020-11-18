@@ -9,7 +9,6 @@ import "./styles/Dashboard.scss";
 
 function App() {
   const screenWidth = window.screen.availWidth;
-  console.log(screenWidth);
   return (
     <div className="App">
       {screenWidth >= 1024 ? (

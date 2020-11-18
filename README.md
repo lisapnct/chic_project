@@ -1,5 +1,7 @@
 # chiic
 
+![chiic-screen.png](chiic-screen.png)
+
 **chiic** is an app to promote clothes recycling and help designers find the materials they need for their projects.
 
 🧥 Try it here: http://www.chiic.com/ 
